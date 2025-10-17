@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useTheme } from '../app/providers'
 import { brand } from '../lib/brand'
-import logo from '../assets/logo-arabella.svg'
+import logo from '../assets/logo-arabella.png'
 import { useScrollspy } from '../hooks/useScrollspy'
 
 interface NavItem {
