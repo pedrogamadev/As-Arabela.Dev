@@ -1,73 +1,76 @@
-# React + TypeScript + Vite
+# Arabella.dev Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projeto de landing page moderna para o estúdio web Arabella.dev, construído com Vite, React 18 e TypeScript. O foco é oferecer uma base pronta para evoluções rápidas, com conteúdo em português, tema claro/escuro e componentes acessíveis.
 
-Currently, two official plugins are available:
+## Como este projeto foi criado
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm create vite@latest arabella -- --template react-ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Instalação e uso
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm i
+npm run dev
 ```
+
+## Build e preview
+
+```bash
+npm run build
+npm run preview
+```
+
+## Estrutura principal
+
+```
+src/
+  app/
+    App.tsx
+    main.tsx
+    providers.tsx
+  components/
+    Hero.tsx, Nav.tsx, Services.tsx, ...
+  content/
+    hero.ts, services.ts, process.ts, cases.ts, faq.ts
+  features/
+    estimator/logic.ts
+  lib/
+    brand.ts, seo.ts, validators.ts
+  assets/
+    *.svg (logos, antes/depois)
+  index.css
+```
+
+## Personalização
+
+- **Tokens de marca:** edite `src/lib/brand.ts` para alterar gradientes, cores e espaçamentos.
+- **Conteúdo editorial:** ajuste textos em `src/content/*.ts`.
+- **Estimador:** refine os valores em `src/features/estimator/logic.ts`.
+- **Tema:** o `ThemeProvider` em `src/app/providers.tsx` cuida do tema claro/escuro e persistência no `localStorage`.
+
+## Variáveis de ambiente
+
+Copie `.env.example` para `.env` e ajuste os valores conforme necessário:
+
+```
+VITE_SCHEDULER_URL=https://calendly.com/your-link
+VITE_UMAMI_SCRIPT_URL=
+```
+
+- `VITE_SCHEDULER_URL`: URL do iframe de agendamento (ex.: Calendly, HubSpot Meetings).
+- `VITE_UMAMI_SCRIPT_URL`: script opcional do Umami (se vazio, nada é carregado).
+
+## Lint e formatação
+
+```bash
+npm run lint
+npm run format
+```
+
+## Recursos adicionais
+
+- SEO: `src/lib/seo.ts` aplica metadados Open Graph e JSON-LD de FAQ/Organização.
+- Acessibilidade: componentes consideram foco visível, teclado e `prefers-reduced-motion`.
+- Scheduler: `src/components/Scheduler.tsx` renderiza o iframe inline e via modal flutuante.
