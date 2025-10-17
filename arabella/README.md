@@ -2,6 +2,8 @@
 
 Projeto de landing page moderna para o estúdio web Arabella.dev, construído com Vite, React 18 e TypeScript. O foco é oferecer uma base pronta para evoluções rápidas, com conteúdo em português, tema claro/escuro e componentes acessíveis.
 
+Estilos são definidos com Tailwind CSS v4 via plugin oficial `@tailwindcss/vite`, sem necessidade de configuração extra.
+
 ## Como este projeto foi criado
 
 ```bash

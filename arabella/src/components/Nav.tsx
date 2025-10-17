@@ -1,98 +1,72 @@
-import { useEffect, useState } from 'react';
-import { useTheme } from '../app/providers';
-import { brand } from '../lib/brand';
-import logo from '../assets/logo-arabella.svg';
+import { useEffect, useMemo, useState } from 'react'
+import { useTheme } from '../app/providers'
+import { brand } from '../lib/brand'
+import logo from '../assets/logo-arabella.svg'
+import { useScrollspy } from '../hooks/useScrollspy'
 
 interface NavItem {
-  id: string;
-  label: string;
+  id: string
+  label: string
 }
 
 interface NavProps {
-  navItems: NavItem[];
-  ctaLabel: string;
+  navItems: NavItem[]
+  ctaLabel: string
 }
 
 const Nav = ({ navItems, ctaLabel }: NavProps) => {
-  const { theme, toggleTheme } = useTheme();
-  const [active, setActive] = useState<string>('');
-  const [open, setOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme()
+  const [open, setOpen] = useState(false)
+  const ids = useMemo(() => navItems.map(item => item.id), [navItems])
+  const active = useScrollspy(ids)
 
   useEffect(() => {
-    const sections = navItems
-      .map(item => document.getElementById(item.id))
-      .filter(Boolean) as HTMLElement[];
-
-    if (!sections.length) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      entries => {
-        const visible = entries
-          .filter(entry => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (visible?.target) {
-          setActive(visible.target.id);
-        }
-      },
-      { threshold: [0.35, 0.55] },
-    );
-
-    sections.forEach(section => observer.observe(section));
-
-    return () => observer.disconnect();
-  }, [navItems]);
-
-  useEffect(() => {
-    const close = () => setOpen(false);
-    window.addEventListener('resize', close);
-    return () => window.removeEventListener('resize', close);
-  }, []);
+    const close = () => setOpen(false)
+    window.addEventListener('resize', close)
+    return () => window.removeEventListener('resize', close)
+  }, [])
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
+    const element = document.getElementById(id)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setOpen(false);
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      setOpen(false)
     }
-  };
+  }
 
   return (
-    <header className="nav" role="banner">
-      <div className="nav__inner">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-[rgb(var(--bg))/0.65] backdrop-blur">
+      <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <button
-          className="nav__brand"
+          className="flex items-center gap-2 rounded-full px-2 py-1 text-sm font-semibold text-white transition hover:text-white/80"
           onClick={() => scrollToSection('hero')}
           type="button"
           aria-label="Voltar ao início"
         >
-          <span className="nav__logo" aria-hidden>
-            <img src={logo} alt="Logo Arabella.dev" />
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/10">
+            <img src={logo} alt="Logo Arabella.dev" className="h-6 w-6" />
           </span>
-          <span className="nav__name">Arabella.dev</span>
+          Arabella.dev
         </button>
 
-        <nav className="nav__links" aria-label="Principal">
+        <nav className="flex items-center" aria-label="Principal">
           <button
-            className="nav__mobile-toggle"
+            className="mr-2 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xl text-white shadow-soft md:hidden"
             type="button"
             onClick={() => setOpen(prev => !prev)}
             aria-expanded={open}
             aria-controls="menu-principal"
           >
-            <span className="sr-only">Abrir menu</span>
-            <span className="nav__hamburger" aria-hidden />
+            <span className="sr-only">Alternar menu</span>
+            <span aria-hidden>{open ? '×' : '☰'}</span>
           </button>
-          <ul
-            id="menu-principal"
-            className={`nav__list ${open ? 'nav__list--open' : ''}`}
-          >
+          <ul className="hidden items-center gap-6 md:flex">
             {navItems.map(item => (
               <li key={item.id}>
                 <button
-                  className={`nav__link ${active === item.id ? 'is-active' : ''}`}
+                  className={`text-sm font-medium transition ${
+                    active === item.id ? 'text-white' : 'text-white/50 hover:text-white'
+                  }`}
                   type="button"
                   onClick={() => scrollToSection(item.id)}
                 >
@@ -100,10 +74,10 @@ const Nav = ({ navItems, ctaLabel }: NavProps) => {
                 </button>
               </li>
             ))}
-            <li className="nav__cta">
+            <li>
               <button
                 type="button"
-                className="button button--primary"
+                className="pill bg-blue-500 text-sm font-medium text-white shadow-soft transition hover:bg-blue-400"
                 onClick={() => scrollToSection('estimator')}
               >
                 {ctaLabel}
@@ -112,7 +86,7 @@ const Nav = ({ navItems, ctaLabel }: NavProps) => {
             <li>
               <button
                 type="button"
-                className="nav__theme"
+                className="pill glass text-sm font-medium text-white/70 hover:text-white"
                 onClick={toggleTheme}
                 aria-label={`Alternar para tema ${theme === 'light' ? 'escuro' : 'claro'}`}
               >
@@ -121,10 +95,55 @@ const Nav = ({ navItems, ctaLabel }: NavProps) => {
             </li>
           </ul>
         </nav>
-      </div>
-      <div className="nav__glow" style={{ background: brand.gradient }} aria-hidden />
-    </header>
-  );
-};
 
-export default Nav;
+        {open && (
+          <div
+            id="menu-principal"
+            className="absolute right-4 top-[calc(100%+1rem)] w-56 space-y-3 rounded-2xl border border-white/10 bg-[rgb(var(--card))]/95 p-4 shadow-soft md:hidden"
+          >
+            <ul className="flex flex-col gap-2">
+              {navItems.map(item => (
+                <li key={item.id}>
+                  <button
+                    className={`w-full text-left text-sm font-medium transition ${
+                      active === item.id ? 'text-white' : 'text-white/60 hover:text-white'
+                    }`}
+                    type="button"
+                    onClick={() => scrollToSection(item.id)}
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <div className="flex flex-col gap-2">
+              <button
+                type="button"
+                className="pill bg-blue-500 text-sm font-medium text-white shadow-soft transition hover:bg-blue-400"
+                onClick={() => scrollToSection('estimator')}
+              >
+                {ctaLabel}
+              </button>
+              <button
+                type="button"
+                className="pill glass text-sm font-medium text-white/70 hover:text-white"
+                onClick={toggleTheme}
+                aria-label={`Alternar para tema ${theme === 'light' ? 'escuro' : 'claro'}`}
+              >
+                Tema {theme === 'light' ? 'escuro' : 'claro'}
+              </button>
+            </div>
+          </div>
+        )}
+
+        <div
+          className="pointer-events-none absolute inset-x-0 top-full h-[1px] opacity-70"
+          style={{ backgroundImage: brand.gradient }}
+          aria-hidden
+        />
+      </div>
+    </header>
+  )
+}
+
+export default Nav
