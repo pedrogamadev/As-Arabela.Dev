@@ -1,75 +1,58 @@
-import { useEffect } from 'react';
-import type { HeroContent, HeroCta, LogoItem } from '../content/hero';
-import { applyOpenGraphMeta } from '../lib/seo';
-import { brand } from '../lib/brand';
-
-interface HeroProps {
-  id: string;
-  content: HeroContent;
-  ctas: HeroCta[];
-  logos: LogoItem[];
-}
-
-const Hero = ({ id, content, ctas, logos }: HeroProps) => {
-  useEffect(() => {
-    applyOpenGraphMeta({
-      title: `${content.title} | Arabella.dev`,
-      description: content.subtitle,
-      image: 'https://www.arabella.dev/og-image.png',
-      url: 'https://www.arabella.dev',
-      siteName: 'Arabella.dev',
-    });
-  }, [content]);
-
-  const handleCta = (cta: HeroCta) => {
-    if (cta.action === 'scroll') {
-      const target = document.getElementById(cta.target);
-      target?.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    if (cta.action === 'modal') {
-      document.dispatchEvent(new CustomEvent('scheduler:open'));
-    }
-  };
-
-  return (
-    <section id={id} className="hero" aria-labelledby="hero-title">
-      <div className="hero__background" aria-hidden>
-        <div className="hero__glow" style={{ background: brand.gradient }} />
-      </div>
-      <div className="container hero__container">
-        <div className="hero__content">
-          <p className="hero__kicker">{content.kicker}</p>
-          <h1 id="hero-title" className="hero__title">
-            {content.title}
-          </h1>
-          <p className="hero__subtitle">{content.subtitle}</p>
-          <div className="hero__actions">
-            {ctas.map(cta => (
-              <button
-                key={cta.label}
-                type="button"
-                className={`button ${cta.action === 'scroll' ? 'button--primary' : 'button--ghost'}`}
-                onClick={() => handleCta(cta)}
-              >
-                {cta.label}
-              </button>
-            ))}
+const Hero = () => (
+  <section id="hero" className="hero" aria-labelledby="hero-title">
+    <div className="hero__bg" aria-hidden>
+      <div className="hero__glow" />
+    </div>
+    <div className="container hero__container">
+      <div className="hero__content">
+        <span className="hero__badge">Lançamento do SaaS em breve</span>
+        <h1 id="hero-title">Construa landing pages impressionantes com velocidade e precisão.</h1>
+        <p>
+          A plataforma definitiva para criar, otimizar e gerenciar landing pages de alta conversão. Em breve,
+          uma solução SaaS completa para transformar suas campanhas.
+        </p>
+        <div className="hero__actions">
+          <a className="button button--primary" href="#roadmap">
+            Experimente agora
+          </a>
+          <a className="button button--ghost" href="#features">
+            Assista a demo
+          </a>
+        </div>
+        <dl className="hero__metrics">
+          <div>
+            <dt>99,9%</dt>
+            <dd>Uptime garantido</dd>
           </div>
-          <div className="hero__logos" aria-label="Clientes atendidos">
-            {logos.map(logo => (
-              <img
-                key={logo.name}
-                src={logo.src}
-                alt={`Logo ${logo.name}`}
-                loading="lazy"
-              />
-            ))}
+          <div>
+            <dt>50ms</dt>
+            <dd>Tempo de resposta</dd>
+          </div>
+          <div>
+            <dt>10x</dt>
+            <dd>Mais testes por trimestre</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div className="hero__preview" aria-hidden>
+        <div className="hero__window">
+          <header>
+            <span />
+            <span />
+            <span />
+          </header>
+          <div className="hero__window-body">
+            <div className="hero__dropzone">
+              <div className="hero__element">arabella.dev/editor</div>
+            </div>
+            <div className="hero__annotation hero__annotation--primary">Drag & drop</div>
+            <div className="hero__annotation hero__annotation--secondary">Analytics integrados</div>
           </div>
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Hero;

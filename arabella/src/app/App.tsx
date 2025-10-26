@@ -1,57 +1,28 @@
-import { useMemo } from 'react';
-import Hero from '../components/Hero';
-import KPISection from '../components/KPI';
-import Services from '../components/Services';
-import Process from '../components/Process';
-import Cases from '../components/Cases';
-import EstimatorSection from '../components/Estimator';
-import FaqSection from '../components/Faq';
-import Footer from '../components/Footer';
 import Nav from '../components/Nav';
+import Hero from '../components/Hero';
+import FeatureGrid from '../components/FeatureGrid';
+import Experience from '../components/Experience';
 import Testimonials from '../components/Testimonial';
-import Scheduler from '../components/Scheduler';
-import {
-  heroContent,
-  heroLogos,
-  heroCtas,
-  heroKpis,
-} from '../content/hero';
-import { servicesContent } from '../content/services';
-import { processSteps } from '../content/process';
-import { casesContent } from '../content/cases';
-import { faqItems } from '../content/faq';
-import { schedulerConfig } from '../lib/brand';
+import Roadmap from '../components/Roadmap';
+import Footer from '../components/Footer';
 
 const App = () => {
-  const navItems = useMemo(
-    () => [
-      { id: 'services', label: 'Serviços' },
-      { id: 'cases', label: 'Cases' },
-      { id: 'process', label: 'Processo' },
-      { id: 'estimator', label: 'Estimador' },
-      { id: 'faq', label: 'FAQ' },
-    ],
-    [],
-  );
+  const navItems = [
+    { label: 'Recursos', href: '#features' },
+    { label: 'Preços', href: '#roadmap' },
+    { label: 'Blog', href: '#experience' },
+    { label: 'Casos', href: '#testimonials' },
+  ];
 
   return (
     <div className="app-shell">
-      <Nav navItems={navItems} ctaLabel="Receber proposta" />
+      <Nav navItems={navItems} />
       <main>
-        <Hero
-          id="hero"
-          content={heroContent}
-          logos={heroLogos}
-          ctas={heroCtas}
-        />
-        <KPISection items={heroKpis} />
-        <Services id="services" services={servicesContent} />
-        <Process id="process" steps={processSteps} />
-        <Cases id="cases" cases={casesContent} />
+        <Hero />
+        <FeatureGrid />
+        <Experience />
         <Testimonials />
-        <EstimatorSection id="estimator" />
-        <FaqSection id="faq" items={faqItems} />
-        <Scheduler floating schedulerUrl={schedulerConfig.url} />
+        <Roadmap />
       </main>
       <Footer />
     </div>
