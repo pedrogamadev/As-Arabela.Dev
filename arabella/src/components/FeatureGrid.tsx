@@ -1,43 +1,51 @@
 const features = [
   {
-    title: 'Componentes pré-construídos',
-    description:
-      'Biblioteca completa de componentes otimizados e prontos para uso em qualquer campanha.',
+    title: 'Venda de produtos',
+    description: 'Landing pages para lojas virtuais e lançamentos de produtos com checkout otimizado.',
+    icon: 'https://cdn-icons-png.flaticon.com/512/711/711897.png',
+    alt: 'Ícone de sacola representando vendas',
   },
   {
-    title: 'Editor intuitivo',
+    title: 'Escritórios',
     description:
-      'Interface drag-and-drop que acelera a criação sem abrir mão da personalização.',
+      'Páginas institucionais para escritórios de advocacia, contabilidade, clínicas médicas e coworkings.',
+    icon: 'https://cdn-icons-png.flaticon.com/512/1829/1829305.png',
+    alt: 'Ícone de maleta corporativa',
   },
   {
-    title: 'SEO otimizado',
+    title: 'Serviços',
     description:
-      'Configurações avançadas para mecanismos de busca desde o início.',
+      'Landing pages para prestadores de serviço como consultorias, academias, personal trainers e reparos.',
+    icon: 'https://cdn-icons-png.flaticon.com/512/2099/2099056.png',
+    alt: 'Ícone de engrenagem simbolizando serviços',
   },
   {
-    title: 'Preparado para SaaS',
-    description:
-      'Infraestrutura escalável para crescer junto com o seu negócio.',
+    title: 'Eventos e infoprodutos',
+    description: 'Páginas para cursos online, webinars, eventos e e-books com foco em captação de leads.',
+    icon: 'https://cdn-icons-png.flaticon.com/512/2838/2838766.png',
+    alt: 'Ícone de calendário representando eventos',
   },
 ];
 
 const FeatureGrid = () => (
-  <section id="features" className="features" aria-labelledby="features-title">
+  <section id="ferramentas" className="features" aria-labelledby="features-title">
     <div className="container">
       <header className="section-heading">
-        <p className="section-kicker">Tudo que você precisa para criar páginas excepcionais</p>
+        <p className="section-kicker">Ferramentas profissionais</p>
         <h2 id="features-title">Ferramentas profissionais para ideias que convertem</h2>
         <p>
-          Monte experiências digitais com a mesma facilidade de um construtor visual e o desempenho de uma
-          equipe sênior.
+          Oferecemos recursos prontos e personalizáveis para montar landing pages de vendas, capturar leads,
+          marcar consultas e exibir portfólios com performance de ponta. Inspirados na variedade de formatos
+          citada pela Mailjet — como capture, squeeze e click-through pages — entregamos opções que se adaptam
+          a cada objetivo.
         </p>
       </header>
       <div className="features__grid">
         {features.map(feature => (
           <article key={feature.title} className="feature-card">
-            <span className="feature-card__icon" aria-hidden>
-              <span />
-            </span>
+            <div className="feature-card__icon">
+              <img src={feature.icon} alt={feature.alt} loading="lazy" />
+            </div>
             <h3>{feature.title}</h3>
             <p>{feature.description}</p>
           </article>

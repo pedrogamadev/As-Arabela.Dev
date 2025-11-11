@@ -8,10 +8,11 @@ import Footer from '../components/Footer';
 
 const App = () => {
   const navItems = [
-    { label: 'Recursos', href: '#features' },
-    { label: 'Preços', href: '#roadmap' },
-    { label: 'Blog', href: '#experience' },
-    { label: 'Casos', href: '#testimonials' },
+    { label: 'Construa', href: '#construa' },
+    { label: 'Ferramentas', href: '#ferramentas' },
+    { label: 'Automatize', href: '#automatize' },
+    { label: 'Resultados', href: '#resultados' },
+    { label: 'SaaS', href: '#saas' },
   ];
 
   return (

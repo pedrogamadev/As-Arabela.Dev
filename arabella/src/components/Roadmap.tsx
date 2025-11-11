@@ -1,32 +1,21 @@
-const roadmapItems = [
-  'Gestão completa de campanhas multi-canal',
-  'Integrações com principais plataformas',
-  'Colaboração em tempo real',
-  'Automations avançadas de marketing',
-  'Insights potenciados com IA',
-  'Suporte prioritário 24/7',
-];
-
 const Roadmap = () => (
-  <section id="roadmap" className="roadmap" aria-labelledby="roadmap-title">
+  <section id="saas" className="roadmap" aria-labelledby="roadmap-title">
     <div className="container roadmap__container">
-      <div className="roadmap__content">
+      <div className="roadmap__card">
         <span className="roadmap__status">Em desenvolvimento</span>
         <h2 id="roadmap-title">Prepare-se para nossa plataforma SaaS completa</h2>
         <p>
-          Em breve lançaremos uma solução completa para gerenciar todo o ciclo de vida das suas campanhas
-          digitais. Seja um dos primeiros a ter acesso e acompanhe cada etapa da evolução do produto.
+          Estamos construindo uma experiência SaaS para criar, publicar e escalar landing pages em um só lugar.
+          Cadastre-se para ser um dos primeiros a testar a versão beta e receber novidades exclusivas.
         </p>
-        <ul className="roadmap__list">
-          {roadmapItems.map(item => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-        <a className="button button--ghost" href="#hero">
-          Inscreva-se para o acesso antecipado
-        </a>
+        <form className="roadmap__form" aria-label="Cadastro para novidades">
+          <label className="sr-only" htmlFor="saas-email">
+            Digite seu e-mail
+          </label>
+          <input id="saas-email" type="email" name="email" placeholder="Seu e-mail profissional" required />
+          <button type="submit">Quero receber novidades</button>
+        </form>
       </div>
-      <div className="roadmap__glow" aria-hidden />
     </div>
   </section>
 );

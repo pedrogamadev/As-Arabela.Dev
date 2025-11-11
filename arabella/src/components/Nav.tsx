@@ -16,7 +16,7 @@ const Nav = ({ navItems }: NavProps) => {
   return (
     <header className="nav" role="banner">
       <div className="container nav__inner">
-        <a className="nav__brand" href="#hero">
+        <a className="nav__brand" href="#construa" onClick={() => setOpen(false)}>
           <img src={logo} alt="Arabella.dev" />
         </a>
 
@@ -35,16 +35,24 @@ const Nav = ({ navItems }: NavProps) => {
           <ul>
             {navItems.map(item => (
               <li key={item.label}>
-                <a href={item.href}>{item.label}</a>
+                <a href={item.href} onClick={() => setOpen(false)}>
+                  {item.label}
+                </a>
               </li>
             ))}
           </ul>
           <div className="nav__actions">
-            <a className="nav__signin" href="#hero">
-              Entrar
+            <a className="button button--ghost" href="#saas" onClick={() => setOpen(false)}>
+              Novidades SaaS
             </a>
-            <a className="button button--primary" href="#hero">
-              Experimente grátis
+            <a
+              className="button button--primary"
+              href="https://wa.me/84991926432?text=olá,+gostaria+de+fazer+um+orçamento"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+            >
+              Fazer orçamento
             </a>
           </div>
         </nav>

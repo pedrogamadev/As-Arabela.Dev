@@ -1,38 +1,49 @@
 const testimonials = [
   {
-    quote:
-      '“A Arabella.dev transformou completamente nosso funnel de criação de landing pages. A velocidade e a qualidade são imbatíveis.”',
+    quote: '“Triplicamos nossa taxa de conversão em 30 dias com a nova landing page da Arabella.dev.”',
     name: 'Sofia Martins',
     role: 'Head de Marketing, TechCorp',
+    avatar: 'https://cdn-icons-png.flaticon.com/512/847/847969.png',
   },
   {
-    quote:
-      '“Interface intuitiva, performance excepcional e suporte incrível. Exatamente o que precisávamos para escalar.”',
+    quote: '“Publicamos páginas promocionais 4x mais rápido sem perder o cuidado com o design.”',
     name: 'Ricardo Santos',
     role: 'Product Manager, InnovateLab',
+    avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
   },
   {
-    quote:
-      '“Conseguimos aumentar nossa taxa de conversão em 40% nas primeiras semanas. Ferramenta indispensável.”',
+    quote: '“Reduzimos o custo por lead em 28% e conseguimos testes A/B semanais.”',
     name: 'Ana Costa',
     role: 'Growth Lead, DigitalFlow',
+    avatar: 'https://cdn-icons-png.flaticon.com/512/921/921345.png',
+  },
+  {
+    quote: '“O time montou uma landing para nosso coworking em dias, com integrações prontas.”',
+    name: 'Carlos Lima',
+    role: 'COO, NextWork Hub',
+    avatar: 'https://cdn-icons-png.flaticon.com/512/921/921071.png',
   },
 ];
 
 const Testimonials = () => (
-  <section id="testimonials" className="testimonials" aria-labelledby="testimonials-title">
+  <section id="resultados" className="testimonials" aria-labelledby="testimonials-title">
     <div className="container">
       <header className="section-heading">
         <p className="section-kicker">Confiado por equipes de alto desempenho</p>
-        <h2 id="testimonials-title">Resultados reais em empresas que vivem de performance</h2>
+        <h2 id="testimonials-title">Resultados reais de quem vive de performance</h2>
       </header>
       <div className="testimonials__grid">
         {testimonials.map(item => (
           <article key={item.name} className="testimonial-card">
             <p className="testimonial-card__quote">{item.quote}</p>
             <footer>
-              <strong>{item.name}</strong>
-              <span>{item.role}</span>
+              <div className="testimonial-card__avatar">
+                <img src={item.avatar} alt={`Foto de ${item.name}`} loading="lazy" />
+              </div>
+              <div>
+                <strong>{item.name}</strong>
+                <span>{item.role}</span>
+              </div>
             </footer>
           </article>
         ))}
