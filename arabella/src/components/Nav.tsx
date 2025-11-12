@@ -1,23 +1,13 @@
 import { useState } from 'react';
-import logo from '../assets/logo-arabella.svg';
 
-interface NavItem {
-  label: string;
-  href: string;
-}
-
-interface NavProps {
-  navItems: NavItem[];
-}
-
-const Nav = ({ navItems }: NavProps) => {
+const Nav = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="nav" role="banner">
+    <header className="nav glass-liquid" role="banner">
       <div className="container nav__inner">
         <a className="nav__brand" href="#construa" onClick={() => setOpen(false)}>
-          <img src={logo} alt="Arabella.dev" />
+          <img src="\imagens\logo-as-arabela-dev.png" alt="Arabella.dev" />
         </a>
 
         <button
@@ -32,15 +22,7 @@ const Nav = ({ navItems }: NavProps) => {
         </button>
 
         <nav id="menu-principal" className={`nav__menu ${open ? 'is-open' : ''}`} aria-label="Principal">
-          <ul>
-            {navItems.map(item => (
-              <li key={item.label}>
-                <a href={item.href} onClick={() => setOpen(false)}>
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <ul />
           <div className="nav__actions">
             <a className="button button--ghost" href="#saas" onClick={() => setOpen(false)}>
               Novidades SaaS
