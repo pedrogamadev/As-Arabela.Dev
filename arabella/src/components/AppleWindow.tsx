@@ -52,7 +52,6 @@ const AppleWindow = ({ step, tabId, panelId, className }: AppleWindowProps) => {
         role="region"
         aria-label="Simulador de orçamento de landing page mostrando etapas gratuitas e um preço estimado"
       >
-        <div className="apple-window-glow" aria-hidden />
         <div className="apple-window-grid" aria-hidden />
         <div className="apple-window-orbit apple-window-orbit--primary" aria-hidden />
         <div className="apple-window-orbit apple-window-orbit--secondary" aria-hidden />
@@ -91,26 +90,6 @@ const AppleWindow = ({ step, tabId, panelId, className }: AppleWindowProps) => {
           >
             {displayedStep.panel({ isActive: isActiveStep })}
           </div>
-          {displayedStep.id === 'publicacao-compartilhamento' && (
-            <span
-              aria-hidden={!isActiveStep}
-              className={cn(
-                'pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,#facc15_0%,#ffffff00_45%)] opacity-0 transition-opacity duration-300',
-                isActiveStep && 'opacity-60',
-              )}
-            />
-          )}
-          {displayedStep.id === 'publicacao-compartilhamento' && (
-            <div
-              aria-hidden={!isActiveStep}
-              className={cn(
-                'pointer-events-none absolute inset-x-0 top-4 flex justify-center opacity-0 transition-opacity duration-300',
-                isActiveStep && 'opacity-100 motion-reduce:opacity-100',
-              )}
-            >
-              <div className="apple-window-confetti" />
-            </div>
-          )}
         </div>
       </div>
     </div>
