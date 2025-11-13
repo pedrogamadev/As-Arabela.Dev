@@ -1,5 +1,17 @@
-import { useMemo, useState } from 'react';
-import { CheckCircle2, ClipboardCheck, Headphones, Info, Palette, ReceiptText, Rocket, Timer } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  CheckCircle2,
+  ClipboardCheck,
+  Globe,
+  Headphones,
+  Info,
+  Palette,
+  ReceiptText,
+  Rocket,
+  Send,
+  Share2,
+  Timer,
+} from 'lucide-react';
 import AppleWindow from './AppleWindow';
 import ThreeSteps from './ThreeSteps';
 import type { Step } from './three-steps.types';
@@ -105,6 +117,160 @@ const StepTwoPanel = () => {
   );
 };
 
+const StepThreePanel = ({ isActive }: { isActive: boolean }) => {
+  const [copiedLink, setCopiedLink] = useState<string | null>(null);
+  const domain = {
+    url: 'https://estudioaria.com.br',
+    goLive: 'Publicado às 08h12',
+    status: 'SSL ativo',
+  } as const;
+  const shareLinks = [
+    {
+      label: 'Instagram Bio',
+      url: 'https://estudioaria.com.br?utm_source=instagram&utm_medium=bio&utm_campaign=lancamento',
+    },
+    {
+      label: 'Lista VIP',
+      url: 'https://estudioaria.com.br?utm_source=email&utm_medium=crm&utm_campaign=go-live',
+    },
+  ] as const;
+  const kitItems = [
+    { label: 'Stories animados', format: 'MP4', size: '4.1 MB' },
+    { label: 'Card feed + copy', format: 'PNG + DOC', size: '3.6 MB' },
+  ] as const;
+
+  useEffect(() => {
+    if (!isActive && copiedLink) {
+      setCopiedLink(null);
+    }
+  }, [copiedLink, isActive]);
+
+  useEffect(() => {
+    if (!copiedLink) {
+      return;
+    }
+    const timeout = window.setTimeout(() => setCopiedLink(null), 2400);
+    return () => window.clearTimeout(timeout);
+  }, [copiedLink]);
+
+  const handleCopy = async (value: string) => {
+    try {
+      await navigator.clipboard?.writeText(value);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setCopiedLink(value);
+    }
+  };
+
+  return (
+    <div className="flex h-full flex-col gap-4 text-slate-100 sm:gap-5">
+      <article className="rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/70 to-slate-900/40 p-4 shadow-inner shadow-black/40">
+        <header className="flex flex-wrap items-start justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-500/15 text-indigo-200">
+              <Globe className="h-5 w-5" aria-hidden />
+            </span>
+            <div>
+              <h3 className="text-sm font-semibold text-white">Go-live do domínio</h3>
+              <p className="text-xs text-slate-300">{domain.goLive}</p>
+            </div>
+          </div>
+          <span className="inline-flex items-center gap-2 rounded-full bg-emerald-500/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-200">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden />
+            Online
+          </span>
+        </header>
+        <div className="mt-4 space-y-3 text-sm">
+          <div className="flex flex-col gap-1">
+            <span className="text-xs uppercase tracking-[0.32em] text-slate-400">Domínio</span>
+            <span className="truncate rounded-xl border border-white/10 bg-white/5 px-3 py-2 font-mono text-sm text-slate-50">
+              {domain.url}
+            </span>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-indigo-200">
+              {domain.status}
+            </span>
+            <button
+              type="button"
+              onClick={() => handleCopy(domain.url)}
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-white transition hover:border-white/40"
+            >
+              Copiar link
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <div className="space-y-2 rounded-2xl bg-transparent p-1 text-sm text-slate-200">
+        <p className="font-semibold text-white">
+          Seu site está 100% pronto para receber visitantes, gerar oportunidades e dar vida ao seu negócio.
+        </p>
+        <p className="text-slate-300">
+          Agora ele trabalha por você 24h por dia: atraindo, convertendo e fortalecendo a sua marca.
+        </p>
+      </div>
+
+      <article className="flex flex-1 flex-col rounded-2xl border border-white/10 bg-white/5 p-4">
+        <header className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h3 className="text-sm font-semibold text-white">Kit de divulgação</h3>
+            <p className="text-xs text-slate-300">Links com UTM e materiais prontos.</p>
+          </div>
+          <span className="inline-flex items-center gap-2 rounded-full bg-amber-400/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-200">
+            Kit pronto
+          </span>
+        </header>
+        <div className="mt-4 space-y-3">
+          <div className="space-y-2">
+            {shareLinks.map(link => (
+              <div
+                key={link.label}
+                className="rounded-2xl border border-white/10 bg-[#05060f]/50 p-3 text-xs text-slate-200"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <span className="font-semibold text-white">{link.label}</span>
+                  <button
+                    type="button"
+                    onClick={() => handleCopy(link.url)}
+                    className="inline-flex items-center gap-1 rounded-full border border-white/20 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.32em] text-white transition hover:border-white/40"
+                  >
+                    Copiar link
+                  </button>
+                </div>
+                <p className="mt-1 break-all font-mono text-[11px] text-slate-300">{link.url}</p>
+                {copiedLink === link.url && (
+                  <span className="mt-1 inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.28em] text-emerald-200">
+                    <Share2 className="h-3.5 w-3.5" aria-hidden /> Link copiado
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+          <ul className="space-y-2 text-xs text-slate-200">
+            {kitItems.map(item => (
+              <li key={item.label} className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-3 py-2">
+                <span className="font-medium text-white">{item.label}</span>
+                <span className="text-[11px] uppercase tracking-[0.28em] text-slate-400">
+                  {item.format} · {item.size}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <button
+            type="button"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-indigo-500 to-sky-400 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-900/40 transition hover:brightness-110"
+          >
+            <Send className="h-4 w-4" aria-hidden />
+            Enviar kit
+          </button>
+        </div>
+      </article>
+    </div>
+  );
+};
+
 const STEPS: Step[] = [
   {
     id: 'orcamento-design',
@@ -126,7 +292,7 @@ const STEPS: Step[] = [
     title: 'Publicação e divulgação',
     description: 'Checklist guiado garante domínio, performance e links prontos.',
     icon: Rocket,
-    panel: () => null,
+    panel: ({ isActive }) => <StepThreePanel isActive={isActive} />,
   },
 ];
 
