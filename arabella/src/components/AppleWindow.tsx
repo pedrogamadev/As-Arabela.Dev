@@ -47,18 +47,29 @@ const AppleWindow = ({ step, tabId, panelId, className }: AppleWindowProps) => {
 
   return (
     <div className={cn('order-2 lg:order-1', className)}>
-      <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-slate-950/70 text-slate-100 shadow-[0_45px_120px_rgba(10,15,40,0.45)] backdrop-blur-2xl">
-        <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-indigo-400/10 to-sky-400/20 opacity-80"
-          aria-hidden
-        />
-        <header className="relative flex items-center gap-2 border-b border-white/10 px-6 py-4 sm:px-8">
-          <span className="h-3 w-3 rounded-full bg-[#ff605c]" aria-hidden />
-          <span className="h-3 w-3 rounded-full bg-[#ffbd44]" aria-hidden />
-          <span className="h-3 w-3 rounded-full bg-[#00ca4e]" aria-hidden />
+      <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#05060f] text-slate-100 shadow-[0_45px_120px_rgba(8,12,32,0.65)]">
+        <div className="apple-window-glow" aria-hidden />
+        <div className="apple-window-grid" aria-hidden />
+        <div className="apple-window-orbit apple-window-orbit--primary" aria-hidden />
+        <div className="apple-window-orbit apple-window-orbit--secondary" aria-hidden />
+        <header className="relative z-20 flex items-center justify-between border-b border-slate-800/60 bg-white/95 px-6 py-4 sm:px-8">
+          <div className="flex items-center gap-2">
+            <span className="h-3 w-3 rounded-full bg-[#ff605c]" aria-hidden />
+            <span className="h-3 w-3 rounded-full bg-[#ffbd44]" aria-hidden />
+            <span className="h-3 w-3 rounded-full bg-[#00ca4e]" aria-hidden />
+          </div>
+          <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.32em] text-slate-500">
+            <span className="inline-flex items-center gap-2">
+              <span className="relative flex h-2.5 w-2.5 items-center justify-center" aria-hidden>
+                <span className="absolute inset-0 rounded-full bg-indigo-400/60 blur-sm" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-indigo-500/80 animate-pulse" />
+              </span>
+              Sincronizando
+            </span>
+          </div>
           <span className="sr-only">Janela interativa do passo selecionado</span>
         </header>
-        <div className="relative min-h-[320px] overflow-hidden px-6 py-6 sm:px-8 sm:py-8">
+        <div className="relative z-10 h-[366px] overflow-hidden px-6 py-6 sm:px-8 sm:py-8">
           <span id={descriptionId} className="sr-only">
             {`Pré-visualização interativa do passo: ${displayedStep.title}.`}
           </span>
@@ -69,7 +80,7 @@ const AppleWindow = ({ step, tabId, panelId, className }: AppleWindowProps) => {
             aria-describedby={descriptionId}
             aria-live="polite"
             className={cn(
-              'relative grid gap-6 transition-all duration-200',
+              'relative grid h-full content-start gap-6 transition-all duration-200',
               isLeaving ? 'translate-y-3 opacity-0' : 'translate-y-0 opacity-100',
               prefersReducedMotion && 'motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:transition-none',
             )}

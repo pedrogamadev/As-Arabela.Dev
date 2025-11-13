@@ -1290,6 +1290,75 @@ main {
   color: #ffffff;
 }
 
+.apple-window-glow {
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.45), transparent 55%),
+    radial-gradient(circle at 70% 80%, rgba(56, 189, 248, 0.4), transparent 60%);
+  filter: blur(60px);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.apple-window-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 120px 120px;
+  opacity: 0.12;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.apple-window-orbit {
+  position: absolute;
+  border-radius: 999px;
+  border: 1px solid rgba(129, 140, 248, 0.24);
+  pointer-events: none;
+  animation: appleOrbit 18s linear infinite;
+}
+
+.apple-window-orbit::after {
+  content: '';
+  position: absolute;
+  inset: -18px;
+  border-radius: inherit;
+  border: 1px solid rgba(56, 189, 248, 0.16);
+  filter: blur(18px);
+}
+
+.apple-window-orbit--primary {
+  width: 520px;
+  height: 520px;
+  top: -58%;
+  right: -42%;
+}
+
+.apple-window-orbit--secondary {
+  width: 380px;
+  height: 380px;
+  bottom: -55%;
+  left: -32%;
+  animation-duration: 22s;
+  animation-direction: reverse;
+}
+
+@keyframes appleOrbit {
+  0% {
+    transform: rotate(0deg) scale(0.98);
+    opacity: 0.35;
+  }
+  45% {
+    transform: rotate(180deg) scale(1.02);
+    opacity: 0.6;
+  }
+  100% {
+    transform: rotate(360deg) scale(0.98);
+    opacity: 0.35;
+  }
+}
+
 /* Responsividade */
 @media (max-width: 1100px) {
   .features__grid {
