@@ -9,10 +9,23 @@ type ThreeStepsProps = {
   onStepChange: (step: number) => void;
   getTabId: (id: string) => string;
   getPanelId: (id: string) => string;
+  title?: string;
+  description?: string;
+  titleId?: string;
   className?: string;
 };
 
-const ThreeSteps = ({ steps, activeStep, onStepChange, getTabId, getPanelId, className }: ThreeStepsProps) => {
+const ThreeSteps = ({
+  steps,
+  activeStep,
+  onStepChange,
+  getTabId,
+  getPanelId,
+  title,
+  description,
+  titleId,
+  className,
+}: ThreeStepsProps) => {
   const tabsRef = useRef<Array<HTMLDivElement | null>>([]);
 
   const focusTab = (index: number) => {
@@ -57,7 +70,20 @@ const ThreeSteps = ({ steps, activeStep, onStepChange, getTabId, getPanelId, cla
   };
 
   return (
-    <div id="ferramentas" className={cn('flex flex-col gap-4', className)}>
+    <div id="ferramentas" className={cn('flex flex-col gap-6', className)}>
+      {(title || description) && (
+        <div className="space-y-3">
+          {title ? (
+            <h2
+              id={titleId}
+              className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-[44px]"
+            >
+              {title}
+            </h2>
+          ) : null}
+          {description ? <p className="text-lg leading-relaxed text-slate-700">{description}</p> : null}
+        </div>
+      )}
       <div
         role="tablist"
         aria-label="Passos para criar e publicar sua landing page"

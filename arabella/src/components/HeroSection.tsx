@@ -1,125 +1,70 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
-  Calculator,
   CheckCircle2,
-  Coins,
+  ClipboardCheck,
   Globe2,
+  Headphones,
   Info,
-  PiggyBank,
+  Palette,
   ReceiptText,
   Rocket,
   Share2,
   Sparkles,
   Timer,
-  TrendingUp,
 } from 'lucide-react';
-import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 import { cn } from '../lib/utils';
 import AppleWindow from './AppleWindow';
 import ThreeSteps from './ThreeSteps';
 import type { Step } from './three-steps.types';
 
-const randomBetween = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
-const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
-
-type ProgressItem = {
-  label: string;
-  tag: string;
-  value: number;
-};
-
 const StepOnePanel = () => {
-  const prefersReducedMotion = usePrefersReducedMotion();
-  const [estimate, setEstimate] = useState(() => randomBetween(3200, 5600));
-  const [progressValues, setProgressValues] = useState<ProgressItem[]>([
-    { label: 'Tipografia', tag: 'Serif', value: 48 },
-    { label: 'Espaçamentos', tag: 'Comfort', value: 72 },
-  ]);
-  const intervalRef = useRef<number | undefined>();
-  const currencyFormatter = useMemo(
-    () =>
-      new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-        maximumFractionDigits: 0,
-      }),
-    [],
-  );
-
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    const tick = () => {
-      setEstimate(randomBetween(3050, 5850));
-      setProgressValues(prev =>
-        prev.map(item => ({
-          ...item,
-          value: clamp(item.value + randomBetween(-14, 18), 28, 92),
-        })),
-      );
-    };
-
-    tick();
-    intervalRef.current = window.setInterval(tick, 2600);
-
-    return () => window.clearInterval(intervalRef.current);
-  }, [prefersReducedMotion]);
-
-  const budgetIcons = [
-    { icon: PiggyBank, label: 'Economia' },
-    { icon: Calculator, label: 'Cálculo' },
-    { icon: Coins, label: 'Investimento' },
-    { icon: TrendingUp, label: 'Performance' },
+  const cards = [
+    {
+      icon: ClipboardCheck,
+      title: '1° - Checklist rápido',
+      description: 'Responda às perguntas e veja uma faixa de preço na hora.',
+    },
+    {
+      icon: Headphones,
+      title: '2° - Alinhamento conosco',
+      description: 'Falamos com você no mesmo dia para ajustar tudo.',
+    },
+    {
+      icon: Palette,
+      title: '3° - 3 ideias de layout',
+      description: 'Você recebe até 3 propostas de design sem pagar nada.',
+    },
+    {
+      icon: CheckCircle2,
+      title: '4° - Aprovação',
+      description: 'Só segue se você gostar.\nNada é cobrado até aqui.',
+    },
   ] as const;
 
   return (
-    <div className="relative flex h-full flex-col justify-between gap-5 text-slate-100">
-      <div className="grid grid-cols-4 gap-3">
-        {budgetIcons.map(({ icon: Icon, label }) => (
-          <span
-            key={label}
-            className="flex aspect-square items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/80 via-indigo-400/70 to-sky-400/80 text-white shadow-[0_18px_38px_rgba(15,23,42,0.45)]"
-            aria-hidden
-          >
-            <Icon className="h-5 w-5" />
-          </span>
-        ))}
-      </div>
-
-      <div className="space-y-3">
-        {progressValues.map(item => (
-          <div key={item.label} className="space-y-2">
-            <div className="flex items-center justify-between text-[11px] font-medium uppercase tracking-[0.25em] text-slate-300">
-              <span>{item.label}</span>
-              <span>{item.tag}</span>
-            </div>
-            <div className="relative h-2.5 overflow-hidden rounded-full bg-white/10">
-              <div
-                className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-indigo-500 via-sky-500 to-teal-400 transition-[width] duration-700 ease-out"
-                style={{ width: `${item.value}%` }}
-              />
+    <div className="flex h-full flex-col text-slate-100">
+      <section aria-label="Passo a passo gratuito" className="flex h-full w-full">
+        <div className="grid h-full w-full grid-cols-1 grid-rows-4 gap-2.5 sm:grid-cols-2 sm:grid-rows-2 sm:gap-3">
+          {cards.map(({ icon: Icon, title, description }) => (
+            <article
+              key={title}
+              className="group flex h-[150px] flex-col gap-1.5 rounded-2xl border border-white/10 bg-white/5 px-3 pb-3 pt-3.5 text-left shadow-[0_15px_38px_rgba(2,6,23,0.5)] transition hover:border-indigo-300/60 hover:bg-white/10 sm:px-3.5 sm:pb-3.5 sm:pt-4"
+            >
               <span
-                className="absolute top-1/2 h-4 w-4 -translate-y-1/2 rounded-full border border-white/60 bg-white/90 shadow-[0_8px_22px_rgba(14,22,45,0.35)] transition-[left] duration-700 ease-out"
-                style={{ left: `${item.value}%`, transform: 'translate(-50%, -50%)' }}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="flex flex-wrap items-center gap-3">
-        <span className="inline-flex items-center gap-2 rounded-full bg-white/92 px-4 py-1.5 text-sm font-semibold text-slate-900 shadow-[0_18px_38px_rgba(15,23,42,0.35)]">
-          <Sparkles className="h-3.5 w-3.5 text-indigo-500" aria-hidden />
-          Orçamento estimado
-          <strong className="font-semibold text-slate-950">{currencyFormatter.format(estimate)}</strong>
-        </span>
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.28em] text-slate-200">
-          <Timer className="h-3 w-3" aria-hidden />
-          Atualizando
-        </span>
-      </div>
+                className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/50 via-blue-500/40 to-sky-400/40 text-white sm:h-10 sm:w-10"
+                role="img"
+                aria-label={title}
+              >
+                <Icon className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden />
+              </span>
+              <h3 className="text-sm font-semibold text-white sm:text-base">{title}</h3>
+              <p className="whitespace-pre-line text-[11px] leading-relaxed text-slate-200 sm:text-xs sm:leading-relaxed md:text-sm md:leading-relaxed">
+                {description}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };
@@ -312,11 +257,12 @@ const HeroSection = () => {
   const getTabId = (id: string) => `${id}-tab`;
   const getPanelId = (id: string) => `${id}-panel`;
   const step = useMemo(() => STEPS[activeStep], [activeStep]);
+  const headingId = 'automatize-hero-title';
 
   return (
     <section
       id="automatize"
-      aria-labelledby="automatize-hero-title"
+      aria-labelledby={headingId}
       className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-indigo-50 py-24 sm:py-28"
     >
       <div className="absolute inset-0 -z-10">
@@ -327,21 +273,18 @@ const HeroSection = () => {
 
       <div className="container relative">
         <div className="flex flex-col gap-12 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-start lg:gap-16">
-          <header className="order-1 max-w-xl lg:col-start-2">
-            <h1 id="automatize-hero-title" className="mt-6 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-              Seu site em 3 passos.
-            </h1>
-          </header>
-
           <AppleWindow
-            className="order-2 lg:col-start-1 lg:row-span-2"
+            className="order-1 place-self-center lg:col-start-1 lg:row-span-2 lg:place-self-center"
             step={step}
             tabId={getTabId(step.id)}
             panelId={getPanelId(step.id)}
           />
 
           <ThreeSteps
-            className="order-3 lg:col-start-2 lg:row-start-2"
+            title="Seu site em 3 passos"
+            description="Converse com quem etende."
+            titleId={headingId}
+            className="order-2 lg:col-start-2 lg:row-span-2"
             steps={STEPS}
             activeStep={activeStep}
             onStepChange={setActiveStep}

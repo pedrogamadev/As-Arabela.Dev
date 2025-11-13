@@ -47,7 +47,11 @@ const AppleWindow = ({ step, tabId, panelId, className }: AppleWindowProps) => {
 
   return (
     <div className={cn('order-2 lg:order-1', className)}>
-      <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#05060f] text-slate-100 shadow-[0_45px_120px_rgba(8,12,32,0.65)]">
+      <div
+        className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#05060f] text-slate-100 shadow-[0_45px_120px_rgba(8,12,32,0.65)]"
+        role="region"
+        aria-label="Simulador de orçamento de landing page mostrando etapas gratuitas e um preço estimado"
+      >
         <div className="apple-window-glow" aria-hidden />
         <div className="apple-window-grid" aria-hidden />
         <div className="apple-window-orbit apple-window-orbit--primary" aria-hidden />

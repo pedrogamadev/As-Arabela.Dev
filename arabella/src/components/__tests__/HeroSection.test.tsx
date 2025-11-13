@@ -48,12 +48,15 @@ describe('HeroSection', () => {
   it('renderiza conteúdo previsto para cada passo e mantém consistência visual', async () => {
     const { asFragment } = render(<HeroSection />);
 
-    const heroHeadings = screen.getAllByRole('heading', { level: 1, name: 'Seu site em 3 passos.' });
+    const heroHeadings = screen.getAllByRole('heading', {
+      level: 2,
+      name: 'Simulador de orçamento de landing page – grátis e na hora',
+    });
     expect(heroHeadings.length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Orçamento na hora + design gratuito').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('As 4 etapas acima são 100% gratuitas.').length).toBeGreaterThan(0);
     expect(asFragment()).toMatchSnapshot();
 
-    const transparencyTabs = screen.getAllByRole('tab', { name: /Transparência total de custos/i });
+    const transparencyTabs = screen.getAllByRole('tab', { name: /Custos transparentes/i });
     expect(transparencyTabs.length).toBeGreaterThan(0);
     fireEvent.click(transparencyTabs[0]);
     await waitFor(() => {
