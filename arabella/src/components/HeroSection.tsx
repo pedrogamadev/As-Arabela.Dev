@@ -13,7 +13,6 @@ import {
   Timer,
 } from 'lucide-react';
 import AppleWindow from './AppleWindow';
-import ThreeSteps from './ThreeSteps';
 import type { Step } from './three-steps.types';
 
 const StepOnePanel = () => {
@@ -298,10 +297,20 @@ const STEPS: Step[] = [
 
 const HeroSection = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const autoAdvanceDelay = 6200;
+  const headingId = 'automatize-hero-title';
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setActiveStep(current => (current + 1) % STEPS.length);
+    }, autoAdvanceDelay);
+
+    return () => window.clearTimeout(timer);
+  }, [activeStep, autoAdvanceDelay]);
+
   const getTabId = (id: string) => `${id}-tab`;
   const getPanelId = (id: string) => `${id}-panel`;
   const step = useMemo(() => STEPS[activeStep], [activeStep]);
-  const headingId = 'automatize-hero-title';
 
   return (
     <section
@@ -319,22 +328,39 @@ const HeroSection = () => {
         <div className="flex flex-col gap-12 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-start lg:gap-16">
           <AppleWindow
             className="order-1 place-self-center lg:col-start-1 lg:row-span-2 lg:place-self-center"
+            steps={STEPS}
             step={step}
             tabId={getTabId(step.id)}
             panelId={getPanelId(step.id)}
+            activeStepIndex={activeStep}
+            onStepChange={setActiveStep}
           />
 
-          <ThreeSteps
-            title="Seu site em 3 passos"
-            description="Veja como é simples:"
-            titleId={headingId}
-            className="order-2 lg:col-start-2 lg:row-span-2"
-            steps={STEPS}
-            activeStep={activeStep}
-            onStepChange={setActiveStep}
-            getTabId={getTabId}
-            getPanelId={getPanelId}
-          />
+          <div className="order-2 space-y-6 lg:col-start-2 lg:row-span-2">
+            <div className="space-y-3">
+              <h2
+                id={headingId}
+                className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-[44px]"
+              >
+                Seu site em 3 passos
+              </h2>
+              <p className="text-lg leading-relaxed text-slate-700">
+                Veja o caminho completo para lançar seu site como um wizard: acompanhe a barra de progresso
+                e deixe que os slides avancem sozinhos ou deslize para o lado para controlar cada etapa.
+              </p>
+            </div>
+
+            <div className="space-y-4 rounded-2xl bg-white/70 p-6 shadow-[0_24px_60px_rgba(79,70,229,0.16)]">
+              <p className="text-base font-semibold text-slate-900">
+                Cada fase é sincronizada automaticamente, mas você pode interagir sempre que quiser.
+              </p>
+              <p className="text-sm leading-relaxed text-slate-700">
+                Use o deslize lateral no display para avançar ou voltar e veja a barra no topo indicando
+                onde você está dentro dos 3 passos. Os antigos cards de destaque deram lugar a esse fluxo
+                simplificado para acompanhar todo o processo em tempo real.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
