@@ -2,7 +2,7 @@ import Nav from '../components/Nav';
 import Hero from '../components/Hero';
 import FeatureGrid from '../components/FeatureGrid';
 import HeroSection from '../components/HeroSection';
-import Testimonials from '../components/Testimonial';
+import Faq from '../components/Faq';
 import Roadmap from '../components/Roadmap';
 import Footer from '../components/Footer';
 
@@ -13,7 +13,7 @@ const App = () => (
       <Hero />
       <FeatureGrid />
       <HeroSection />
-      <Testimonials />
+      <Faq />
       <Roadmap />
     </main>
     <Footer />

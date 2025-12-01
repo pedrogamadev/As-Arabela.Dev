@@ -66,11 +66,11 @@ const FeatureGrid = () => {
       cards.forEach(card => observer.observe(card));
     };
 
-    if ('requestAnimationFrame' in window) {
-      window.requestAnimationFrame(observeCards);
-    } else {
-      window.setTimeout(observeCards, 40);
-    }
+    const scheduleObservation = window.requestAnimationFrame
+      ? () => window.requestAnimationFrame(observeCards)
+      : () => window.setTimeout(observeCards, 40);
+
+    scheduleObservation();
 
     return () => {
       observer.disconnect();

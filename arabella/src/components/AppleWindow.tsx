@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type React } from 'react';
+import { useEffect, useRef, useState, type TouchEvent } from 'react';
 import { cn } from '../lib/utils';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 import type { Step } from './three-steps.types';
@@ -63,11 +63,11 @@ const AppleWindow = ({
     onStepChange(safeIndex);
   };
 
-  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+  const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
     touchStartXRef.current = event.touches[0].clientX;
   };
 
-  const handleTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
+  const handleTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
     if (touchStartXRef.current === null) return;
     const deltaX = event.changedTouches[0].clientX - touchStartXRef.current;
     const swipeThreshold = 40;
