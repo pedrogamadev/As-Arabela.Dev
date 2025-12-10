@@ -76,13 +76,6 @@ export default function OrcamentosPage() {
                  <h1 style={{ fontFamily: 'Poppins, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', margin: '0 auto 1rem', maxWidth: '800px' }}>
                     Simule seu orçamento em poucos cliques
                  </h1>
-                 <p style={{ color: 'var(--color-muted)', maxWidth: '600px', margin: '0 auto 2rem' }}>
-                    Responda algumas perguntas sobre o seu projeto e receba uma estimativa de investimento na hora.
-                    O valor final é alinhado após uma conversa detalhada.
-                 </p>
-                 <button onClick={scrollToForm} className="button button--primary">
-                    Começar simulação
-                 </button>
             </div>
         </section>
 

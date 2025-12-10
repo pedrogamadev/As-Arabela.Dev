@@ -329,21 +329,30 @@ const HeroSection = () => {
               >
                 Seu site em 3 passos
               </h2>
-              <p className="text-lg leading-relaxed text-slate-700">
-                Veja o caminho completo para lançar seu site como um wizard: acompanhe a barra de progresso
-                e deixe que os slides avancem sozinhos ou deslize para o lado para controlar cada etapa.
-              </p>
             </div>
 
             <div className="space-y-4 rounded-2xl bg-white/70 p-6 shadow-[0_24px_60px_rgba(79,70,229,0.16)]">
               <p className="text-base font-semibold text-slate-900">
-                Cada fase é sincronizada automaticamente, mas você pode interagir sempre que quiser.
+                Cada fase é clara, sincronizada e acompanhada de perto
               </p>
-              <p className="text-sm leading-relaxed text-slate-700">
-                Use o deslize lateral no display para avançar ou voltar e veja a barra no topo indicando
-                onde você está dentro dos 3 passos. Os antigos cards de destaque deram lugar a esse fluxo
-                simplificado para acompanhar todo o processo em tempo real.
-              </p>
+
+              <ul className="mt-2 space-y-2 text-sm leading-relaxed text-slate-700">
+                <li>
+                  <span className="font-semibold">1º — Seu pedido</span>
+                  <br />
+                  Você envia sua necessidade, preenche o checklist e nos conta o essencial sobre o projeto.
+                </li>
+                <li>
+                  <span className="font-semibold">2º — Orçamento detalhado</span>
+                  <br />
+                  Com base nas suas respostas, montamos uma proposta completa com funcionalidades, prazo e investimento.
+                </li>
+                <li>
+                  <span className="font-semibold">3º — Deploy e domínio</span>
+                  <br />
+                  Após aprovação, desenvolvemos, configuramos domínio e hospedagem e colocamos seu site no ar.
+                </li>
+              </ul>
             </div>
           </div>
         </div>
