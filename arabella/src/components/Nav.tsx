@@ -24,9 +24,6 @@ const Nav = () => {
         <nav id="menu-principal" className={`nav__menu ${open ? 'is-open' : ''}`} aria-label="Principal">
           <ul />
           <div className="nav__actions">
-            <a className="button button--ghost" href="#saas" onClick={() => setOpen(false)}>
-              Novidades SaaS
-            </a>
             <a
               className="button button--primary"
               href="https://wa.me/84991926432?text=olá,+gostaria+de+fazer+um+orçamento"

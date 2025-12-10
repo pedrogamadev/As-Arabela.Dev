@@ -42,7 +42,7 @@ const Footer = () => (
               <a href="#ferramentas">Recursos</a>
             </li>
             <li>
-              <a href="#saas">Preços</a>
+              <a href="#faq">Preços</a>
             </li>
             <li>
               <a href="#resultados">Casos de uso</a>
@@ -65,7 +65,7 @@ const Footer = () => (
               <a href="#resultados">Carreiras</a>
             </li>
             <li>
-              <a href="#saas">Imprensa</a>
+              <a href="#faq">Imprensa</a>
             </li>
           </ul>
         </div>
@@ -82,7 +82,7 @@ const Footer = () => (
               <a href="#automatize">API Reference</a>
             </li>
             <li>
-              <a href="#saas">Status</a>
+              <a href="#faq">Status</a>
             </li>
           </ul>
         </div>

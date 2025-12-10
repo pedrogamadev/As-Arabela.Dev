@@ -3,7 +3,6 @@ import Hero from '../components/Hero';
 import FeatureGrid from '../components/FeatureGrid';
 import HeroSection from '../components/HeroSection';
 import Faq from '../components/Faq';
-import Roadmap from '../components/Roadmap';
 import Footer from '../components/Footer';
 
 const App = () => (
@@ -14,7 +13,6 @@ const App = () => (
       <FeatureGrid />
       <HeroSection />
       <Faq />
-      <Roadmap />
     </main>
     <Footer />
   </div>
