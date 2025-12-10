@@ -172,6 +172,9 @@ export function calcularOrcamento(values: OrcamentoFormValues) {
     paginasFactor +
     integracoesExtra;
 
+  // Redução de 65% no valor total (ajuste de mercado)
+  preco = preco * 0.20;
+
   // arredondar para cima em múltiplos de 50
   preco = Math.ceil(preco / 50) * 50;
 
