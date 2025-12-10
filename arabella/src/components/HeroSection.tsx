@@ -1,11 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
-  CheckCircle2,
-  ClipboardCheck,
   Globe,
-  Headphones,
   Info,
-  Palette,
   ReceiptText,
   Rocket,
   Send,
@@ -18,22 +14,18 @@ import type { Step } from './three-steps.types';
 const StepOnePanel = () => {
   const cards = [
     {
-      icon: ClipboardCheck,
       title: '1° - Checklist rápido',
       description: 'Responda às perguntas e veja uma faixa de preço na hora.',
     },
     {
-      icon: Headphones,
       title: '2° - Alinhamento conosco',
       description: 'Falamos com você no mesmo dia para ajustar tudo.',
     },
     {
-      icon: Palette,
       title: '3° - 3 ideias de layout',
       description: 'Você recebe até 3 propostas de design sem pagar nada.',
     },
     {
-      icon: CheckCircle2,
       title: '4° - Aprovação',
       description: 'Só segue se você gostar.\nNada é cobrado até aqui.',
     },
@@ -43,18 +35,11 @@ const StepOnePanel = () => {
     <div className="flex h-full flex-col text-slate-100">
       <section aria-label="Passo a passo gratuito" className="flex h-full w-full">
         <div className="grid h-full w-full grid-cols-1 grid-rows-4 gap-2.5 sm:grid-cols-2 sm:grid-rows-2 sm:gap-3">
-          {cards.map(({ icon: Icon, title, description }) => (
+          {cards.map(({ title, description }) => (
             <article
               key={title}
-              className="group flex h-[150px] flex-col gap-1.5 rounded-2xl border border-white/10 bg-white/5 px-3 pb-3 pt-3.5 text-left shadow-[0_15px_38px_rgba(2,6,23,0.5)] transition hover:border-indigo-300/60 hover:bg-white/10 sm:px-3.5 sm:pb-3.5 sm:pt-4"
+              className="group flex h-full flex-col justify-center gap-1.5 rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-left shadow-[0_15px_38px_rgba(2,6,23,0.5)] transition hover:border-indigo-300/60 hover:bg-white/10 sm:px-3.5 sm:py-3.5"
             >
-              <span
-                className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/50 via-blue-500/40 to-sky-400/40 text-white sm:h-10 sm:w-10"
-                role="img"
-                aria-label={title}
-              >
-                <Icon className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden />
-              </span>
               <h3 className="text-sm font-semibold text-white sm:text-base">{title}</h3>
               <p className="whitespace-pre-line text-[11px] leading-relaxed text-slate-200 sm:text-xs sm:leading-relaxed md:text-sm md:leading-relaxed">
                 {description}

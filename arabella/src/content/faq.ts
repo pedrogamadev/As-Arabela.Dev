@@ -5,23 +5,44 @@ export interface FaqItem {
 
 export const faqItems: FaqItem[] = [
   {
-    question: 'Qual é o prazo típico para lançar um projeto?',
+    question: 'Qual é o prazo típico para entregar uma landing page?',
     answer:
-      'Nosso sprint padrão dura 5 semanas: kickoff, design, desenvolvimento, QA e go-live. Projetos urgentes podem ser priorizados com squad dedicado.',
+      'Nosso ciclo padrão leva de 10 a 30 dias, dependendo da complexidade. Trabalhamos com etapas claras: briefing estratégico, wireframe, UI/UX, desenvolvimento, teste A/B e publicação.',
   },
   {
-    question: 'Vocês trabalham com plataformas existentes da empresa?',
+    question: 'Vocês criam sites do zero ou usam plataformas prontas?',
     answer:
-      'Sim. Integramos com CRMs, gateways de pagamento, automações de marketing e CMSs já utilizados pelo time, garantindo governança e segurança.',
+      'Fazemos do zero para poder te entregar seu site 100% personalizado, sob medida para sua marca, performance e conversão.',
   },
   {
-    question: 'Como funciona o suporte após o lançamento?',
+    question: 'Existe suporte após a entrega?',
     answer:
-      'Oferecemos plano de evolução contínua com monitoramento de métricas, backlog compartilhado e ciclos mensais de melhorias rápidas.',
+      'Sim. Oferecemos planos de manutenção, otimizações contínuas, métricas de conversão e melhorias mensais com base em dados.',
   },
   {
-    question: 'Posso contratar apenas o design ou apenas o desenvolvimento?',
+    question: 'Posso contratar só o design ou só o desenvolvimento?',
     answer:
-      'Podemos atuar em etapas específicas, mas recomendamos o fluxo completo para garantir consistência, performance e resultados previsíveis.',
+      'Pode. Atendemos etapas isoladas quando necessário — UI/UX, copywriting, dev front-end ou integrações. Mas recomendamos o pacote completo para máxima consistência e conversão.',
+  },
+  {
+    question: 'As páginas são responsivas e rápidas?',
+    answer:
+      'Sempre. Trabalhamos com performance, SEO técnico, foco em mobile e carregamento otimizado para conversão.',
+  },
+  {
+    question: 'Posso pedir alterações durante o projeto?',
+    answer:
+      'Claro. Temos ciclos de revisão cada semana para alinhar expectativas sem atrasar o cronograma.',
+  },
+  {
+    question: 'Como funciona o pagamento?',
+    answer:
+      'Oferecemos opções flexíveis: Cartões de crédito, débito, boleto e pix. O pagamento é feito com 50% de entrada e o restante após o site ficar pronto.',
+  },
+  {
+    question: 'Vocês entregam domínio e hospedagem também?',
+    answer:
+      'Sim. Nosso orçamento pode incluir hospedagem e a compra do dominio',
   },
 ];
+
