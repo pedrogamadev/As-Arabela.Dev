@@ -1,4 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { cn } from '../lib/utils';
 
 const HERO_ITEMS = [
   {
@@ -52,7 +54,9 @@ const ITEMS_PER_VIEW = 3;
 const ROTATION_INTERVAL = 4200;
 
 const Hero = () => {
+  const ctaSentinelRef = useRef<HTMLDivElement | null>(null);
   const [startIndex, setStartIndex] = useState(0);
+  const [isFloatingCTA, setIsFloatingCTA] = useState(false);
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
@@ -60,6 +64,24 @@ const Hero = () => {
     }, ROTATION_INTERVAL);
 
     return () => window.clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    const sentinel = ctaSentinelRef.current;
+    if (!sentinel || typeof IntersectionObserver === 'undefined') {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsFloatingCTA(!entry.isIntersecting);
+      },
+      { threshold: 0.01 }
+    );
+
+    observer.observe(sentinel);
+
+    return () => observer.disconnect();
   }, []);
 
   const visibleItems = useMemo(
@@ -84,17 +106,16 @@ const Hero = () => {
             mais.
           </p>
           <div className="hero__actions">
-            <a
-              className="button button--primary"
-              href="https://wa.me/84991926432?text=olá,+gostaria+de+fazer+um+orçamento"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/orcamentos"
+              className={cn('button button--primary hero__cta', isFloatingCTA && 'hero__cta--floating')}
             >
               Fazer orçamento agora
-            </a>
+            </Link>
             <a className="button button--secondary" href="#ferramentas">
               Saiba mais
             </a>
+            <span ref={ctaSentinelRef} className="hero__cta-sentinel" aria-hidden />
           </div>
         </div>
         <div className="hero__visual" aria-hidden>
