@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import '../nav-overrides.css';
 
 const Nav = () => {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const isOrcamento = location.pathname === '/orcamentos';
 
   return (
-    <header className="nav glass-liquid" role="banner">
+    <header className={`nav glass-liquid ${isOrcamento ? 'nav--static' : ''}`} role="banner">
       <div className="container nav__inner">
         <a className="nav__brand" href="#construa" onClick={() => setOpen(false)}>
           <img src="\imagens\logo-as-arabela-dev.png" alt="Arabella.dev" />

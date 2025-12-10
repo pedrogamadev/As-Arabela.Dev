@@ -5,10 +5,16 @@
   align-items: start;
 }
 
+.orcamento-grid.single-column {
+  grid-template-columns: 1fr;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media (max-width: 900px) {
   .orcamento-grid {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
 }
-
