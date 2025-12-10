@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Nav = () => {
   const [open, setOpen] = useState(false);
@@ -24,15 +25,13 @@ const Nav = () => {
         <nav id="menu-principal" className={`nav__menu ${open ? 'is-open' : ''}`} aria-label="Principal">
           <ul />
           <div className="nav__actions">
-            <a
+            <Link
               className="button button--primary"
-              href="https://wa.me/84991926432?text=olá,+gostaria+de+fazer+um+orçamento"
-              target="_blank"
-              rel="noopener noreferrer"
+              to="/orcamentos"
               onClick={() => setOpen(false)}
             >
               Fazer orçamento
-            </a>
+            </Link>
           </div>
         </nav>
       </div>

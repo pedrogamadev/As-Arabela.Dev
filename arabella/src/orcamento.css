@@ -1,0 +1,14 @@
+.orcamento-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .orcamento-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
