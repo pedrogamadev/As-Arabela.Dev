@@ -78,6 +78,9 @@ const FeatureGrid = () => {
     };
   }, []);
 
+  // Duplicate features for infinite marquee effect on mobile
+  const displayFeatures = [...features, ...features];
+
   return (
     <section id="ferramentas" className="features" aria-labelledby="features-title">
       <div className="container">
@@ -86,16 +89,29 @@ const FeatureGrid = () => {
           <h2 id="features-title">Transformamos sua ideia em uma página que realmente converte</h2>
           <p>Pense. Inspire. Nós transformamos.</p>
         </header>
-        <div className="features__grid">
-          {features.map(feature => (
-            <article key={feature.title} className="feature-card">
-              <div className="feature-card__icon">
-                <img src={feature.icon} alt={feature.alt} loading="lazy" />
-              </div>
-              <h3>{feature.title}</h3>
-              <p>{feature.description}</p>
-            </article>
-          ))}
+        <div className="features__marquee-window">
+          <div className="features__grid">
+            {displayFeatures.map((feature, index) => (
+              <article 
+                // Using index as key because of duplication
+                key={`${feature.title}-${index}`} 
+                className="feature-card" 
+                style={index >= 4 ? { display: 'none' } : undefined} // Inline style to hide duplicates on desktop (overridden by mobile css if needed)
+              >
+                <div className="feature-card__icon">
+                  <img src={feature.icon} alt={feature.alt} loading="lazy" />
+                </div>
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+              </article>
+            ))}
+            {/* Styles for mobile to show duplicates are handled in CSS via media queries on the class 'features__grid' children */}
+            <style>{`
+              @media (max-width: 768px) {
+                .feature-card { display: flex !important; }
+              }
+            `}</style>
+          </div>
         </div>
       </div>
     </section>

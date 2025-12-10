@@ -27,6 +27,7 @@ body {
   min-height: 100vh;
   background: radial-gradient(circle at 10% 20%, rgba(108, 99, 255, 0.08), transparent 60%), #f5f6fc;
   color: inherit;
+  overflow-x: hidden;
 }
 
 a {
@@ -194,7 +195,7 @@ main {
 .nav {
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 50;
   isolation: isolate;
   overflow: hidden;
 }
@@ -413,6 +414,7 @@ main {
   padding: 0.85rem 1.4rem;
   background: #0f0f15;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px 28px 0 0; /* Add explicit border radius for mobile */
 }
 
 .hero__window-header span {
@@ -628,6 +630,16 @@ main {
 
 .feature-card:hover p {
   color: rgba(244, 246, 255, 0.88);
+}
+
+/* Marquee Animation for Features */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* Automatize */
@@ -1301,7 +1313,6 @@ main {
   }
 
   .hero__visual {
-    order: -1;
     margin-top: 0;
   }
 
@@ -1359,7 +1370,29 @@ main {
     padding: 5.5rem 0;
   }
 
-  .features__grid,
+  /* Modified for marquee effect */
+  .features__marquee-window {
+    overflow: hidden;
+    width: 100%;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .features__grid {
+    display: flex;
+    width: max-content;
+    gap: 1.5rem;
+    animation: marquee 20s linear infinite;
+  }
+
+  .feature-card {
+    width: 260px; /* Fixed width for smooth scrolling items */
+    aspect-ratio: auto;
+    flex-shrink: 0;
+  }
+
+  /* Duplicate items are handled in component but ensure logic holds */
+  
   .faq__grid {
     grid-template-columns: 1fr;
   }
