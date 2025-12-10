@@ -301,7 +301,7 @@ const HeroSection = () => {
     <section
       id="automatize"
       aria-labelledby={headingId}
-      className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-indigo-50 py-24 sm:py-28"
+      className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-indigo-50 pt-24 pb-12 sm:pt-28 sm:pb-16"
     >
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(79,70,229,0.18),transparent_55%),radial-gradient(circle_at_bottom_right,rgba(56,189,248,0.22),transparent_60%)]" />
@@ -312,7 +312,7 @@ const HeroSection = () => {
       <div className="container relative">
         <div className="flex flex-col gap-12 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-start lg:gap-16">
           <AppleWindow
-            className="order-1 place-self-center lg:col-start-1 lg:row-span-2 lg:place-self-center"
+            className="order-1 place-self-center lg:col-start-1 lg:row-span-2 lg:place-self-center w-full max-w-[440px] mx-auto"
             steps={STEPS}
             step={step}
             tabId={getTabId(step.id)}

@@ -309,7 +309,7 @@ main {
 /* Hero */
 .hero {
   position: relative;
-  padding: 8rem 0 6.5rem;
+  padding: 4rem 0 6.5rem;
   overflow: hidden;
 }
 
@@ -1016,7 +1016,7 @@ main {
   padding: 6.5rem 0;
   background: radial-gradient(circle at 10% 20%, rgba(108, 99, 255, 0.08), transparent 26%),
     radial-gradient(circle at 90% 10%, rgba(3, 218, 197, 0.12), transparent 24%),
-    #ffffff;
+    #9faac5;
 }
 
 .faq__grid {
