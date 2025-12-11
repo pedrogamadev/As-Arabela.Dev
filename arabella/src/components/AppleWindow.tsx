@@ -116,9 +116,9 @@ const AppleWindow = ({
             {`Pré-visualização interativa do passo: ${displayedStep.title}.`}
           </span>
           <div className="mb-4 space-y-2 rounded-2xl bg-white/10 p-2">
-            <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.28em] text-indigo-100">
-              <span className="inline-flex h-7 items-center rounded-full bg-white/5 px-3 text-[11px] text-slate-200">
-                Etapa {activeStepIndex + 1} de {steps.length}
+            <div className="flex min-w-0 items-center gap-3 text-xs font-semibold uppercase tracking-[0.28em] text-indigo-100">
+              <span className="inline-flex h-7 items-center whitespace-nowrap rounded-full bg-white/5 px-3 text-[11px] text-slate-200">
+                {activeStepIndex + 1} de {steps.length}
               </span>
               <span className="truncate text-[10px] text-indigo-100/90 sm:text-[11px]">
                 {displayedStep.title}
