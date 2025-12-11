@@ -14,20 +14,20 @@ import type { Step } from './three-steps.types';
 const StepOnePanel = () => {
   const cards = [
     {
-      title: '1° - Checklist rápido',
-      description: 'Responda às perguntas e veja uma faixa de preço na hora.',
+      title: '1° - Checklist',
+      description: 'Responda e veja seu preço na hora.',
     },
     {
-      title: '2° - Alinhamento conosco',
-      description: 'Falamos com você no mesmo dia para ajustar tudo.',
+      title: '2° - Alinhamento',
+      description: 'Ajustamos tudo no mesmo dia.',
     },
     {
-      title: '3° - 3 ideias de layout',
-      description: 'Você recebe até 3 propostas de design sem pagar nada.',
+      title: '3° - 3 layout',
+      description: 'Receba 3 propostas grátis.',
     },
     {
       title: '4° - Aprovação',
-      description: 'Só segue se você gostar.\nNada é cobrado até aqui.',
+      description: 'Só segue se você curtir — sem custo.',
     },
   ] as const;
 
@@ -54,10 +54,10 @@ const StepOnePanel = () => {
 
 const StepTwoPanel = () => {
   const lineItems = [
-    { label: 'Domínio', price: 'R$ 120/ano', ratio: 24 },
-    { label: 'Hospedagem', price: 'R$ 35/mês', ratio: 18 },
-    { label: 'Desenvolvimento', price: 'R$ 3.200', ratio: 82 },
-    { label: 'Suporte', price: 'R$ 220/mês', ratio: 40 },
+    { label: 'Domínio', price: 'R$ 49/ano', ratio: 24 },
+    { label: 'Hospedagem', price: 'R$ 14,90/mês', ratio: 18 },
+    { label: 'Desenvolvimento', price: 'R$ 450', ratio: 82 },
+    { label: 'Suporte', price: 'R$ 90/mês', ratio: 40 },
   ];
 
   return (
@@ -104,9 +104,8 @@ const StepTwoPanel = () => {
 const StepThreePanel = ({ isActive }: { isActive: boolean }) => {
   const [copiedLink, setCopiedLink] = useState<string | null>(null);
   const domain = {
-    url: 'https://estudioaria.com.br',
+    url: 'https://meusite.com.br',
     goLive: 'Publicado às 08h12',
-    status: 'SSL ativo',
   } as const;
   const shareLinks = [
     {
@@ -174,7 +173,6 @@ const StepThreePanel = ({ isActive }: { isActive: boolean }) => {
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-indigo-200">
-              {domain.status}
             </span>
             <button
               type="button"
@@ -189,10 +187,7 @@ const StepThreePanel = ({ isActive }: { isActive: boolean }) => {
 
       <div className="space-y-2 rounded-2xl bg-transparent p-1 text-sm text-slate-200">
         <p className="font-semibold text-white">
-          Seu site está 100% pronto para receber visitantes, gerar oportunidades e dar vida ao seu negócio.
-        </p>
-        <p className="text-slate-300">
-          Agora ele trabalha por você 24h por dia: atraindo, convertendo e fortalecendo a sua marca.
+          Seu site está pronto para dar vida ao seu negócio.
         </p>
       </div>
 
