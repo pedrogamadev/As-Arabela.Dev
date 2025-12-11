@@ -305,51 +305,84 @@ const HeroSection = () => {
       </div>
 
       <div className="container relative">
-        <div className="flex flex-col gap-12 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-start lg:gap-16">
-          <AppleWindow
-            className="order-1 place-self-center lg:col-start-1 lg:row-span-2 lg:place-self-center w-full max-w-[440px] mx-auto"
-            steps={STEPS}
-            step={step}
-            tabId={getTabId(step.id)}
-            panelId={getPanelId(step.id)}
-            activeStepIndex={activeStep}
-            onStepChange={setActiveStep}
-          />
+          <div className="flex flex-col gap-12 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-start lg:gap-16">
+            <AppleWindow
+              className="order-2 lg:order-1 place-self-center lg:col-start-1 lg:row-span-2 lg:place-self-center w-full max-w-[440px] mx-auto"
+              steps={STEPS}
+              step={step}
+              tabId={getTabId(step.id)}
+              panelId={getPanelId(step.id)}
+              activeStepIndex={activeStep}
+              onStepChange={setActiveStep}
+            />
 
-          <div className="order-2 space-y-6 lg:col-start-2 lg:row-span-2">
-            <div className="space-y-3">
-              <h2
-                id={headingId}
-                className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-[44px]"
-              >
-                Seu site em 3 passos
-              </h2>
+            <div className="relative order-1 lg:order-2 space-y-6 lg:col-start-2 lg:row-span-2">
+              {/* Elementos flutuantes decorativos - Z-index corrigido para 0, conteúdo para 10 */}
+              <div className="absolute -top-20 -right-20 h-[220px] w-[220px] animate-pulse rounded-full bg-purple-500/40 blur-[60px] delay-0 duration-3000" />
+              <div className="absolute -bottom-20 -left-20 h-[250px] w-[250px] animate-pulse rounded-full bg-indigo-500/40 blur-[60px] delay-1000 duration-3000" />
+              <div className="absolute top-1/2 left-1/2 h-[180px] w-[180px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-pink-500/30 blur-[50px] delay-500 duration-3000" />
+
+              <div className="relative z-10 space-y-3">
+                <h2
+                  id={headingId}
+                  className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-[44px]"
+                >
+                  Seu site em 3 passos
+                </h2>
+              </div>
+
+              <div className="glass-liquid-card relative z-10 space-y-4 rounded-2xl bg-white/30 p-6 shadow-[0_24px_60px_rgba(79,70,229,0.16)] backdrop-blur-xl transition-all duration-300 hover:bg-white/40 hover:shadow-[0_30px_70px_rgba(79,70,229,0.2)]">
+                <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br from-white/40 to-white/10" />
+                
+                <p className="text-base font-semibold text-slate-900">
+                  Cada fase é clara, sincronizada e acompanhada de perto
+                </p>
+
+                <div className="space-y-4 pt-2">
+                  <div className="group relative overflow-hidden rounded-xl border border-white/40 bg-white/40 p-5 shadow-[0_8px_30px_rgba(79,70,229,0.1)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-white/60 hover:shadow-[0_20px_40px_rgba(79,70,229,0.2)]">
+                    <div className="flex items-start gap-4">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-xs font-bold text-white shadow-lg shadow-indigo-500/30 ring-2 ring-white/50">
+                        1º
+                      </span>
+                      <div>
+                        <h3 className="mb-1 text-sm font-bold text-slate-800">Seu pedido</h3>
+                        <p className="text-sm leading-relaxed text-slate-600">
+                          Você envia sua necessidade, preenche o checklist e nos conta o essencial sobre o projeto.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="group relative overflow-hidden rounded-xl border border-white/40 bg-white/40 p-5 shadow-[0_8px_30px_rgba(79,70,229,0.1)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-white/60 hover:shadow-[0_20px_40px_rgba(79,70,229,0.2)]">
+                    <div className="flex items-start gap-4">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-xs font-bold text-white shadow-lg shadow-indigo-500/30 ring-2 ring-white/50">
+                        2º
+                      </span>
+                      <div>
+                        <h3 className="mb-1 text-sm font-bold text-slate-800">Orçamento detalhado</h3>
+                        <p className="text-sm leading-relaxed text-slate-600">
+                          Com base nas suas respostas, montamos uma proposta completa com funcionalidades, prazo e investimento.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="group relative overflow-hidden rounded-xl border border-white/40 bg-white/40 p-5 shadow-[0_8px_30px_rgba(79,70,229,0.1)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-white/60 hover:shadow-[0_20px_40px_rgba(79,70,229,0.2)]">
+                    <div className="flex items-start gap-4">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-xs font-bold text-white shadow-lg shadow-indigo-500/30 ring-2 ring-white/50">
+                        3º
+                      </span>
+                      <div>
+                        <h3 className="mb-1 text-sm font-bold text-slate-800">Deploy e domínio</h3>
+                        <p className="text-sm leading-relaxed text-slate-600">
+                          Após aprovação, desenvolvemos, configuramos domínio e hospedagem e colocamos seu site no ar.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <div className="space-y-4 rounded-2xl bg-white/70 p-6 shadow-[0_24px_60px_rgba(79,70,229,0.16)]">
-              <p className="text-base font-semibold text-slate-900">
-                Cada fase é clara, sincronizada e acompanhada de perto
-              </p>
-
-              <ul className="mt-2 space-y-2 text-sm leading-relaxed text-slate-700">
-                <li>
-                  <span className="font-semibold">1º — Seu pedido</span>
-                  <br />
-                  Você envia sua necessidade, preenche o checklist e nos conta o essencial sobre o projeto.
-                </li>
-                <li>
-                  <span className="font-semibold">2º — Orçamento detalhado</span>
-                  <br />
-                  Com base nas suas respostas, montamos uma proposta completa com funcionalidades, prazo e investimento.
-                </li>
-                <li>
-                  <span className="font-semibold">3º — Deploy e domínio</span>
-                  <br />
-                  Após aprovação, desenvolvemos, configuramos domínio e hospedagem e colocamos seu site no ar.
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
       </div>
     </section>

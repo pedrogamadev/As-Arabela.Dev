@@ -226,6 +226,26 @@ main {
   z-index: -2;
 }
 
+.glass-liquid-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.glass-liquid-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(140% 160% at 8% 0%, rgba(255, 255, 255, 0.65), transparent 62%),
+    radial-gradient(120% 140% at 92% 6%, rgba(108, 99, 255, 0.22), transparent 68%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.85;
+  z-index: -1;
+}
+
 .nav__inner {
   display: flex;
   align-items: center;
