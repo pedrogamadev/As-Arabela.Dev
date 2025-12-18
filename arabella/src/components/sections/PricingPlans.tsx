@@ -157,71 +157,86 @@ const PricingPlans = () => {
               <article
                 key={plan.key}
                 style={{ transitionDelay: hasRevealed ? `${index * 120}ms` : '0ms' }}
-                className={`relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white/80 p-6 shadow-xl backdrop-blur-lg transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_25px_80px_rgba(79,70,229,0.12)] sm:p-7 ${
+                className={`group relative overflow-hidden rounded-3xl transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_25px_80px_rgba(79,70,229,0.12)] ${
                   hasRevealed ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
                 } ${
                   plan.featured
-                    ? 'border-indigo-200/80 ring-2 ring-indigo-400/70 shadow-[0_22px_70px_rgba(99,102,241,0.2)] bg-gradient-to-b from-white via-indigo-50/70 to-white'
-                    : 'border-slate-100/80 shadow-[0_14px_50px_rgba(15,23,42,0.07)]'
-                } hover:border-indigo-200/80 hover:ring-2 hover:ring-indigo-200/80`}
+                    ? 'shadow-[0_22px_70px_rgba(99,102,241,0.2)] ring-2 ring-indigo-400/70'
+                    : 'shadow-[0_14px_50px_rgba(15,23,42,0.07)]'
+                }`}
               >
-                <div className="absolute inset-x-10 -top-4 flex justify-center">
-                  <span
-                    className={`rounded-full px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em] shadow-md ring-1 ring-indigo-100/70 ${
-                      plan.featured
-                        ? 'bg-gradient-to-r from-indigo-500 to-fuchsia-500 text-white animate-[pulse_3.8s_ease-in-out_infinite]'
-                        : 'bg-slate-100 text-slate-700'
-                    }`}
-                  >
-                    {plan.badge}
-                  </span>
-                </div>
+                {plan.featured && (
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute -inset-[1.6px] animate-[spin_8s_linear_infinite] bg-[conic-gradient(at_50%_50%,#a855f7,#6366f1,#22d3ee,#a855f7)] opacity-80 blur-[2.5px]"
+                  />
+                )}
 
-                <div className="mt-7 space-y-5">
-                  <div className="space-y-2 text-center">
-                    <p className="text-sm font-medium uppercase tracking-[0.12em] text-slate-500">{plan.badge}</p>
-                    <h3 className="text-xl font-semibold text-slate-900">{plan.name}</h3>
-                    <div className="flex flex-col items-center gap-1">
-                      <p className="flex items-end gap-1 text-slate-900">
-                        <span className="text-lg font-semibold uppercase tracking-[0.14em] text-indigo-800/80">{currency}</span>
-                        <span className="text-4xl font-black leading-none sm:text-[2.6rem]">{amount}</span>
-                      </p>
-                      <span className="text-xs uppercase tracking-[0.12em] text-indigo-700/70">pagamento único</span>
-                    </div>
-                    <p className="text-sm leading-relaxed text-slate-600">{plan.description}</p>
+                <div
+                  className={`relative z-10 flex h-full flex-col overflow-hidden rounded-[1.4rem] border bg-white/80 p-6 backdrop-blur-lg sm:p-7 ${
+                    plan.featured
+                      ? 'border-indigo-200/80 ring-2 ring-indigo-400/70 bg-gradient-to-b from-white via-indigo-50/70 to-white'
+                      : 'border-slate-100/80'
+                  } hover:border-indigo-200/80 hover:ring-2 hover:ring-indigo-200/80`}
+                >
+                  <div className="absolute inset-x-10 -top-4 flex justify-center">
+                    <span
+                      className={`rounded-full px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em] shadow-md ring-1 ring-indigo-100/70 ${
+                        plan.featured
+                          ? 'bg-gradient-to-r from-indigo-500 to-fuchsia-500 text-white animate-[pulse_3.8s_ease-in-out_infinite]'
+                          : 'bg-slate-100 text-slate-700'
+                      }`}
+                    >
+                      {plan.badge}
+                    </span>
                   </div>
 
-                  <ul className="space-y-3.5">
-                    {plan.features.map(feature => (
-                      <li key={feature} className="flex items-start gap-3.5 text-sm text-slate-700">
-                        <span
-                          className={`mt-0.5 flex h-7 w-7 items-center justify-center rounded-full text-indigo-700 ${
-                            plan.featured
-                              ? 'bg-indigo-50 ring-1 ring-indigo-100'
-                              : 'bg-slate-50 ring-1 ring-slate-200'
-                          }`}
-                          aria-hidden
-                        >
-                          <Check className="h-4 w-4" />
-                        </span>
-                        <span className="leading-relaxed">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="mt-7 space-y-4">
+                    <div className="space-y-1.5 text-center">
+                      <p className="text-sm font-medium uppercase tracking-[0.12em] text-slate-500">{plan.badge}</p>
+                      <h3 className="text-xl font-semibold text-slate-900">{plan.name}</h3>
+                      <div className="flex flex-col items-center gap-1">
+                        <p className="flex items-end gap-1 text-slate-900">
+                          <span className="text-lg font-semibold uppercase tracking-[0.14em] text-indigo-800/80">{currency}</span>
+                          <span className="text-4xl font-black leading-none sm:text-[2.6rem]">{amount}</span>
+                        </p>
+                        <span className="text-xs uppercase tracking-[0.12em] text-indigo-700/70">pagamento único</span>
+                      </div>
+                      <p className="text-sm leading-snug text-slate-600">{plan.description}</p>
+                    </div>
 
-                  <p className="text-center text-xs italic text-slate-500">{plan.note}</p>
+                    <ul className="space-y-2.5">
+                      {plan.features.map(feature => (
+                        <li key={feature} className="flex items-start gap-3 text-sm text-slate-700">
+                          <span
+                            className={`mt-0.5 flex h-7 w-7 items-center justify-center rounded-full text-indigo-700 ${
+                              plan.featured
+                                ? 'bg-indigo-50 ring-1 ring-indigo-100'
+                                : 'bg-slate-50 ring-1 ring-slate-200'
+                            }`}
+                            aria-hidden
+                          >
+                            <Check className="h-4 w-4" />
+                          </span>
+                          <span className="leading-snug">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <p className="text-center text-xs italic text-slate-500">{plan.note}</p>
+                  </div>
+
+                  <Link
+                    to={buildPlanLink(plan.key)}
+                    className={`mt-auto inline-flex items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
+                      plan.featured
+                        ? 'bg-gradient-to-r from-indigo-500 to-fuchsia-500 text-white shadow-lg shadow-indigo-400/30 hover:brightness-105 focus-visible:outline-indigo-500'
+                        : 'bg-slate-900 text-white shadow-md shadow-slate-900/20 hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-slate-900'
+                    }`}
+                  >
+                    {plan.cta}
+                  </Link>
                 </div>
-
-                <Link
-                  to={buildPlanLink(plan.key)}
-                  className={`mt-auto inline-flex items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
-                    plan.featured
-                      ? 'bg-gradient-to-r from-indigo-500 to-fuchsia-500 text-white shadow-lg shadow-indigo-400/30 hover:brightness-105 focus-visible:outline-indigo-500'
-                      : 'bg-slate-900 text-white shadow-md shadow-slate-900/20 hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-slate-900'
-                  }`}
-                >
-                  {plan.cta}
-                </Link>
               </article>
             );
           })}
