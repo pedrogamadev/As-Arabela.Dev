@@ -119,6 +119,7 @@ const PricingPlans = () => {
       aria-labelledby="pricing-heading"
     >
       <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-[url('/imagens/desing-gemini.png')] bg-cover bg-center opacity-70" />
         <div className="absolute -left-12 top-10 h-72 w-72 rounded-full bg-indigo-300/25 blur-[120px]" />
         <div className="absolute -right-16 top-32 h-64 w-64 rounded-full bg-purple-400/20 blur-[110px]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.09),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(124,58,237,0.1),transparent_40%)]" />
