@@ -3,29 +3,63 @@ import { useEffect } from 'react';
 const features = [
   {
     title: 'Venda de produtos',
-    description: 'Landing pages para lojas virtuais e lançamentos de produtos com checkout otimizado.',
+    description: 'Landing pages para lojas virtuais e lançamentos de produtos com checkout.',
     icon: 'https://cdn.jsdelivr.net/npm/lucide-static@0.292.0/icons/shopping-cart.svg',
     alt: 'Ícone de carrinho representando vendas online',
   },
   {
     title: 'Escritórios',
-    description:
-      'Páginas institucionais para escritórios de advocacia, contabilidade, clínicas médicas e coworkings.',
+    description: 'Páginas institucionais para escritórios de advocacia, contabilidade e áreas afins.',
     icon: 'https://cdn.jsdelivr.net/npm/lucide-static@0.292.0/icons/building-2.svg',
     alt: 'Ícone de prédio corporativo representando escritórios',
   },
   {
     title: 'Serviços',
-    description:
-      'Landing pages para prestadores de serviço como consultorias, academias, personal trainers e reparos.',
-    icon: 'https://cdn.jsdelivr.net/npm/lucide-static@0.292.0/icons/zap.svg',
-    alt: 'Ícone de raio simbolizando dinamismo nos serviços',
+    description: 'Landing pages para prestadores de serviço e consultorias.',
+    icon: 'https://cdn.jsdelivr.net/npm/lucide-static@0.292.0/icons/briefcase.svg',
+    alt: 'Ícone de pasta profissional representando prestação de serviços',
   },
   {
     title: 'Eventos e infoprodutos',
-    description: 'Páginas para cursos online, webinars, eventos e e-books com foco em captação de leads.',
+    description: 'Páginas para cursos online, webinars e eventos.',
     icon: 'https://cdn.jsdelivr.net/npm/lucide-static@0.292.0/icons/calendar-check.svg',
     alt: 'Ícone de calendário com marcação representando eventos digitais',
+  },
+  {
+    title: 'Portfólios profissionais',
+    description: 'Landing pages pessoais para profissionais liberais, freelancers e criativos.',
+    icon: 'https://cdn.jsdelivr.net/npm/lucide-static@0.292.0/icons/id-card.svg',
+    alt: 'Ícone de crachá simbolizando portfólios profissionais',
+  },
+  {
+    title: 'Landing pages de vendas',
+    description: 'Páginas estratégicas focadas em conversão de produtos ou serviços.',
+    icon: 'https://cdn.jsdelivr.net/npm/lucide-static@0.292.0/icons/trending-up.svg',
+    alt: 'Ícone de gráfico indicando aumento de vendas',
+  },
+  {
+    title: 'Checkout integrado (Mercado Pago)',
+    description: 'Landing pages com pagamento integrado via Pix, cartão e boleto.',
+    icon: 'https://cdn.jsdelivr.net/npm/lucide-static@0.292.0/icons/credit-card.svg',
+    alt: 'Ícone de cartão representando checkout integrado',
+  },
+  {
+    title: 'Captação de leads',
+    description: 'Páginas para coleta de contatos e geração de oportunidades.',
+    icon: 'https://cdn.jsdelivr.net/npm/lucide-static@0.292.0/icons/inbox.svg',
+    alt: 'Ícone de caixa de entrada simbolizando captação de leads',
+  },
+  {
+    title: 'Lançamentos digitais',
+    description: 'Landing pages para pré-vendas, lançamentos e campanhas temporárias.',
+    icon: 'https://cdn.jsdelivr.net/npm/lucide-static@0.292.0/icons/rocket.svg',
+    alt: 'Ícone de foguete representando lançamentos digitais',
+  },
+  {
+    title: 'Páginas para tráfego pago',
+    description: 'Landing pages rápidas e otimizadas para anúncios.',
+    icon: 'https://cdn.jsdelivr.net/npm/lucide-static@0.292.0/icons/megaphone.svg',
+    alt: 'Ícone de megafone representando campanhas de tráfego pago',
   },
 ];
 
@@ -78,7 +112,7 @@ const FeatureGrid = () => {
     };
   }, []);
 
-  // Duplicate features for infinite marquee effect on mobile
+  // Duplicate features for a seamless marquee effect across viewports
   const displayFeatures = [...features, ...features];
 
   return (
@@ -92,11 +126,10 @@ const FeatureGrid = () => {
         <div className="features__marquee-window">
           <div className="features__grid">
             {displayFeatures.map((feature, index) => (
-              <article 
+              <article
                 // Using index as key because of duplication
-                key={`${feature.title}-${index}`} 
-                className="feature-card" 
-                style={index >= 4 ? { display: 'none' } : undefined} // Inline style to hide duplicates on desktop (overridden by mobile css if needed)
+                key={`${feature.title}-${index}`}
+                className="feature-card"
               >
                 <div className="feature-card__icon">
                   <img src={feature.icon} alt={feature.alt} loading="lazy" />
@@ -105,12 +138,6 @@ const FeatureGrid = () => {
                 <p>{feature.description}</p>
               </article>
             ))}
-            {/* Styles for mobile to show duplicates are handled in CSS via media queries on the class 'features__grid' children */}
-            <style>{`
-              @media (max-width: 768px) {
-                .feature-card { display: flex !important; }
-              }
-            `}</style>
           </div>
         </div>
       </div>
