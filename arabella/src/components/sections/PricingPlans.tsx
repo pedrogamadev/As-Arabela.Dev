@@ -156,7 +156,7 @@ const PricingPlans = () => {
             return (
               <article
                 key={plan.key}
-                style={{ transitionDelay: hasRevealed ? `${index * 120}ms` : '0ms' }}
+                style={{ transitionDelay: hasRevealed ? `${index * 520}ms` : '0ms' }}
                 className={`group relative overflow-hidden rounded-3xl transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_25px_80px_rgba(79,70,229,0.12)] ${
                   hasRevealed ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
                 } ${
