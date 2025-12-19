@@ -1,39 +1,72 @@
 import { useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import arabellaLogo from '../assets/logo-arabella.svg';
 import atlasLogo from '../assets/logo-atlas.svg';
 import faroLogo from '../assets/logo-faro.svg';
 import orbeLogo from '../assets/logo-orbe.svg';
 import '../checkout.css';
 
-const ORDER_ITEMS = [
-  {
-    id: 1,
-    name: 'Landing Page Profissional',
-    description: 'Pacote Premium',
-    price: 2990,
-    image: arabellaLogo,
-  },
-  {
-    id: 2,
-    name: 'SEO Boost + Copy Pro',
-    description: 'Complemento estratégico',
-    price: 980,
-    image: atlasLogo,
-  },
-];
+type PlanKey = 'essencial' | 'profissional' | 'pro';
+type CartItem = {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  type: 'plan' | 'addon';
+};
 
-const SUGGESTIONS = [
+const PLANS: Record<PlanKey, CartItem> = {
+  essencial: {
+    id: 'plan-essencial',
+    name: 'Landing Page Essencial',
+    description: 'Entrada',
+    price: 490.9,
+    image: arabellaLogo,
+    type: 'plan',
+  },
+  profissional: {
+    id: 'plan-profissional',
+    name: 'Landing Page Profissional',
+    description: 'Mais vendido',
+    price: 690.9,
+    image: atlasLogo,
+    type: 'plan',
+  },
+  pro: {
+    id: 'plan-pro',
+    name: 'Landing Page + Página Extra',
+    description: 'Completo',
+    price: 1290.9,
+    image: orbeLogo,
+    type: 'plan',
+  },
+};
+
+const SUGGESTIONS: CartItem[] = [
   {
-    id: 1,
-    name: 'Gestão de tráfego',
-    description: 'Escala anúncios com especialistas',
+    id: 'seo-basico',
+    name: 'SEO básico',
+    description: 'Otimização essencial para buscadores',
+    price: 90,
     image: faroLogo,
+    type: 'addon',
   },
   {
-    id: 2,
-    name: 'Identidade visual',
-    description: 'Logotipo e guia de marca',
+    id: 'seo-avancado',
+    name: 'SEO avançado',
+    description: 'Estratégia completa de ranqueamento',
+    price: 170,
+    image: atlasLogo,
+    type: 'addon',
+  },
+  {
+    id: 'logo',
+    name: 'Logo',
+    description: 'Criação de logotipo profissional',
+    price: 50,
     image: orbeLogo,
+    type: 'addon',
   },
 ];
 
@@ -45,7 +78,9 @@ const STEPS = [
 ];
 
 const CheckoutPage = () => {
+  const [searchParams] = useSearchParams();
   const [step, setStep] = useState(0);
+  const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
   const [values, setValues] = useState({
     ideiaPronta: 'sim',
     objetivo: 'vendas',
@@ -60,8 +95,29 @@ const CheckoutPage = () => {
     pagamento: 'pix',
   });
 
-  const total = useMemo(() => ORDER_ITEMS.reduce((acc, item) => acc + item.price, 0), []);
+  const planKey = useMemo(() => {
+    const plan = searchParams.get('plano');
+    if (plan === 'essencial' || plan === 'profissional' || plan === 'pro') {
+      return plan;
+    }
+    return 'profissional';
+  }, [searchParams]);
+
+  const orderItems = useMemo(() => {
+    const planItem = PLANS[planKey];
+    const addons = SUGGESTIONS.filter(item => selectedAddons.includes(item.id));
+    return [planItem, ...addons];
+  }, [planKey, selectedAddons]);
+
+  const total = useMemo(() => orderItems.reduce((acc, item) => acc + item.price, 0), [orderItems]);
   const entrada = total * 0.5;
+
+  const formatCurrency = (value: number) =>
+    value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  const toggleAddon = (id: string) => {
+    setSelectedAddons(prev => (prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]));
+  };
 
   const handleNext = () => {
     if (step < STEPS.length - 1) setStep(prev => prev + 1);
@@ -98,13 +154,24 @@ const CheckoutPage = () => {
             </header>
 
             <div className="checkout-summary__items">
-              {ORDER_ITEMS.map(item => (
+              {orderItems.map(item => (
                 <article key={item.id} className="checkout-summary__item">
                   <img src={item.image} alt="" />
                   <div>
                     <h3>{item.name}</h3>
                     <p>{item.description}</p>
-                    <strong>R$ {item.price.toLocaleString('pt-BR')}</strong>
+                    <div className="checkout-summary__item-footer">
+                      <strong>R$ {formatCurrency(item.price)}</strong>
+                      {item.type === 'addon' && (
+                        <button
+                          type="button"
+                          className="checkout-item-action"
+                          onClick={() => toggleAddon(item.id)}
+                        >
+                          Remover
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </article>
               ))}
@@ -113,15 +180,15 @@ const CheckoutPage = () => {
             <div className="checkout-summary__totals">
               <div>
                 <span>Subtotal</span>
-                <strong>R$ {total.toLocaleString('pt-BR')}</strong>
+                <strong>R$ {formatCurrency(total)}</strong>
               </div>
               <div>
                 <span>Pagamento inicial (50%)</span>
-                <strong>R$ {entrada.toLocaleString('pt-BR')}</strong>
+                <strong>R$ {formatCurrency(entrada)}</strong>
               </div>
               <div className="checkout-summary__highlight">
                 <span>Saldo na entrega</span>
-                <strong>R$ {entrada.toLocaleString('pt-BR')}</strong>
+                <strong>R$ {formatCurrency(entrada)}</strong>
               </div>
             </div>
           </aside>
@@ -135,6 +202,18 @@ const CheckoutPage = () => {
                   <div>
                     <strong>{item.name}</strong>
                     <span>{item.description}</span>
+                  </div>
+                  <div className="checkout-suggestion__actions">
+                    <span className="checkout-suggestion__price">R$ {formatCurrency(item.price)}</span>
+                    <button
+                      type="button"
+                      className={`checkout-suggestion__button ${
+                        selectedAddons.includes(item.id) ? 'is-selected' : ''
+                      }`}
+                      onClick={() => toggleAddon(item.id)}
+                    >
+                      {selectedAddons.includes(item.id) ? 'Remover' : 'Adicionar'}
+                    </button>
                   </div>
                 </article>
               ))}
@@ -297,7 +376,7 @@ const CheckoutPage = () => {
                 <div className="checkout-payment-summary">
                   <h3>Pagamento inicial</h3>
                   <p>Para iniciar o projeto, cobramos 50% do valor total.</p>
-                  <strong>R$ {entrada.toLocaleString('pt-BR')}</strong>
+                  <strong>R$ {formatCurrency(entrada)}</strong>
                 </div>
 
                 <div>

@@ -71,7 +71,7 @@ const plans: Plan[] = [
 ];
 
 const buildPlanLink = (planKey: Plan['key']) => ({
-  pathname: '/orcamentos',
+  pathname: '/checkout',
   search: `?plano=${planKey}`,
 });
 
