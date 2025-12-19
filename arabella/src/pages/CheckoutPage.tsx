@@ -77,6 +77,39 @@ const STEPS = [
   { id: 'pagamento', title: 'Pagamento' },
 ];
 
+const CHECKOUT_LABELS = {
+  ideiaPronta: {
+    sim: 'Sim',
+    'mais ou menos': 'Mais ou menos',
+    'preciso de ajuda': 'Preciso de ajuda',
+  },
+  objetivo: {
+    vendas: 'Vender mais rapidamente',
+    autoridade: 'Transmitir autoridade',
+    captacao: 'Captar leads qualificados',
+  },
+  identidadeVisual: {
+    sim: 'Sim',
+    nao: 'Não',
+    'em criacao': 'Em criação',
+  },
+  conteudoPronto: {
+    sim: 'Sim',
+    parcial: 'Parcial',
+    nao: 'Não',
+  },
+  contato: {
+    whatsapp: 'WhatsApp',
+    email: 'E-mail',
+    call: 'Reunião rápida',
+  },
+  pagamento: {
+    pix: 'Pix',
+    cartao: 'Cartão',
+    boleto: 'Boleto',
+  },
+} as const;
+
 const CheckoutPage = () => {
   const [searchParams] = useSearchParams();
   const [step, setStep] = useState(0);
@@ -126,6 +159,50 @@ const CheckoutPage = () => {
   const handleBack = () => {
     if (step > 0) setStep(prev => prev - 1);
   };
+
+  const whatsAppMessage = useMemo(() => {
+    const plan = orderItems.find(item => item.type === 'plan');
+    const addons = orderItems.filter(item => item.type === 'addon');
+    const addonsText = addons.length
+      ? addons.map(item => `- ${item.name}: R$ ${formatCurrency(item.price)}`).join('\n')
+      : 'Nenhum adicional selecionado';
+
+    const referenciasText = values.referencias.trim() || 'Não informado';
+    const observacoesText = values.observacoes.trim() || 'Sem observações';
+
+    return `*CHECKOUT ARABELLA*
+*Resumo do pedido*
+*Plano:* ${plan?.name ?? 'Plano selecionado'}
+*Adicionais:*
+${addonsText}
+*Subtotal:* R$ ${formatCurrency(total)}
+*Entrada (50%):* R$ ${formatCurrency(entrada)}
+*Saldo na entrega:* R$ ${formatCurrency(entrada)}
+
+*Briefing*
+*Ideia pronta:* ${CHECKOUT_LABELS.ideiaPronta[values.ideiaPronta as keyof typeof CHECKOUT_LABELS.ideiaPronta]}
+*Objetivo:* ${CHECKOUT_LABELS.objetivo[values.objetivo as keyof typeof CHECKOUT_LABELS.objetivo]}
+*Identidade visual:* ${CHECKOUT_LABELS.identidadeVisual[values.identidadeVisual as keyof typeof CHECKOUT_LABELS.identidadeVisual]}
+*Conteúdo pronto:* ${CHECKOUT_LABELS.conteudoPronto[values.conteudoPronto as keyof typeof CHECKOUT_LABELS.conteudoPronto]}
+*Copywriting:* ${values.precisaCopy ? 'Sim' : 'Não'}
+*Integração WhatsApp/Form:* ${values.integraWhats ? 'Sim' : 'Não'}
+*Referências:* ${referenciasText}
+
+*Entrega e contato*
+*Prazo:* ${values.prazo} dias
+*Canal de atualização:* ${CHECKOUT_LABELS.contato[values.contato as keyof typeof CHECKOUT_LABELS.contato]}
+
+*Pagamento*
+*Forma:* ${CHECKOUT_LABELS.pagamento[values.pagamento as keyof typeof CHECKOUT_LABELS.pagamento]}
+
+*Observações*
+_${observacoesText}_`;
+  }, [orderItems, values, total, entrada]);
+
+  const whatsAppUrl = useMemo(
+    () => `https://wa.me/5584991926432?text=${encodeURIComponent(whatsAppMessage)}`,
+    [whatsAppMessage]
+  );
 
   return (
     <div className="checkout-page">
@@ -413,9 +490,14 @@ const CheckoutPage = () => {
                   Próximo
                 </button>
               ) : (
-                <button type="button" className="button button--primary">
-                  Pagar entrada de 50%
-                </button>
+                <a
+                  className="button button--primary"
+                  href={whatsAppUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Continuar no WhatsApp
+                </a>
               )}
             </div>
           </div>
