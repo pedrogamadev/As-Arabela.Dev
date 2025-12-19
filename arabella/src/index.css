@@ -583,7 +583,7 @@ main {
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
-.features__grid {
+.features__track {
   --features-gap: 1.75rem;
   --features-speed: 36s;
   display: flex;
@@ -595,8 +595,17 @@ main {
   animation: featuresMarquee var(--features-speed) linear infinite;
 }
 
-.features__marquee-window:hover .features__grid,
-.features__marquee-window:focus-within .features__grid {
+.features__group {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--features-gap);
+  align-items: stretch;
+  flex: 0 0 auto;
+}
+
+.features__marquee-window:hover .features__track,
+.features__marquee-window:focus-within .features__track,
+.features__marquee-window.is-paused .features__track {
   animation-play-state: paused;
 }
 
@@ -610,8 +619,8 @@ main {
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
-  flex: 0 0 clamp(240px, 21vw, 320px);
-  max-width: 340px;
+  flex: 0 0 clamp(230px, 24vw, 320px);
+  max-width: 320px;
   aspect-ratio: 1 / 1;
   overflow: hidden;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
@@ -698,41 +707,34 @@ main {
   color: rgba(244, 246, 255, 0.88);
 }
 
-@media (min-width: 1280px) {
-  .feature-card {
-    flex-basis: calc((100% - var(--features-gap) * 3) / 4);
-    max-width: none;
-  }
-}
-
-@media (min-width: 980px) and (max-width: 1279px) {
-  .feature-card {
-    flex-basis: calc((100% - var(--features-gap) * 2) / 3);
-    max-width: none;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .features__grid {
+  .features__track {
     animation: none;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
+    width: max-content;
+  }
+
+  .features__marquee-window {
+    overflow-x: auto;
+    scroll-behavior: smooth;
   }
 
   .features__marquee-window {
     mask-image: none;
     -webkit-mask-image: none;
   }
+
+  .features__group[aria-hidden='true'] {
+    display: none;
+  }
 }
 
 /* Marquee Animation for Features */
 @keyframes featuresMarquee {
   0% {
-    transform: translateX(0);
+    transform: translateX(-50%);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(0);
   }
 }
 
@@ -1460,7 +1462,7 @@ main {
     padding: 5.5rem 0;
   }
 
-  .features__grid {
+  .features__track {
     --features-gap: 1.5rem;
     --features-speed: 24s;
   }

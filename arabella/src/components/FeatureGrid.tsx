@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 const features = [
   {
@@ -64,6 +64,8 @@ const features = [
 ];
 
 const FeatureGrid = () => {
+  const marqueeRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     const cards = Array.from(document.querySelectorAll<HTMLElement>('.feature-card'));
     const section = document.getElementById('ferramentas');
@@ -112,8 +114,38 @@ const FeatureGrid = () => {
     };
   }, []);
 
-  // Duplicate features for a seamless marquee effect across viewports
-  const displayFeatures = [...features, ...features];
+  useEffect(() => {
+    const marquee = marqueeRef.current;
+    if (!marquee) {
+      return;
+    }
+
+    const pauseMarquee = () => marquee.classList.add('is-paused');
+    const resumeMarquee = () => marquee.classList.remove('is-paused');
+
+    marquee.addEventListener('pointerdown', pauseMarquee);
+    marquee.addEventListener('pointerup', resumeMarquee);
+    marquee.addEventListener('pointercancel', resumeMarquee);
+    marquee.addEventListener('pointerleave', resumeMarquee);
+
+    return () => {
+      marquee.removeEventListener('pointerdown', pauseMarquee);
+      marquee.removeEventListener('pointerup', resumeMarquee);
+      marquee.removeEventListener('pointercancel', resumeMarquee);
+      marquee.removeEventListener('pointerleave', resumeMarquee);
+    };
+  }, []);
+
+  const renderFeatures = (suffix: string) =>
+    features.map((feature, index) => (
+      <article key={`${feature.title}-${suffix}-${index}`} className="feature-card">
+        <div className="feature-card__icon">
+          <img src={feature.icon} alt={feature.alt} loading="lazy" />
+        </div>
+        <h3>{feature.title}</h3>
+        <p>{feature.description}</p>
+      </article>
+    ));
 
   return (
     <section id="ferramentas" className="features" aria-labelledby="features-title">
@@ -123,21 +155,12 @@ const FeatureGrid = () => {
           <h2 id="features-title">Transformamos sua ideia em uma página que realmente converte</h2>
           <p>Pense. Inspire. Nós transformamos.</p>
         </header>
-        <div className="features__marquee-window">
-          <div className="features__grid">
-            {displayFeatures.map((feature, index) => (
-              <article
-                // Using index as key because of duplication
-                key={`${feature.title}-${index}`}
-                className="feature-card"
-              >
-                <div className="feature-card__icon">
-                  <img src={feature.icon} alt={feature.alt} loading="lazy" />
-                </div>
-                <h3>{feature.title}</h3>
-                <p>{feature.description}</p>
-              </article>
-            ))}
+        <div className="features__marquee-window" ref={marqueeRef}>
+          <div className="features__track" aria-live="off">
+            <div className="features__group">{renderFeatures('primary')}</div>
+            <div className="features__group" aria-hidden="true">
+              {renderFeatures('duplicate')}
+            </div>
           </div>
         </div>
       </div>
