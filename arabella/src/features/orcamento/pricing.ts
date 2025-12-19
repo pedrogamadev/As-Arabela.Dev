@@ -1,4 +1,4 @@
-export const BASE_PRICE = 100;
+export const BASE_PRICE = 200;
 export const BASE_SECOES = 3;
 export const PRECO_POR_SECAO_EXTRA = 60;
 
