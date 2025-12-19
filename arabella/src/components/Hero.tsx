@@ -110,10 +110,10 @@ const Hero = () => {
               to="/orcamentos"
               className={cn('button button--primary hero__cta', isFloatingCTA && 'hero__cta--floating')}
             >
-              Fazer orçamento agora
+              orçamento personalizado
             </Link>
             <a className="button button--secondary" href="#ferramentas">
-              Saiba mais
+              Pacotes prontos
             </a>
             <span ref={ctaSentinelRef} className="hero__cta-sentinel" aria-hidden />
           </div>
