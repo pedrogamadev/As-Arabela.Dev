@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import arabellaLogo from '../assets/logo-arabella.svg';
 import atlasLogo from '../assets/logo-atlas.svg';
@@ -203,6 +203,10 @@ _${observacoesText}_`;
     () => `https://wa.me/5584991926432?text=${encodeURIComponent(whatsAppMessage)}`,
     [whatsAppMessage]
   );
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [planKey]);
 
   return (
     <div className="checkout-page">

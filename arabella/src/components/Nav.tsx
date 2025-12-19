@@ -10,7 +10,7 @@ const Nav = () => {
   return (
     <header className={`nav glass-liquid ${isOrcamento ? 'nav--static' : ''}`} role="banner">
       <div className="container nav__inner">
-        <a className="nav__brand" href="#construa" onClick={() => setOpen(false)}>
+        <a className="nav__brand" href="/#construa" onClick={() => setOpen(false)}>
           <img src="\imagens\logo-as-arabela-dev.png" alt="Arabella.dev" />
         </a>
 

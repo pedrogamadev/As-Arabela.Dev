@@ -28,7 +28,7 @@ const features = [
   {
     title: 'Portfólios profissionais',
     description: 'Landing pages pessoais para profissionais liberais, freelancers e criativos.',
-    icon: 'https://cdn.jsdelivr.net/npm/lucide-static@0.292.0/icons/id-card.svg',
+    icon: 'https://cdn.jsdelivr.net/npm/lucide-static@0.292.0/icons/badge-check.svg',
     alt: 'Ícone de crachá simbolizando portfólios profissionais',
   },
   {
