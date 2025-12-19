@@ -726,6 +726,10 @@ main {
     width: max-content;
   }
 
+  .features--force-marquee .features__track {
+    animation: featuresMarquee var(--features-speed) linear infinite;
+  }
+
   .features__marquee-window {
     overflow-x: auto;
     scroll-behavior: smooth;

@@ -148,7 +148,11 @@ const FeatureGrid = () => {
     ));
 
   return (
-    <section id="ferramentas" className="features" aria-labelledby="features-title">
+    <section
+      id="ferramentas"
+      className="features features--force-marquee"
+      aria-labelledby="features-title"
+    >
       <div className="container">
         <header className="section-heading">
           <p className="section-kicker">Ferramentas profissionais</p>
