@@ -1,3 +1,17 @@
+import {
+  BASE_PRICE,
+  BASE_SECOES,
+  CONTEUDO_PRICES,
+  DESIGN_PRICES,
+  INTEGRATION_PRICES,
+  OUTRA_INTEGRACAO_PRICE,
+  PRAZO_PRICES,
+  PRECO_POR_SECAO_EXTRA,
+  PRICE_RANGE_PERCENT,
+  SUPORTE_PRICES,
+  TIPO_SITE_PRICES,
+} from './pricing';
+
 export type TipoSite =
   | "landingInfoproduto"
   | "landingServicoLocal"
@@ -66,37 +80,6 @@ export const INITIAL_VALUES: OrcamentoFormValues = {
   lgpd: false,
 };
 
-export const BASE_PRICE = 1200;
-
-export const tipoSiteMultiplier: Record<TipoSite, number> = {
-  landingInfoproduto: 1.1,
-  landingServicoLocal: 1,
-  institucional: 1.3,
-  miniEcommerce: 1.8,
-  capturaLead: 0.9,
-  evento: 1.2,
-  outros: 1.2,
-};
-
-export const designMultiplier = {
-  simples: 1,
-  intermediario: 1.2,
-  premium: 1.4,
-} as const;
-
-export const prazoMultiplier = {
-  semPressa: 0.9,
-  normal: 1,
-  rapido: 1.25,
-  urgente: 1.5,
-} as const;
-
-export const conteudoMultiplier = {
-  clienteTemTudo: 1,
-  clienteParcial: 1.15,
-  voceCria: 1.35,
-} as const;
-
 /* LABELS PARA UI E WHATSAPP */
 export const LABELS = {
   tipoSite: {
@@ -147,39 +130,39 @@ export const LABELS = {
 };
 
 export function calcularOrcamento(values: OrcamentoFormValues) {
-  const paginasFactor = 1 + Math.max(0, values.qtdSecoes - 3) * 0.05;
+  const paginasExtras = Math.max(0, values.qtdSecoes - BASE_SECOES);
+  const valorPaginas = paginasExtras * PRECO_POR_SECAO_EXTRA;
 
-  const integracoesSelecionadas = [
-    values.integracoes.whatsapp,
-    values.integracoes.formularioEmail,
-    values.integracoes.emailMarketing,
-    values.integracoes.pixel,
-    values.integracoes.checkout,
-    values.integracoes.agenda,
-  ].filter(Boolean).length;
+  const valorIntegracoes = (Object.keys(INTEGRATION_PRICES) as Array<
+    keyof typeof INTEGRATION_PRICES
+  >).reduce((total, key) => {
+    if (!values.integracoes[key]) {
+      return total;
+    }
+    return total + INTEGRATION_PRICES[key];
+  }, 0);
 
-  const hasOutro = values.integracoes.outro.trim().length > 0 ? 1 : 0;
-  
-  const totalIntegracoes = integracoesSelecionadas + hasOutro;
-  const integracoesExtra = totalIntegracoes * 150;
+  const valorOutraIntegracao =
+    values.integracoes.outro.trim().length > 0
+      ? OUTRA_INTEGRACAO_PRICE
+      : 0;
 
   let preco =
-    BASE_PRICE *
-    tipoSiteMultiplier[values.tipoSite] *
-    designMultiplier[values.designNivel] *
-    prazoMultiplier[values.prazo] *
-    conteudoMultiplier[values.conteudo] *
-    paginasFactor +
-    integracoesExtra;
-
-  // Redução de 65% no valor total (ajuste de mercado)
-  preco = preco * 0.20;
+    BASE_PRICE +
+    TIPO_SITE_PRICES[values.tipoSite] +
+    DESIGN_PRICES[values.designNivel] +
+    CONTEUDO_PRICES[values.conteudo] +
+    PRAZO_PRICES[values.prazo] +
+    SUPORTE_PRICES[values.suporte] +
+    valorPaginas +
+    valorIntegracoes +
+    valorOutraIntegracao;
 
   // arredondar para cima em múltiplos de 50
   preco = Math.ceil(preco / 50) * 50;
 
-  const precoMinimo = Math.round(preco * 0.9);
-  const precoMaximo = Math.round(preco * 1.15);
+  const precoMinimo = Math.round(preco * (1 - PRICE_RANGE_PERCENT));
+  const precoMaximo = Math.round(preco * (1 + PRICE_RANGE_PERCENT));
 
   return { preco, precoMinimo, precoMaximo };
 }
@@ -245,4 +228,3 @@ _Valor aproximado sujeito a análise_
 
   return message;
 }
-
