@@ -155,12 +155,12 @@ const FeatureGrid = () => {
           <h2 id="features-title">Transformamos sua ideia em uma página que realmente converte</h2>
           <p>Pense. Inspire. Nós transformamos.</p>
         </header>
-        <div className="features__marquee-window" ref={marqueeRef}>
-          <div className="features__track" aria-live="off">
-            <div className="features__group">{renderFeatures('primary')}</div>
-            <div className="features__group" aria-hidden="true">
-              {renderFeatures('duplicate')}
-            </div>
+      </div>
+      <div className="features__marquee-window" ref={marqueeRef}>
+        <div className="features__track" aria-live="off">
+          <div className="features__group">{renderFeatures('primary')}</div>
+          <div className="features__group" aria-hidden="true">
+            {renderFeatures('duplicate')}
           </div>
         </div>
       </div>

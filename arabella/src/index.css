@@ -579,8 +579,20 @@ main {
   position: relative;
   overflow: hidden;
   width: 100%;
+  padding: 0 4vw;
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+}
+
+.features__marquee-window::-webkit-scrollbar {
+  display: none;
+}
+
+.features__marquee-window:active {
+  cursor: grabbing;
 }
 
 .features__track {
@@ -593,6 +605,7 @@ main {
   width: max-content;
   min-width: 100%;
   animation: featuresMarquee var(--features-speed) linear infinite;
+  will-change: transform;
 }
 
 .features__group {
@@ -716,11 +729,22 @@ main {
   .features__marquee-window {
     overflow-x: auto;
     scroll-behavior: smooth;
+    mask-image: none;
+    -webkit-mask-image: none;
+    cursor: grab;
+  }
+
+  .features__marquee-window:active {
+    cursor: grabbing;
   }
 
   .features__marquee-window {
-    mask-image: none;
-    -webkit-mask-image: none;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .features__marquee-window::-webkit-scrollbar {
+    display: none;
   }
 
   .features__group[aria-hidden='true'] {
@@ -731,10 +755,10 @@ main {
 /* Marquee Animation for Features */
 @keyframes featuresMarquee {
   0% {
-    transform: translateX(-50%);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(0);
+    transform: translateX(-50%);
   }
 }
 
