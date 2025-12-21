@@ -237,7 +237,6 @@ _${observacoesText}_`;
             <div className="checkout-summary__items">
               {orderItems.map(item => (
                 <article key={item.id} className="checkout-summary__item">
-                  <img src={item.image} alt="" />
                   <div>
                     <h3>{item.name}</h3>
                     <p>{item.description}</p>
@@ -279,7 +278,6 @@ _${observacoesText}_`;
             <div className="checkout-suggestions__grid">
               {SUGGESTIONS.map(item => (
                 <article key={item.id} className="checkout-suggestion">
-                  <img src={item.image} alt="" />
                   <div>
                     <strong>{item.name}</strong>
                     <span>{item.description}</span>

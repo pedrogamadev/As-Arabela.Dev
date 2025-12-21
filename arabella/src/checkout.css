@@ -51,20 +51,12 @@
 
 .checkout-summary__item {
   display: grid;
-  grid-template-columns: 52px 1fr;
+  grid-template-columns: 1fr;
   gap: 1rem;
   background: rgba(255, 255, 255, 0.12);
   padding: 1rem;
   border-radius: 18px;
   align-items: center;
-}
-
-.checkout-summary__item img {
-  width: 52px;
-  height: 52px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 14px;
-  padding: 0.5rem;
 }
 
 .checkout-summary__item h3 {
@@ -147,20 +139,12 @@
 
 .checkout-suggestion {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 1fr auto;
   align-items: center;
   gap: 1rem;
   padding: 0.9rem 1rem;
   border-radius: 16px;
   background: rgba(108, 99, 255, 0.08);
-}
-
-.checkout-suggestion img {
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
-  background: #fff;
-  padding: 0.4rem;
 }
 
 .checkout-suggestion strong {
