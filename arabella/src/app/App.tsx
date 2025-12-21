@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+import WhatsappFloatingButton from '../components/WhatsappFloatingButton';
 import HomePage from '../pages/HomePage';
 import OrcamentosPage from '../pages/OrcamentosPage';
 import CheckoutPage from '../pages/CheckoutPage';
@@ -18,6 +19,7 @@ const App = () => (
         </Routes>
       </main>
       <Footer />
+      <WhatsappFloatingButton />
     </div>
   </BrowserRouter>
 );
