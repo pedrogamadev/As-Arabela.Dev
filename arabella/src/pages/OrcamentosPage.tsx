@@ -72,11 +72,7 @@ export default function OrcamentosPage() {
                 <div className="hero__glow hero__glow--left" />
                 <div className="hero__glow hero__glow--right" />
             </div>
-            <div className="container" style={{ textAlign: 'center' }}>
-                 <h1 style={{ fontFamily: 'Poppins, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', margin: '0 auto 1rem', maxWidth: '800px' }}>
-                    Simule seu orçamento em poucos cliques
-                 </h1>
-            </div>
+            <div className="container" style={{ textAlign: 'center' }} />
         </section>
 
         <section id="orcamento-form" className={`container orcamento-grid ${!showSummary ? 'single-column' : ''}`} style={{ paddingBottom: '6rem' }}>
@@ -89,10 +85,6 @@ export default function OrcamentosPage() {
                         <div key={s.id} style={{ flex: 1, height: '4px', background: idx <= step ? 'var(--color-primary)' : 'rgba(0,0,0,0.1)', borderRadius: '2px' }} />
                     ))}
                  </div>
-                 <h2 style={{ fontFamily: 'Poppins, sans-serif', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
-                    {step + 1}. {STEPS[step].title}
-                 </h2>
-
                  <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                     {step === 0 && (
                         <>
