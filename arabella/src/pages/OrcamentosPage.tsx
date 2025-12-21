@@ -2,11 +2,10 @@ import { useState, useEffect } from 'react';
 import {
   calcularOrcamento,
   generateWhatsAppMessage,
-  OrcamentoFormValues,
   INITIAL_VALUES,
   LABELS,
-  TipoSite,
 } from '../features/orcamento/logic';
+import type { OrcamentoFormValues } from '../features/orcamento/logic';
 import '../orcamento.css';
 
 const STEPS = [
@@ -55,10 +54,6 @@ export default function OrcamentosPage() {
     const message = generateWhatsAppMessage(values, orcamento);
     const url = `https://wa.me/5584991926432?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
-  };
-
-  const scrollToForm = () => {
-    document.getElementById('orcamento-form')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const showSummary = step === 3;
