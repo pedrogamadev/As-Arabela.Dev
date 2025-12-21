@@ -123,9 +123,6 @@ export const LABELS = {
     whatsapp: "WhatsApp/Botão",
     formularioEmail: "Formulário Email",
     emailMarketing: "Email Marketing",
-    pixel: "Pixel (Meta/Google)",
-    checkout: "Checkout",
-    agenda: "Agenda",
   }
 };
 

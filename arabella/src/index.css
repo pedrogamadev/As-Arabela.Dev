@@ -1554,7 +1554,8 @@ main {
 
 @media (max-width: 560px) {
   .hero__window {
-    padding: 1rem 1.2rem 1.4rem;
+    padding: 0;
+    background: transparent;
   }
 
   .hero__window-body {
