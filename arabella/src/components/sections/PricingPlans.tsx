@@ -114,6 +114,7 @@ const PricingPlans = () => {
 
   return (
     <section
+      id="planos"
       ref={sectionRef}
       className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-indigo-50/50 to-white py-20 sm:py-24"
       aria-labelledby="pricing-heading"

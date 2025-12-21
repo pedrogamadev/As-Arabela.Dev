@@ -112,7 +112,7 @@ const Hero = () => {
             >
               orçamento personalizado
             </Link>
-            <a className="button button--secondary" href="#ferramentas">
+            <a className="button button--secondary" href="#planos">
               Pacotes prontos
             </a>
             <span ref={ctaSentinelRef} className="hero__cta-sentinel" aria-hidden />
