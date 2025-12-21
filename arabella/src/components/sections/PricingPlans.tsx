@@ -29,7 +29,7 @@ const plans: Plan[] = [
       'Hospedagem inclusa',
       'Site publicado e funcional',
     ],
-    note: '50% de sinal não reembolsável após início do serviço.',
+    note: 'Projeto desenvolvido de forma personalizada para cada cliente.',
     cta: 'Contratar plano Essencial',
   },
   {
@@ -46,7 +46,7 @@ const plans: Plan[] = [
       'Hospedagem inclusa',
       'Publicação e configuração completas',
     ],
-    note: '50% de sinal não reembolsável após início do serviço.',
+    note: 'Projeto desenvolvido de forma personalizada para cada cliente.',
     cta: 'Escolher plano Profissional',
     featured: true,
   },
@@ -65,7 +65,7 @@ const plans: Plan[] = [
       'Hospedagem inclusa',
       'Suporte pós-publicação',
     ],
-    note: '50% de sinal não reembolsável após início do serviço.',
+    note: 'Projeto desenvolvido de forma personalizada para cada cliente.',
     cta: 'Contratar plano Pro',
   },
 ];
