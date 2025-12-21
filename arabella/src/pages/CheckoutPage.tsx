@@ -4,6 +4,7 @@ import arabellaLogo from '../assets/logo-arabella.svg';
 import atlasLogo from '../assets/logo-atlas.svg';
 import faroLogo from '../assets/logo-faro.svg';
 import orbeLogo from '../assets/logo-orbe.svg';
+import Tooltip from '../components/ui/Tooltip';
 import '../checkout.css';
 
 type PlanKey = 'essencial' | 'profissional' | 'pro';
@@ -14,6 +15,8 @@ type CartItem = {
   price: number;
   image: string;
   type: 'plan' | 'addon';
+  tooltip?: string;
+  highlight?: string;
 };
 
 const PLANS: Record<PlanKey, CartItem> = {
@@ -48,6 +51,7 @@ const SUGGESTIONS: CartItem[] = [
     id: 'seo-basico',
     name: 'SEO básico',
     description: 'Otimização essencial para buscadores',
+    tooltip: 'SEO é o conjunto de ajustes que ajudam seu site a aparecer melhor no Google.',
     price: 90,
     image: faroLogo,
     type: 'addon',
@@ -56,6 +60,8 @@ const SUGGESTIONS: CartItem[] = [
     id: 'seo-avancado',
     name: 'SEO avançado',
     description: 'Estratégia completa de ranqueamento',
+    tooltip: 'Inclui estratégias mais completas para aumentar visitas e conversões.',
+    highlight: 'Ideal para sites de vendas',
     price: 170,
     image: atlasLogo,
     type: 'addon',
@@ -279,8 +285,14 @@ _${observacoesText}_`;
               {SUGGESTIONS.map(item => (
                 <article key={item.id} className="checkout-suggestion">
                   <div>
-                    <strong>{item.name}</strong>
+                    <div className="checkout-suggestion__title">
+                      <strong>{item.name}</strong>
+                      {item.tooltip && (
+                        <Tooltip text={item.tooltip} ariaLabel={`Explicação sobre ${item.name}`} />
+                      )}
+                    </div>
                     <span>{item.description}</span>
+                    {item.highlight && <span className="checkout-suggestion__note">{item.highlight}</span>}
                   </div>
                   <div className="checkout-suggestion__actions">
                     <span className="checkout-suggestion__price">R$ {formatCurrency(item.price)}</span>
