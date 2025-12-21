@@ -245,7 +245,7 @@ export default function OrcamentosPage() {
 
                     {step === 3 && (
                         <>
-                             <div className="form-group">
+                            <div className="form-group">
                                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Seu Nicho/Área</label>
                                 <input 
                                     type="text" 
@@ -256,20 +256,7 @@ export default function OrcamentosPage() {
                                 />
                             </div>
 
-                            <div className="form-group">
-                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Faixa de investimento imaginada</label>
-                                <select 
-                                    value={values.faixaInvestimento}
-                                    onChange={e => handleChange('faixaInvestimento', e.target.value)}
-                                    style={{ width: '100%', padding: '0.8rem', borderRadius: '12px', border: '1px solid rgba(0,0,0,0.1)' }}
-                                >
-                                    {Object.entries(LABELS.faixaInvestimento).map(([key, label]) => (
-                                        <option key={key} value={key}>{label}</option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            <div className="form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                            <div className="form-row" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }}>
                                 <div>
                                     <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Seu nome</label>
                                     <input 

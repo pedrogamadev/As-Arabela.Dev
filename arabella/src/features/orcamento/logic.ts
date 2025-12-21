@@ -39,12 +39,6 @@ export interface OrcamentoFormValues {
   prazo: "semPressa" | "normal" | "rapido" | "urgente";
   suporte: "basico" | "mensal" | "definirDepois";
   nicho: string;
-  faixaInvestimento:
-    | "ate1000"
-    | "1000a2000"
-    | "2000a4000"
-    | "acima4000"
-    | "naoInformado";
   nome: string;
   email: string;
   whatsappContato: string;
@@ -71,7 +65,6 @@ export const INITIAL_VALUES: OrcamentoFormValues = {
   prazo: 'normal',
   suporte: 'basico',
   nicho: '',
-  faixaInvestimento: 'naoInformado',
   nome: '',
   email: '',
   whatsappContato: '',
@@ -111,13 +104,6 @@ export const LABELS = {
     basico: "Correções básicas (30 dias)",
     mensal: "Plano mensal de suporte",
     definirDepois: "Decidimos depois",
-  },
-  faixaInvestimento: {
-    ate1000: "Até R$ 1.000",
-    "1000a2000": "R$ 1.000 – R$ 2.000",
-    "2000a4000": "R$ 2.000 – R$ 4.000",
-    acima4000: "Acima de R$ 4.000",
-    naoInformado: "Não informado",
   },
   integracoes: {
     whatsapp: "WhatsApp/Botão",
@@ -210,7 +196,6 @@ ${integracoesText}
 
 *PERFIL DO CLIENTE*
 *Nicho:* ${values.nicho}
-*Investimento:* ${LABELS.faixaInvestimento[values.faixaInvestimento]}
 *Origem:* ${values.comoNosConheceu}
 
 *DESCRIÇÃO:*
