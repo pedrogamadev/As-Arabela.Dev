@@ -3,114 +3,35 @@ const Footer = () => (
     <div className="container footer__top">
       <div className="footer__brand">
         <span className="footer__logo">Arabella.dev</span>
-        <p>A plataforma definitiva para criar landing pages de alta conversão.</p>
-        <div className="footer__social" aria-label="Redes sociais">
-          <a
-            href="https://wa.me/84991926432"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp"
-          >
-            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="" />
-          </a>
-          <a
-            href="https://www.linkedin.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-          >
-            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="" />
-          </a>
-          <a
-            href="https://www.instagram.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-          >
-            <img src="https://cdn-icons-png.flaticon.com/512/3955/3955024.png" alt="" />
-          </a>
-          <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
-            <img src="https://cdn-icons-png.flaticon.com/512/889/889147.png" alt="" />
-          </a>
-        </div>
+        <p>Landing pages focadas em conversão.</p>
       </div>
-      <div className="footer__columns">
-        <div>
-          <h3>Produto</h3>
-          <ul>
-            <li>
-              <a href="#ferramentas">Recursos</a>
-            </li>
-            <li>
-              <a href="#faq">Preços</a>
-            </li>
-            <li>
-              <a href="#resultados">Casos de uso</a>
-            </li>
-            <li>
-              <a href="#automatize">Integrações</a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h3>Empresa</h3>
-          <ul>
-            <li>
-              <a href="#construa">Sobre</a>
-            </li>
-            <li>
-              <a href="#ferramentas">Blog</a>
-            </li>
-            <li>
-              <a href="#resultados">Carreiras</a>
-            </li>
-            <li>
-              <a href="#faq">Imprensa</a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h3>Recursos</h3>
-          <ul>
-            <li>
-              <a href="#automatize">Documentação</a>
-            </li>
-            <li>
-              <a href="#ferramentas">Guias</a>
-            </li>
-            <li>
-              <a href="#automatize">API Reference</a>
-            </li>
-            <li>
-              <a href="#faq">Status</a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h3>Legal</h3>
-          <ul>
-            <li>
-              <a href="#footer">Privacidade</a>
-            </li>
-            <li>
-              <a href="#footer">Termos de Uso</a>
-            </li>
-            <li>
-              <a href="#footer">Cookies</a>
-            </li>
-            <li>
-              <a href="#footer">Licenças</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <a
+        className="footer__instagram"
+        href="https://www.instagram.com/arabella.dev"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram da Arabella.dev"
+      >
+        <span className="footer__instagram-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+            <path
+              d="M16.5 7.5h.01M7.5 2.75h9A4.75 4.75 0 0 1 21.25 7.5v9A4.75 4.75 0 0 1 16.5 21.25h-9A4.75 4.75 0 0 1 2.75 16.5v-9A4.75 4.75 0 0 1 7.5 2.75Zm4.5 5.25a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+        <span>@arabella.dev</span>
+      </a>
     </div>
     <div className="footer__bottom" id="footer">
-      <small>© {new Date().getFullYear()} Arabella.dev. Todos os direitos reservados.</small>
+      <small>© 2025 Arabella.dev. Todos os direitos reservados.</small>
       <div className="footer__legal">
         <a href="#footer">Política de Privacidade</a>
         <a href="#footer">Termos de Uso</a>
-        <a href="#footer">Cookies</a>
       </div>
     </div>
   </footer>
