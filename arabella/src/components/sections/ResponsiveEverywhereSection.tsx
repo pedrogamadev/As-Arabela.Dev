@@ -1,5 +1,7 @@
+import { useRef } from 'react';
 import type { MouseEvent } from 'react';
-import { Check } from 'lucide-react';
+import { Check, ArrowUpRight, BarChart3, Search, Layout } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const bulletItems = [
   'Mobile-first (prioridade total no celular)',
@@ -8,14 +10,26 @@ const bulletItems = [
 ];
 
 const ResponsiveEverywhereSection = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end start'],
+  });
+
   const handleScroll = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     document.getElementById('planos')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // Parallax transforms
+  const notebookY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const tabletY = useTransform(scrollYProgress, [0, 1], [80, -60]);
+  const phoneY = useTransform(scrollYProgress, [0, 1], [1, -100]);
+
   return (
     <section
       id="responsivo"
+      ref={containerRef}
       className="relative overflow-hidden bg-gradient-to-b from-indigo-50/70 via-white to-white py-20 sm:py-24"
       aria-labelledby="responsive-section-title"
     >
@@ -26,64 +40,184 @@ const ResponsiveEverywhereSection = () => {
       </div>
 
       <div className="container relative">
-        <header className="section-heading">
+        <header className="section-heading mb-12 lg:mb-0">
           <p className="section-kicker">Seu site em qualquer lugar</p>
           <h2 id="responsive-section-title">Seu site em qualquer lugar</h2>
           <p>Perfeito no celular, tablet e computador — sem perder qualidade, velocidade ou clareza.</p>
         </header>
 
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="relative mx-auto w-full max-w-xl" aria-hidden>
-            <div className="absolute -top-6 right-6 h-24 w-24 rounded-full bg-indigo-300/40 blur-3xl" />
-            <div className="absolute -bottom-10 left-6 h-32 w-32 rounded-full bg-sky-200/40 blur-3xl" />
-
-            <div className="relative min-h-[320px] sm:min-h-[360px]">
-              <div className="absolute left-0 top-12 z-10 w-[78%] rounded-[2rem] border border-white/80 bg-white/85 p-4 shadow-[0_30px_80px_rgba(15,23,42,0.18)] backdrop-blur">
-                <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/70 via-transparent to-indigo-100/50" />
-                <div className="relative">
-                  <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-rose-300" />
-                    <span className="h-2 w-2 rounded-full bg-amber-300" />
-                    <span className="h-2 w-2 rounded-full bg-emerald-300" />
-                  </div>
-                  <div className="mt-4 space-y-3">
-                    <div className="h-3 w-2/3 rounded-full bg-slate-200" />
-                    <div className="grid grid-cols-3 gap-3">
-                      <div className="h-20 rounded-2xl bg-indigo-100/80" />
-                      <div className="h-20 rounded-2xl bg-slate-100" />
-                      <div className="h-20 rounded-2xl bg-fuchsia-100/70" />
-                    </div>
-                    <div className="h-3 w-4/5 rounded-full bg-slate-200" />
-                    <div className="h-3 w-3/5 rounded-full bg-slate-200" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute right-4 top-0 z-20 w-[48%] rounded-[1.8rem] border border-white/80 bg-white/85 p-3 shadow-[0_24px_60px_rgba(15,23,42,0.16)] backdrop-blur">
-                <div className="absolute inset-0 rounded-[1.8rem] bg-gradient-to-br from-white/70 via-transparent to-indigo-100/40" />
-                <div className="relative">
-                  <div className="mx-auto h-2 w-14 rounded-full bg-slate-200" />
-                  <div className="mt-3 space-y-2">
-                    <div className="h-20 rounded-2xl bg-indigo-100/80" />
-                    <div className="h-3 w-4/5 rounded-full bg-slate-200" />
-                    <div className="h-3 w-3/5 rounded-full bg-slate-200" />
-                    <div className="h-10 rounded-2xl bg-slate-100" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute bottom-0 left-10 z-30 w-[26%] rounded-[1.5rem] border border-white/80 bg-white/90 p-2 shadow-[0_18px_45px_rgba(15,23,42,0.2)] backdrop-blur">
-                <div className="absolute inset-0 rounded-[1.5rem] bg-gradient-to-br from-white/80 via-transparent to-indigo-100/50" />
-                <div className="relative">
-                  <div className="mx-auto h-2 w-10 rounded-full bg-slate-200" />
-                  <div className="mt-3 space-y-2">
-                    <div className="h-16 rounded-2xl bg-indigo-100/80" />
-                    <div className="h-3 w-4/5 rounded-full bg-slate-200" />
-                    <div className="h-3 w-3/5 rounded-full bg-slate-200" />
-                  </div>
-                </div>
-              </div>
+        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          {/* Animated Devices Container */}
+          <div className="relative mx-auto h-[500px] w-full max-w-2xl lg:h-[600px]" aria-hidden>
+             {/* Background Glows */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="h-64 w-64 rounded-full bg-indigo-400/20 blur-3xl filter" />
             </div>
+
+            {/* Notebook (Base Layer) */}
+            <motion.div 
+              style={{ y: notebookY }}
+              initial={{ opacity: 0, scale: 0.9, y: 50 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="absolute left-0 top-12 z-10 w-[85%] rounded-[1.5rem] border border-white/60 bg-white/40 shadow-glass-soft backdrop-blur-md sm:w-[80%]"
+            >
+              {/* Notebook Visuals */}
+              <div className="relative overflow-hidden rounded-[1.5rem] bg-white/90 pb-4">
+                {/* Header Apple Style */}
+                <div className="mb-4 flex items-center gap-2 border-b border-slate-900/5 bg-[#0f172a] px-4 py-3">
+                  <div className="flex gap-1.5">
+                    <div className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
+                    <div className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
+                    <div className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
+                  </div>
+                  <div className="mx-auto flex h-5 w-1/2 items-center justify-center rounded-md bg-slate-800/50 text-[10px] text-slate-400/80">
+                    arabella.dev
+                  </div>
+                </div>
+
+                {/* Notebook Content */}
+                <div className="px-4 space-y-4 opacity-90">
+                  <div className="flex justify-between items-center">
+                    <div className="h-3 w-1/3 rounded bg-indigo-100" />
+                    <div className="flex gap-2">
+                        <div className="h-2 w-10 rounded bg-slate-100" />
+                        <div className="h-2 w-10 rounded bg-slate-100" />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                        <div className="h-6 w-3/4 rounded bg-slate-800/10" />
+                        <div className="h-2 w-full rounded bg-slate-100" />
+                        <div className="h-2 w-5/6 rounded bg-slate-100" />
+                        <div className="mt-2 h-8 w-24 rounded bg-indigo-500/20" />
+                    </div>
+                    <div className="rounded-lg bg-indigo-50/50 p-2">
+                         <div className="h-full w-full rounded bg-white/60" />
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                     <div className="h-20 flex-1 rounded-xl bg-slate-50 border border-slate-100 p-2">
+                        <div className="h-6 w-6 rounded-full bg-emerald-100 mb-2" />
+                        <div className="h-2 w-2/3 rounded bg-slate-200" />
+                     </div>
+                     <div className="h-20 flex-1 rounded-xl bg-slate-50 border border-slate-100 p-2">
+                        <div className="h-6 w-6 rounded-full bg-blue-100 mb-2" />
+                        <div className="h-2 w-2/3 rounded bg-slate-200" />
+                     </div>
+                  </div>
+                </div>
+                {/* Floating Badge */}
+                 <motion.div 
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute -right-4 top-1/2 flex items-center gap-2 rounded-full border border-white/50 bg-white/80 px-3 py-1.5 shadow-lg backdrop-blur-sm"
+                 >
+                    <span className="h-2 w-2 rounded-full bg-green-400" />
+                    <span className="text-xs font-medium text-slate-600">Mobile-first</span>
+                 </motion.div>
+              </div>
+            </motion.div>
+
+            {/* Tablet (Middle Layer) */}
+            <motion.div 
+              style={{ y: tabletY }}
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              viewport={{ once: true }}
+              className="absolute right-0 top-6 z-20 w-[42%] aspect-[3/4] sm:aspect-[4/3] rounded-[1.5rem] border border-white/60 bg-white/80 shadow-xl backdrop-blur-md sm:right-4 sm:w-[38%]"
+            >
+               <div className="relative h-full w-full overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-white via-white/95 to-indigo-50/30 p-4">
+                 <div className="mb-4 flex justify-center">
+                    <div className="h-1 w-8 rounded-full bg-slate-200" />
+                 </div>
+                 {/* Tablet Content */}
+                 <div className="flex flex-col h-full gap-3">
+                    <div className="rounded-xl bg-indigo-50 p-3 flex-shrink-0">
+                        <div className="mb-2 flex items-center gap-2">
+                            <Layout className="h-4 w-4 text-indigo-500" />
+                            <div className="h-2 w-16 rounded bg-indigo-200" />
+                        </div>
+                        <div className="h-1.5 w-full rounded bg-indigo-100" />
+                        <div className="mt-1 h-1.5 w-2/3 rounded bg-indigo-100" />
+                    </div>
+                     <div className="rounded-xl bg-amber-50 p-3 flex-shrink-0">
+                        <div className="mb-2 flex items-center gap-2">
+                            <Search className="h-4 w-4 text-amber-500" />
+                            <div className="h-2 w-10 rounded bg-amber-200" />
+                        </div>
+                        <div className="h-1.5 w-full rounded bg-amber-100" />
+                    </div>
+                    <div className="mt-auto rounded-xl bg-white p-3 shadow-sm border border-slate-100">
+                        <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
+                             <BarChart3 className="h-4 w-4 text-emerald-500" />
+                             <span>+38% conv.</span>
+                        </div>
+                    </div>
+                 </div>
+               </div>
+            </motion.div>
+
+            {/* Smartphone (Front Layer) - Taller Aspect Ratio */}
+            <motion.div 
+               style={{ y: phoneY }}
+               initial={{ opacity: 0, y: 100 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+               viewport={{ once: true }}
+               className="absolute bottom-4 left-6 z-30 w-[28%] sm:w-[24%] aspect-[9/19.5] rounded-[2.5rem] border-[6px] border-slate-900 bg-slate-900 shadow-2xl"
+            >
+               <div className="relative h-full w-full overflow-hidden rounded-[2rem] bg-white">
+                  {/* Notch */}
+                  <div className="absolute left-1/2 top-0 h-5 w-20 -translate-x-1/2 rounded-b-[1rem] bg-slate-900 z-40" />
+                  
+                  {/* Phone Content */}
+                  <div className="relative h-full bg-slate-50 pt-8 flex flex-col">
+                      {/* Hero Image Simulation */}
+                     <div className="relative h-28 w-full bg-indigo-600 overflow-hidden shrink-0">
+                        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-600 to-purple-500 opacity-90" />
+                        <div className="relative z-10 flex h-full flex-col justify-center p-4 text-white">
+                            <div className="h-3 w-8 rounded bg-white/30 mb-2" /> {/* Logo */}
+                            <div className="h-2 w-3/4 rounded bg-white/80 mb-1.5" />
+                            <div className="h-2 w-1/2 rounded bg-white/60" />
+                        </div>
+                     </div>
+                     
+                     {/* Body */}
+                     <div className="p-4 space-y-4 flex-1">
+                        <div className="flex justify-center">
+                            <div className="h-9 w-full rounded-lg bg-slate-900 shadow-lg shadow-indigo-200/50 flex items-center justify-center">
+                                <span className="text-[0.6rem] text-white font-medium tracking-wide">SOLICITAR</span>
+                            </div>
+                        </div>
+                        <div className="space-y-2">
+                            <div className="h-1.5 w-full rounded bg-slate-200" />
+                            <div className="h-1.5 w-full rounded bg-slate-200" />
+                            <div className="h-1.5 w-2/3 rounded bg-slate-200" />
+                        </div>
+                         <div className="mt-2 space-y-2 opacity-50">
+                            <div className="h-1.5 w-full rounded bg-slate-200" />
+                            <div className="h-1.5 w-1/2 rounded bg-slate-200" />
+                        </div>
+                     </div>
+
+                     {/* Floating Label */}
+                      <motion.div 
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute -right-8 bottom-12 rounded-lg bg-white/90 px-2 py-1 shadow-md backdrop-blur-sm border border-slate-100 z-50"
+                      >
+                         <div className="flex items-center gap-1">
+                             <ArrowUpRight className="h-3 w-3 text-indigo-600" />
+                             <span className="text-[0.6rem] font-bold text-slate-800">Alta performance</span>
+                         </div>
+                      </motion.div>
+                  </div>
+               </div>
+            </motion.div>
+
           </div>
 
           <div className="space-y-6">
