@@ -61,108 +61,31 @@ const ResponsiveEverywhereSection = () => {
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: true, margin: "-100px" }}
-              className="absolute left-0 top-12 z-10 w-[85%] rounded-[1.5rem] border border-white/60 bg-white/40 shadow-glass-soft backdrop-blur-md sm:w-[80%]"
+              className="absolute left-0 top-12 z-10 w-[85%] sm:w-[80%]"
             >
-              {/* Notebook Visuals */}
-              <div className="relative overflow-hidden rounded-[1.5rem] bg-white/90 pb-4">
-                {/* Header Apple Style */}
-                <div className="mb-4 flex items-center gap-2 border-b border-slate-900/5 bg-[#0f172a] px-4 py-3">
-                  <div className="flex gap-1.5">
-                    <div className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
-                    <div className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
-                    <div className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
-                  </div>
-                  <div className="mx-auto flex h-5 w-1/2 items-center justify-center rounded-md bg-slate-800/50 text-[10px] text-slate-400/80">
-                    arabella.dev
-                  </div>
-                </div>
-
-                {/* Notebook Content */}
-                <div className="px-4 space-y-4 opacity-90">
-                  <div className="flex justify-between items-center">
-                    <div className="h-3 w-1/3 rounded bg-indigo-100" />
-                    <div className="flex gap-2">
-                        <div className="h-2 w-10 rounded bg-slate-100" />
-                        <div className="h-2 w-10 rounded bg-slate-100" />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                        <div className="h-6 w-3/4 rounded bg-slate-800/10" />
-                        <div className="h-2 w-full rounded bg-slate-100" />
-                        <div className="h-2 w-5/6 rounded bg-slate-100" />
-                        <div className="mt-2 h-8 w-24 rounded bg-indigo-500/20" />
-                    </div>
-                    <div className="rounded-lg bg-indigo-50/50 p-2">
-                         <div className="h-full w-full rounded bg-white/60" />
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                     <div className="h-20 flex-1 rounded-xl bg-slate-50 border border-slate-100 p-2">
-                        <div className="h-6 w-6 rounded-full bg-emerald-100 mb-2" />
-                        <div className="h-2 w-2/3 rounded bg-slate-200" />
-                     </div>
-                     <div className="h-20 flex-1 rounded-xl bg-slate-50 border border-slate-100 p-2">
-                        <div className="h-6 w-6 rounded-full bg-blue-100 mb-2" />
-                        <div className="h-2 w-2/3 rounded bg-slate-200" />
-                     </div>
-                  </div>
-                </div>
-                {/* Floating Badge */}
-                 <motion.div 
-                    animate={{ y: [0, -5, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute -right-4 top-1/2 flex items-center gap-2 rounded-full border border-white/50 bg-white/80 px-3 py-1.5 shadow-lg backdrop-blur-sm"
-                 >
-                    <span className="h-2 w-2 rounded-full bg-green-400" />
-                    <span className="text-xs font-medium text-slate-600">Mobile-first</span>
-                 </motion.div>
-              </div>
+              <img
+                src="/imagens/dispositivos/desktop.png"
+                alt="Desktop"
+                className="h-full w-full object-contain"
+                loading="lazy"
+              />
             </motion.div>
 
             {/* Tablet (Middle Layer) */}
             <motion.div 
               style={{ y: tabletY }}
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 10 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               viewport={{ once: true }}
-              className="absolute right-0 top-6 z-20 w-[42%] aspect-[3/4] sm:aspect-[4/3] rounded-[1.5rem] border border-white/60 bg-white/80 shadow-xl backdrop-blur-md sm:right-4 sm:w-[38%]"
+              className="absolute right-0 top-6 z-20 w-[42%] sm:right-4 sm:w-[38%]"
             >
-               <div className="relative h-full w-full overflow-hidden rounded-[1.5rem] bg-white/95 p-4">
-                 <div className="mb-4 flex justify-center">
-                   <div className="h-1 w-10 rounded-full bg-slate-200" />
-                 </div>
-                 {/* Tablet Content */}
-                 <div className="flex h-full flex-col gap-4">
-                   <div className="rounded-xl border border-slate-100 bg-slate-50 p-3">
-                     <div className="mb-2 flex items-center justify-between">
-                       <div className="h-2 w-16 rounded bg-slate-200" />
-                       <div className="h-2 w-10 rounded bg-slate-100" />
-                     </div>
-                     <div className="space-y-1.5">
-                       <div className="h-1.5 w-full rounded bg-slate-200" />
-                       <div className="h-1.5 w-4/5 rounded bg-slate-200" />
-                     </div>
-                   </div>
-                   <div className="grid flex-1 grid-cols-2 gap-3">
-                     <div className="rounded-xl border border-slate-100 bg-white p-3">
-                       <div className="h-3 w-3 rounded-full bg-indigo-100 mb-2" />
-                       <div className="h-1.5 w-4/5 rounded bg-slate-200" />
-                       <div className="mt-1.5 h-1.5 w-3/5 rounded bg-slate-100" />
-                     </div>
-                     <div className="rounded-xl border border-slate-100 bg-white p-3">
-                       <div className="h-3 w-3 rounded-full bg-slate-100 mb-2" />
-                       <div className="h-1.5 w-4/5 rounded bg-slate-200" />
-                       <div className="mt-1.5 h-1.5 w-2/3 rounded bg-slate-100" />
-                     </div>
-                   </div>
-                   <div className="rounded-xl border border-slate-100 bg-white p-3">
-                     <div className="h-2 w-24 rounded bg-slate-200" />
-                     <div className="mt-2 h-1.5 w-full rounded bg-slate-100" />
-                   </div>
-                 </div>
-               </div>
+              <img
+                src="/imagens/dispositivos/Tablet.png"
+                alt="Tablet"
+                className="h-full w-full object-contain"
+                loading="lazy"
+              />
             </motion.div>
 
             {/* Smartphone (Front Layer) - Taller Aspect Ratio */}
@@ -172,52 +95,14 @@ const ResponsiveEverywhereSection = () => {
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                viewport={{ once: true }}
-               className="absolute bottom-4 left-6 z-30 w-[28%] sm:w-[24%] aspect-[9/19.5] rounded-[2.5rem] border-[6px] border-slate-900 bg-slate-900 shadow-2xl"
+               className="absolute bottom-4 left-6 z-30 w-[28%] sm:w-[24%]"
             >
-               <div className="relative h-full w-full overflow-hidden rounded-[2rem] bg-white">
-                  {/* Notch */}
-                  <div className="absolute left-1/2 top-0 h-5 w-20 -translate-x-1/2 rounded-b-[1rem] bg-slate-900 z-40" />
-                  
-                  {/* Phone Content */}
-                  <div className="relative h-full bg-slate-50 pt-8 flex flex-col">
-                     {/* Top Bar */}
-                    <div className="px-4">
-                      <div className="mb-4 flex items-center justify-between">
-                        <div className="h-2 w-12 rounded bg-slate-200" />
-                        <div className="h-2 w-8 rounded bg-slate-100" />
-                      </div>
-                      <div className="space-y-2">
-                        <div className="h-2 w-4/5 rounded bg-slate-200" />
-                        <div className="h-2 w-2/3 rounded bg-slate-200" />
-                      </div>
-                    </div>
-                    
-                    {/* Body */}
-                    <div className="p-4 space-y-4 flex-1">
-                      <div className="rounded-xl border border-slate-100 bg-white p-3">
-                        <div className="h-2 w-1/2 rounded bg-slate-200 mb-2" />
-                        <div className="space-y-1.5">
-                          <div className="h-1.5 w-full rounded bg-slate-100" />
-                          <div className="h-1.5 w-4/5 rounded bg-slate-100" />
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-2 gap-2">
-                        <div className="rounded-lg border border-slate-100 bg-white p-2">
-                          <div className="h-3 w-3 rounded-full bg-indigo-100 mb-2" />
-                          <div className="h-1.5 w-4/5 rounded bg-slate-200" />
-                        </div>
-                        <div className="rounded-lg border border-slate-100 bg-white p-2">
-                          <div className="h-3 w-3 rounded-full bg-slate-100 mb-2" />
-                          <div className="h-1.5 w-4/5 rounded bg-slate-200" />
-                        </div>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="h-1.5 w-full rounded bg-slate-200" />
-                        <div className="h-1.5 w-2/3 rounded bg-slate-200" />
-                      </div>
-                    </div>
-                  </div>
-               </div>
+              <img
+                src="/imagens/dispositivos/celular.png"
+                alt="Celular"
+                className="h-full w-full object-contain"
+                loading="lazy"
+              />
             </motion.div>
 
           </div>
