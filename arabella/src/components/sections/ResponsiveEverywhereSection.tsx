@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import type { MouseEvent } from 'react';
-import { Check, ArrowUpRight, BarChart3, Search, Layout } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const bulletItems = [
@@ -129,33 +129,38 @@ const ResponsiveEverywhereSection = () => {
               viewport={{ once: true }}
               className="absolute right-0 top-6 z-20 w-[42%] aspect-[3/4] sm:aspect-[4/3] rounded-[1.5rem] border border-white/60 bg-white/80 shadow-xl backdrop-blur-md sm:right-4 sm:w-[38%]"
             >
-               <div className="relative h-full w-full overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-white via-white/95 to-indigo-50/30 p-4">
+               <div className="relative h-full w-full overflow-hidden rounded-[1.5rem] bg-white/95 p-4">
                  <div className="mb-4 flex justify-center">
-                    <div className="h-1 w-8 rounded-full bg-slate-200" />
+                   <div className="h-1 w-10 rounded-full bg-slate-200" />
                  </div>
                  {/* Tablet Content */}
-                 <div className="flex flex-col h-full gap-3">
-                    <div className="rounded-xl bg-indigo-50 p-3 flex-shrink-0">
-                        <div className="mb-2 flex items-center gap-2">
-                            <Layout className="h-4 w-4 text-indigo-500" />
-                            <div className="h-2 w-16 rounded bg-indigo-200" />
-                        </div>
-                        <div className="h-1.5 w-full rounded bg-indigo-100" />
-                        <div className="mt-1 h-1.5 w-2/3 rounded bg-indigo-100" />
-                    </div>
-                     <div className="rounded-xl bg-amber-50 p-3 flex-shrink-0">
-                        <div className="mb-2 flex items-center gap-2">
-                            <Search className="h-4 w-4 text-amber-500" />
-                            <div className="h-2 w-10 rounded bg-amber-200" />
-                        </div>
-                        <div className="h-1.5 w-full rounded bg-amber-100" />
-                    </div>
-                    <div className="mt-auto rounded-xl bg-white p-3 shadow-sm border border-slate-100">
-                        <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                             <BarChart3 className="h-4 w-4 text-emerald-500" />
-                             <span>+38% conv.</span>
-                        </div>
-                    </div>
+                 <div className="flex h-full flex-col gap-4">
+                   <div className="rounded-xl border border-slate-100 bg-slate-50 p-3">
+                     <div className="mb-2 flex items-center justify-between">
+                       <div className="h-2 w-16 rounded bg-slate-200" />
+                       <div className="h-2 w-10 rounded bg-slate-100" />
+                     </div>
+                     <div className="space-y-1.5">
+                       <div className="h-1.5 w-full rounded bg-slate-200" />
+                       <div className="h-1.5 w-4/5 rounded bg-slate-200" />
+                     </div>
+                   </div>
+                   <div className="grid flex-1 grid-cols-2 gap-3">
+                     <div className="rounded-xl border border-slate-100 bg-white p-3">
+                       <div className="h-3 w-3 rounded-full bg-indigo-100 mb-2" />
+                       <div className="h-1.5 w-4/5 rounded bg-slate-200" />
+                       <div className="mt-1.5 h-1.5 w-3/5 rounded bg-slate-100" />
+                     </div>
+                     <div className="rounded-xl border border-slate-100 bg-white p-3">
+                       <div className="h-3 w-3 rounded-full bg-slate-100 mb-2" />
+                       <div className="h-1.5 w-4/5 rounded bg-slate-200" />
+                       <div className="mt-1.5 h-1.5 w-2/3 rounded bg-slate-100" />
+                     </div>
+                   </div>
+                   <div className="rounded-xl border border-slate-100 bg-white p-3">
+                     <div className="h-2 w-24 rounded bg-slate-200" />
+                     <div className="mt-2 h-1.5 w-full rounded bg-slate-100" />
+                   </div>
                  </div>
                </div>
             </motion.div>
@@ -175,45 +180,42 @@ const ResponsiveEverywhereSection = () => {
                   
                   {/* Phone Content */}
                   <div className="relative h-full bg-slate-50 pt-8 flex flex-col">
-                      {/* Hero Image Simulation */}
-                     <div className="relative h-28 w-full bg-indigo-600 overflow-hidden shrink-0">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-600 to-purple-500 opacity-90" />
-                        <div className="relative z-10 flex h-full flex-col justify-center p-4 text-white">
-                            <div className="h-3 w-8 rounded bg-white/30 mb-2" /> {/* Logo */}
-                            <div className="h-2 w-3/4 rounded bg-white/80 mb-1.5" />
-                            <div className="h-2 w-1/2 rounded bg-white/60" />
+                     {/* Top Bar */}
+                    <div className="px-4">
+                      <div className="mb-4 flex items-center justify-between">
+                        <div className="h-2 w-12 rounded bg-slate-200" />
+                        <div className="h-2 w-8 rounded bg-slate-100" />
+                      </div>
+                      <div className="space-y-2">
+                        <div className="h-2 w-4/5 rounded bg-slate-200" />
+                        <div className="h-2 w-2/3 rounded bg-slate-200" />
+                      </div>
+                    </div>
+                    
+                    {/* Body */}
+                    <div className="p-4 space-y-4 flex-1">
+                      <div className="rounded-xl border border-slate-100 bg-white p-3">
+                        <div className="h-2 w-1/2 rounded bg-slate-200 mb-2" />
+                        <div className="space-y-1.5">
+                          <div className="h-1.5 w-full rounded bg-slate-100" />
+                          <div className="h-1.5 w-4/5 rounded bg-slate-100" />
                         </div>
-                     </div>
-                     
-                     {/* Body */}
-                     <div className="p-4 space-y-4 flex-1">
-                        <div className="flex justify-center">
-                            <div className="h-9 w-full rounded-lg bg-slate-900 shadow-lg shadow-indigo-200/50 flex items-center justify-center">
-                                <span className="text-[0.6rem] text-white font-medium tracking-wide">SOLICITAR</span>
-                            </div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="rounded-lg border border-slate-100 bg-white p-2">
+                          <div className="h-3 w-3 rounded-full bg-indigo-100 mb-2" />
+                          <div className="h-1.5 w-4/5 rounded bg-slate-200" />
                         </div>
-                        <div className="space-y-2">
-                            <div className="h-1.5 w-full rounded bg-slate-200" />
-                            <div className="h-1.5 w-full rounded bg-slate-200" />
-                            <div className="h-1.5 w-2/3 rounded bg-slate-200" />
+                        <div className="rounded-lg border border-slate-100 bg-white p-2">
+                          <div className="h-3 w-3 rounded-full bg-slate-100 mb-2" />
+                          <div className="h-1.5 w-4/5 rounded bg-slate-200" />
                         </div>
-                         <div className="mt-2 space-y-2 opacity-50">
-                            <div className="h-1.5 w-full rounded bg-slate-200" />
-                            <div className="h-1.5 w-1/2 rounded bg-slate-200" />
-                        </div>
-                     </div>
-
-                     {/* Floating Label */}
-                      <motion.div 
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute -right-8 bottom-12 rounded-lg bg-white/90 px-2 py-1 shadow-md backdrop-blur-sm border border-slate-100 z-50"
-                      >
-                         <div className="flex items-center gap-1">
-                             <ArrowUpRight className="h-3 w-3 text-indigo-600" />
-                             <span className="text-[0.6rem] font-bold text-slate-800">Alta performance</span>
-                         </div>
-                      </motion.div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="h-1.5 w-full rounded bg-slate-200" />
+                        <div className="h-1.5 w-2/3 rounded bg-slate-200" />
+                      </div>
+                    </div>
                   </div>
                </div>
             </motion.div>
