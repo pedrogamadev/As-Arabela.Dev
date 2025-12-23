@@ -48,7 +48,7 @@ const ResponsiveEverywhereSection = () => {
 
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           {/* Animated Devices Container */}
-          <div className="relative mx-auto h-[500px] w-full max-w-2xl lg:h-[600px]" aria-hidden>
+          <div className="relative mx-auto h-[800px] w-full max-w-2xl lg:mx-0 lg:h-[400px] lg:max-w-3xl" aria-hidden>
              {/* Background Glows */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
               <div className="h-64 w-64 rounded-full bg-indigo-400/20 blur-3xl filter" />
@@ -95,7 +95,7 @@ const ResponsiveEverywhereSection = () => {
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                viewport={{ once: true }}
-               className="absolute bottom-4 left-6 z-30 w-[28%] sm:w-[24%]"
+              className="absolute bottom-4 left-0 z-30 w-[28%] sm:w-[34%]"
             >
               <img
                 src="/imagens/dispositivos/celular.png"
