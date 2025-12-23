@@ -96,6 +96,7 @@ const Hero = () => {
         <div className="hero__gradient" />
         <div className="hero__glow hero__glow--left" />
         <div className="hero__glow hero__glow--right" />
+        <div className="hero__image" />
       </div>
       <div className="container hero__container">
         <div className="hero__content">

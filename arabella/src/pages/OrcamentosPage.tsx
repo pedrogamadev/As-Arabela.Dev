@@ -66,7 +66,8 @@ export default function OrcamentosPage() {
                 <div className="hero__gradient" />
                 <div className="hero__glow hero__glow--left" />
                 <div className="hero__glow hero__glow--right" />
-            </div>
+                <div className="hero__image" />
+             </div>
             <div className="container" style={{ textAlign: 'center' }} />
         </section>
 

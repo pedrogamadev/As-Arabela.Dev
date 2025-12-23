@@ -221,6 +221,7 @@ _${observacoesText}_`;
           <div className="hero__gradient" />
           <div className="hero__glow hero__glow--left" />
           <div className="hero__glow hero__glow--right" />
+          <div className="hero__image" />
         </div>
         <div className="container" style={{ textAlign: 'center' }}>
           <h1 style={{ fontFamily: 'Poppins, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', margin: '0 auto 1rem' }}>
