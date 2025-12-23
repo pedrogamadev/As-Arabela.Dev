@@ -15,8 +15,8 @@ const HERO_ITEMS = [
   },
   {
     title: 'Transmita confiança profissional',
-    icon: 'https://cdn-icons-png.flaticon.com/512/4021/4021663.png',
-    alt: 'Ícone de balança de justiça representando confiança profissional',
+    icon: 'https://cdn-icons-png.flaticon.com/512/7542/7542134.png',
+    alt: 'Ícone de escudo com check representando confiança profissional',
   },
   {
     title: 'Fortaleça a presença da sua empresa',
@@ -60,7 +60,7 @@ const Hero = () => {
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
-      setStartIndex(prev => (prev + 1) % HERO_ITEMS.length);
+      setStartIndex(prev => (prev + ITEMS_PER_VIEW) % HERO_ITEMS.length);
     }, ROTATION_INTERVAL);
 
     return () => window.clearInterval(intervalId);

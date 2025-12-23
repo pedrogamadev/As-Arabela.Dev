@@ -124,6 +124,10 @@ main {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.whatsapp-float svg {
+  display: block;
+}
+
 .whatsapp-float:hover {
   transform: translateY(-2px);
   box-shadow: 0 22px 44px rgba(37, 211, 102, 0.4);
