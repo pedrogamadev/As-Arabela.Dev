@@ -62,12 +62,6 @@ export default function OrcamentosPage() {
     <div className="orcamentos-page">
         {/* HERO */}
         <section className="hero" style={{ paddingBottom: '4rem' }}>
-             <div className="hero__background" aria-hidden>
-                <div className="hero__gradient" />
-                <div className="hero__glow hero__glow--left" />
-                <div className="hero__glow hero__glow--right" />
-                <div className="hero__image" />
-             </div>
             <div className="container" style={{ textAlign: 'center' }} />
         </section>
 
