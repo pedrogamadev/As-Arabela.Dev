@@ -4,9 +4,9 @@ import { Check } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const bulletItems = [
-  'Mobile-first (prioridade total no celular)',
-  'Experiência fluida no desktop',
-  'Carregamento rápido em qualquer tela',
+  'Prioridade total no celular (mobile-first)',
+  'Layout claro e funcional no desktop',
+  'Carregamento rápido em qualquer dispositivo',
 ];
 
 const ResponsiveEverywhereSection = () => {
@@ -39,7 +39,6 @@ const ResponsiveEverywhereSection = () => {
 
       <div className="container relative">
         <header className="section-heading mb-12 lg:mb-0">
-          <p className="section-kicker">Seu site em qualquer lugar</p>
           <h2 id="responsive-section-title">Seu site em qualquer lugar</h2>
           <p>Perfeito no celular, tablet e computador — sem perder qualidade, velocidade ou clareza.</p>
         </header>
@@ -74,7 +73,7 @@ const ResponsiveEverywhereSection = () => {
           <div className="space-y-6">
             <div className="space-y-3">
               <h3 className="text-2xl font-semibold text-slate-900 sm:text-3xl">
-                Seu site funciona perfeitamente em qualquer tela
+                Seu site funciona perfeitamente em qualquer tela.
               </h3>
               <p className="text-base leading-relaxed text-slate-600">
                 Seu cliente pode acessar pelo celular, tablet ou computador sem perder qualidade, velocidade ou clareza
@@ -93,14 +92,7 @@ const ResponsiveEverywhereSection = () => {
               ))}
             </ul>
 
-            <a
-              href="#planos"
-              onClick={handleScroll}
-              className="button button--secondary"
-              aria-label="Ver exemplos de layout"
-            >
-              Ver exemplos de layout
-            </a>
+          
           </div>
         </div>
       </div>

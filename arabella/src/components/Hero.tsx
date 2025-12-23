@@ -99,11 +99,9 @@ const Hero = () => {
       </div>
       <div className="container hero__container">
         <div className="hero__content">
-          <h1 id="hero-title">Entregamos sua landing page rápida, moderna e totalmente alinhada à sua necessidade.</h1>
+          <h1 id="hero-title">Landing pages que vendem enquanto você dorme.</h1>
           <p>
-            Somos a Arabella.dev, uma startup que planeja, prototipa e desenvolve páginas de alta conversão para qualquer
-            segmento: e-commerce, escritórios e prestadores de serviços como restaurantes, academias, consultorias e muito
-            mais.
+            Criamos páginas rápidas, persuasivas e prontas para converter visitantes em clientes — sem dor de cabeça.
           </p>
           <div className="hero__actions">
             <Link
