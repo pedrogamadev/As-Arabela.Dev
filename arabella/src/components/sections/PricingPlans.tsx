@@ -166,19 +166,12 @@ const PricingPlans = () => {
                     : 'shadow-[0_14px_50px_rgba(15,23,42,0.07)]'
                 }`}
               >
-                {plan.featured && (
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute -inset-[1.6px] animate-[spin_8s_linear_infinite] bg-[conic-gradient(at_50%_50%,#a855f7,#6366f1,#22d3ee,#a855f7)] opacity-80 blur-[2.5px]"
-                  />
-                )}
-
                 <div
-                  className={`relative z-10 flex h-full flex-col overflow-hidden rounded-[1.4rem] border bg-white/80 p-6 backdrop-blur-lg sm:p-7 ${
+                  className={`glass-liquid-card relative z-10 flex h-full flex-col overflow-hidden rounded-[1.4rem] border p-6 backdrop-blur-xl sm:p-7 ${
                     plan.featured
-                      ? 'border-indigo-200/80 ring-2 ring-indigo-400/70 bg-gradient-to-b from-white via-indigo-50/70 to-white'
-                      : 'border-slate-100/80'
-                  } hover:border-indigo-200/80 hover:ring-2 hover:ring-indigo-200/80`}
+                      ? 'border-white/50 ring-2 ring-indigo-300/70 bg-gradient-to-br from-white/60 via-indigo-100/40 to-white/30'
+                      : 'border-white/40 bg-white/30 shadow-[0_18px_55px_rgba(79,70,229,0.16)]'
+                  } hover:border-white/60 hover:ring-2 hover:ring-indigo-200/70 hover:bg-white/40`}
                 >
                   <div className="absolute inset-x-10 -top-4 flex justify-center">
                     <span
