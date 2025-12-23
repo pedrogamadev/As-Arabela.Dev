@@ -29,6 +29,10 @@ export interface OrcamentoFormValues {
   conteudo: "clienteTemTudo" | "clienteParcial" | "voceCria";
   integracoes: {
     whatsapp: boolean;
+    whatsappMensagemPrePreenchida: boolean;
+    carrinhoCheckoutWhatsapp: boolean;
+    botaoLigacaoDireta: boolean;
+    googleMapsEndereco: boolean;
     formularioEmail: boolean;
     emailMarketing: boolean;
     pixel: boolean;
@@ -55,6 +59,10 @@ export const INITIAL_VALUES: OrcamentoFormValues = {
   conteudo: 'clienteParcial',
   integracoes: {
     whatsapp: true,
+    whatsappMensagemPrePreenchida: false,
+    carrinhoCheckoutWhatsapp: false,
+    botaoLigacaoDireta: false,
+    googleMapsEndereco: false,
     formularioEmail: true,
     emailMarketing: false,
     pixel: true,
@@ -106,9 +114,12 @@ export const LABELS = {
     definirDepois: "Decidimos depois",
   },
   integracoes: {
-    whatsapp: "WhatsApp/Botão",
-    formularioEmail: "Formulário Email",
-    emailMarketing: "Email Marketing",
+    whatsapp: "WhatsApp (botão padrão)",
+    whatsappMensagemPrePreenchida: "WhatsApp com mensagem pré-preenchida",
+    carrinhoCheckoutWhatsapp: "Carrinho de compras com checkout via WhatsApp",
+    botaoLigacaoDireta: "Botão de ligação direta (click-to-call)",
+    googleMapsEndereco: "Google Maps com localização do endereço",
+    formularioEmail: "Formulário de contato por e-mail",
   }
 };
 

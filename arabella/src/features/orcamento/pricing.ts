@@ -39,6 +39,10 @@ export const SUPORTE_PRICES = {
 
 export const INTEGRATION_PRICES = {
   whatsapp: 80,
+  whatsappMensagemPrePreenchida: 120,
+  carrinhoCheckoutWhatsapp: 240,
+  botaoLigacaoDireta: 50,
+  googleMapsEndereco: 80,
   formularioEmail: 120,
   emailMarketing: 180,
   pixel: 120,
