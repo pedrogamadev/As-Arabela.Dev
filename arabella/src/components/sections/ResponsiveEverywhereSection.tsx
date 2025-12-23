@@ -78,7 +78,7 @@ const ResponsiveEverywhereSection = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               viewport={{ once: true }}
-              className="absolute right-0 top-6 z-20 w-[42%] sm:right-4 sm:w-[38%]"
+              className="absolute right-0 top-6 z-20 w-[42%] sm:right-4 sm:w-[35%]"
             >
               <img
                 src="/imagens/dispositivos/Tablet.png"
@@ -95,7 +95,7 @@ const ResponsiveEverywhereSection = () => {
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                viewport={{ once: true }}
-              className="absolute bottom-4 left-0 z-30 w-[28%] sm:w-[34%]"
+              className="absolute bottom-4 left-0 z-30 w-[29%] sm:w-[20%]"
             >
               <img
                 src="/imagens/dispositivos/celular.png"
