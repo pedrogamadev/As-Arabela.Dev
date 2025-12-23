@@ -22,9 +22,7 @@ const ResponsiveEverywhereSection = () => {
   };
 
   // Parallax transforms
-  const notebookY = useTransform(scrollYProgress, [0, 1], [50, -50]);
-  const tabletY = useTransform(scrollYProgress, [0, 1], [80, -60]);
-  const phoneY = useTransform(scrollYProgress, [0, 1], [1, -100]);
+  const devicesY = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
   return (
     <section
@@ -48,59 +46,25 @@ const ResponsiveEverywhereSection = () => {
 
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           {/* Animated Devices Container */}
-          <div className="relative mx-auto h-[800px] w-full max-w-2xl lg:mx-0 lg:h-[400px] lg:max-w-3xl" aria-hidden>
+          <div className="relative mx-auto h-[800px] w-full max-w-2xl overflow-hidden lg:mx-0 lg:h-[400px] lg:max-w-3xl" aria-hidden>
              {/* Background Glows */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
               <div className="h-64 w-64 rounded-full bg-indigo-400/20 blur-3xl filter" />
             </div>
 
-            {/* Notebook (Base Layer) */}
-            <motion.div 
-              style={{ y: notebookY }}
-              initial={{ opacity: 0, scale: 0.9, y: 50 }}
+            {/* Combined Devices */}
+            <motion.div
+              style={{ y: devicesY }}
+              initial={{ opacity: 0, scale: 0.96, y: 40 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="absolute left-0 top-12 z-10 w-[85%] sm:w-[80%]"
+              transition={{ duration: 0.9, ease: 'easeOut' }}
+              viewport={{ once: true, margin: '-100px' }}
+              className="relative z-10 flex h-full w-full items-center justify-center pt-6"
             >
               <img
-                src="/imagens/dispositivos/desktop.png"
-                alt="Desktop"
-                className="h-full w-full object-contain"
-                loading="lazy"
-              />
-            </motion.div>
-
-            {/* Tablet (Middle Layer) */}
-            <motion.div 
-              style={{ y: tabletY }}
-              initial={{ opacity: 0, x: 10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              viewport={{ once: true }}
-              className="absolute right-0 top-6 z-20 w-[42%] sm:right-4 sm:w-[35%]"
-            >
-              <img
-                src="/imagens/dispositivos/Tablet.png"
-                alt="Tablet"
-                className="h-full w-full object-contain"
-                loading="lazy"
-              />
-            </motion.div>
-
-            {/* Smartphone (Front Layer) - Taller Aspect Ratio */}
-            <motion.div 
-               style={{ y: phoneY }}
-               initial={{ opacity: 0, y: 100 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-               viewport={{ once: true }}
-              className="absolute bottom-4 left-0 z-30 w-[29%] sm:w-[20%]"
-            >
-              <img
-                src="/imagens/dispositivos/celular.png"
-                alt="Celular"
-                className="h-full w-full object-contain"
+                src="/imagens/dispositivos/dispositivos.png"
+                alt="Dispositivos com layout responsivo"
+                className="max-h-full w-full object-contain"
                 loading="lazy"
               />
             </motion.div>
