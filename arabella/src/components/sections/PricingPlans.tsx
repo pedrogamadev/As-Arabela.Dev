@@ -25,11 +25,11 @@ const plans: Plan[] = [
       'Landing page com até 3 seções',
       'Estrutura flexível (ex: Home, Sobre, seção à escolha)',
       'Design moderno e responsivo',
-      'Domínio a custo do cliente',
+      'Domínio incluso',
       'Hospedagem R$9,90 mensal',
-      'Site publicado e funcional',
+      'Seu site pronto rapidamente',
     ],
-    note: 'Projeto desenvolvido de forma personalizada para cada cliente.',
+    note: 'Projeto desenvolvido de forma personalizada',
     cta: 'Contratar plano Essencial',
   },
   {
@@ -43,10 +43,10 @@ const plans: Plan[] = [
       'Estrutura personalizada conforme o negócio',
       'Design profissional focado em conversão',
       'Domínio incluso',
-      'Hospedagem inclusa por 1 ano',
-      'Publicação e configuração completas',
+      'Hospedagem inclusa',
+      'Suporte pós-publicação',
     ],
-    note: 'Projeto desenvolvido de forma personalizada para cada cliente.',
+    note: 'Projeto desenvolvido de forma personalizada',
     cta: 'Escolher plano Profissional',
     featured: true,
   },
@@ -62,10 +62,10 @@ const plans: Plan[] = [
       'Estrutura avançada e organizada',
       'Design premium',
       'Domínio incluso',
-      'Hospedagem inclusa vitalicia',
+      'Hospedagem inclusa',
       'Suporte pós-publicação',
     ],
-    note: 'Projeto desenvolvido de forma personalizada para cada cliente.',
+    note: 'Projeto desenvolvido de forma personalizada',
     cta: 'Contratar plano Pro',
   },
 ];
@@ -142,7 +142,7 @@ const PricingPlans = () => {
           </p>
           <div className="space-y-3">
             <h2 id="pricing-heading" className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-              Escolha o plano ideal para seu projeto
+              Qual nível de conversão você quer para o seu projeto?
             </h2>
             <p className="text-lg leading-relaxed text-slate-600">
               Pacotes prontos que reduzem a fricção na compra e facilitam sua decisão. Todos incluem domínio e hospedagem.

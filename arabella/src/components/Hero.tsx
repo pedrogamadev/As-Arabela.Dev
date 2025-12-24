@@ -102,7 +102,7 @@ const Hero = () => {
         <div className="hero__content">
           <h1 id="hero-title">Landing pages que vendem enquanto você dorme.</h1>
           <p>
-            Criamos páginas rápidas, persuasivas e prontas para converter visitantes em clientes — sem dor de cabeça.
+            Criamos páginas rápidas e bem pensadas para atrair, convencer e gerar clientes automaticamente. <br /> Prazer, somos a <strong>Arabella.dev</strong>.
           </p>
           <div className="hero__actions">
             <Link
