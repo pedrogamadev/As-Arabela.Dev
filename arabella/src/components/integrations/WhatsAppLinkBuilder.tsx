@@ -8,6 +8,32 @@ const QUICK_TEMPLATES = [
 
 const sanitizeNumber = (value: string) => value.replace(/\D/g, '');
 
+const formatBrazilPhone = (digits: string) => {
+  const cleaned = digits.slice(0, 11);
+  if (!cleaned) {
+    return '';
+  }
+
+  if (cleaned.length <= 2) {
+    return `(${cleaned}`;
+  }
+
+  const ddd = cleaned.slice(0, 2);
+  const firstDigit = cleaned.slice(2, 3);
+  const part1 = cleaned.slice(3, 7);
+  const part2 = cleaned.slice(7, 11);
+
+  if (cleaned.length <= 3) {
+    return `(${ddd}) ${firstDigit}`;
+  }
+
+  if (cleaned.length <= 7) {
+    return `(${ddd}) ${firstDigit} ${part1}`;
+  }
+
+  return `(${ddd}) ${firstDigit} ${part1}-${part2}`;
+};
+
 const buildWhatsAppLink = (phone: string, message: string) => {
   if (!phone) {
     return '';
@@ -27,6 +53,7 @@ const WhatsAppLinkBuilder = () => {
   const [copied, setCopied] = useState(false);
 
   const sanitizedPhone = useMemo(() => sanitizeNumber(phone), [phone]);
+  const formattedPhone = useMemo(() => formatBrazilPhone(sanitizedPhone), [sanitizedPhone]);
   const link = useMemo(() => buildWhatsAppLink(sanitizedPhone, message), [sanitizedPhone, message]);
 
   const handleCopyLink = async () => {
@@ -61,12 +88,14 @@ const WhatsAppLinkBuilder = () => {
               id="whatsapp-phone"
               inputMode="numeric"
               pattern="[0-9]*"
-              placeholder="55DDDNUMERO — ex: 5584999999999"
-              value={phone}
-              onChange={event => setPhone(sanitizeNumber(event.target.value))}
+              placeholder="teste seu número aqui"
+              value={formattedPhone}
+              onChange={event => setPhone(sanitizeNumber(event.target.value).slice(0, 11))}
               className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 shadow-inner focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
             />
-            <p className="text-xs text-slate-500">Use o formato com DDI + DDD + número. Ex: 5584999999999.</p>
+            <p className="text-xs text-slate-500">
+              Digite apenas DDD e número com o 9 adicional (ex: 84 9 9192 6432).
+            </p>
           </div>
 
           <div className="space-y-2">
@@ -118,7 +147,7 @@ const WhatsAppLinkBuilder = () => {
         <aside className="rounded-2xl border border-indigo-100/70 bg-indigo-50/60 p-5 text-sm leading-relaxed text-slate-700">
           <h3 className="text-base font-semibold text-slate-900">Como funciona</h3>
           <ul className="mt-3 space-y-2 text-sm">
-            <li>1. Cole o número com DDI e DDD no campo de telefone.</li>
+            <li>1. Digite o DDD e o número com o 9 adicional no campo de telefone.</li>
             <li>2. Adicione uma mensagem pronta ou escreva sua própria.</li>
             <li>3. Clique em abrir para testar ou copie o link para usar no site.</li>
           </ul>
@@ -135,4 +164,3 @@ const WhatsAppLinkBuilder = () => {
 };
 
 export default WhatsAppLinkBuilder;
-

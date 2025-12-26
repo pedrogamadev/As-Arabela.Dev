@@ -50,14 +50,11 @@ const IntegrationsPage = () => (
               rodapé do site.
             </p>
             <a
-              href="tel:+5584999999999"
+              href="tel:84991926432"
               className="mt-4 inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:-translate-y-0.5 hover:bg-slate-800"
             >
               Ligar agora
             </a>
-            <code className="mt-4 rounded-xl bg-slate-900/90 px-4 py-3 text-xs text-indigo-100">
-              {'<a href="tel:+5584999999999">Ligar agora</a>'}
-            </code>
           </div>
           <div className="rounded-2xl border border-indigo-100 bg-white/90 p-6 shadow-sm">
             <h3 className="text-lg font-semibold text-slate-900">Google Maps integrado</h3>
@@ -139,4 +136,3 @@ const IntegrationsPage = () => (
 );
 
 export default IntegrationsPage;
-

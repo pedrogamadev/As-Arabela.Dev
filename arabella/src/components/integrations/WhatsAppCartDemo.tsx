@@ -12,7 +12,7 @@ const PRODUCTS: Product[] = [
   { id: 'consultoria', name: 'Consultoria de marketing 1h', price: 150.0 },
 ];
 
-const BUSINESS_NUMBER = '5584999999999';
+const BUSINESS_NUMBER = '84991926432';
 
 const formatCurrency = (value: number) =>
   value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -131,4 +131,3 @@ const WhatsAppCartDemo = () => {
 };
 
 export default WhatsAppCartDemo;
-
