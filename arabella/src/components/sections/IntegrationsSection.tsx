@@ -39,14 +39,9 @@ const journey = [
 const IntegrationsSection = () => (
   <section
     id="integracoes-preview"
-    className="relative overflow-hidden bg-gradient-to-b from-white via-indigo-50/40 to-white py-20 sm:py-24"
+    className="relative overflow-hidden bg-[url('/imagens/fundo-integracoes.png')] bg-cover bg-center bg-no-repeat py-20 sm:py-24"
     aria-labelledby="integracoes-heading"
   >
-    <div className="pointer-events-none absolute inset-0">
-      <div className="absolute left-8 top-16 h-56 w-56 rounded-full bg-indigo-300/20 blur-[120px]" />
-      <div className="absolute bottom-10 right-10 h-48 w-48 rounded-full bg-fuchsia-200/25 blur-[120px]" />
-    </div>
-
     <div className="container relative space-y-12">
       <header className="section-heading text-center space-y-4">
         <p className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-100/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-emerald-700 shadow-sm ring-1 ring-emerald-200/70">
