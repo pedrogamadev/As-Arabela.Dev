@@ -1,11 +1,8 @@
 import { Link } from 'react-router-dom';
 import {
   Megaphone,
-  MessageCircle,
   MessageSquareText,
   PhoneCall,
-  MapPin,
-  Youtube,
   ShoppingCart,
 } from 'lucide-react';
 
@@ -19,7 +16,7 @@ const journey = [
     title: 'Contato',
     description: 'WhatsApp • Mensagem pronta • Ligação',
     icons: [
-      { Icon: MessageCircle, label: 'WhatsApp' },
+      { src: '/imagens/icons/whatsapp.png', label: 'WhatsApp' },
       { Icon: MessageSquareText, label: 'Mensagem pronta' },
       { Icon: PhoneCall, label: 'Ligação' },
     ],
@@ -28,8 +25,8 @@ const journey = [
     title: 'Confiança',
     description: 'Google Maps • YouTube',
     icons: [
-      { Icon: MapPin, label: 'Google Maps' },
-      { Icon: Youtube, label: 'YouTube' },
+      { src: '/imagens/icons/maps.png', label: 'Google Maps' },
+      { src: '/imagens/icons/youtube.png', label: 'YouTube' },
     ],
   },
   {
@@ -77,12 +74,16 @@ const IntegrationsSection = () => (
                   •
                 </span>
                 <div className="flex flex-wrap items-center justify-center gap-3 text-indigo-600">
-                  {icons.map(({ Icon, label }) => (
+                  {icons.map(({ Icon, label, src }) => (
                     <span
                       key={label}
                       className="flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-700 ring-1 ring-indigo-100"
                     >
-                      <Icon className="h-5 w-5" aria-hidden />
+                      {Icon ? (
+                        <Icon className="h-5 w-5" aria-hidden />
+                      ) : (
+                        <img className="h-5 w-5 object-contain" src={src} alt={label} />
+                      )}
                     </span>
                   ))}
                 </div>
@@ -111,12 +112,16 @@ const IntegrationsSection = () => (
                 <div className="space-y-3">
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">{title}</p>
                   <div className="flex flex-wrap items-center gap-3 text-indigo-600">
-                    {icons.map(({ Icon, label }) => (
+                    {icons.map(({ Icon, label, src }) => (
                       <span
                         key={label}
                         className="flex h-9 w-9 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-700 ring-1 ring-indigo-100"
                       >
-                        <Icon className="h-4 w-4" aria-hidden />
+                        {Icon ? (
+                          <Icon className="h-4 w-4" aria-hidden />
+                        ) : (
+                          <img className="h-4 w-4 object-contain" src={src} alt={label} />
+                        )}
                       </span>
                     ))}
                   </div>
@@ -146,4 +151,3 @@ const IntegrationsSection = () => (
 );
 
 export default IntegrationsSection;
-
