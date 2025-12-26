@@ -91,11 +91,13 @@ const IntegrationsPage = () => (
           <div className="mt-4 overflow-hidden rounded-xl">
             <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
               <iframe
-                title="Vídeo Arabella"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                title="YouTube video player"
+                src="https://www.youtube.com/embed/HZUIdx3_3yU?si=A733WDRaQTNXuk9w"
                 loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
+                frameBorder={0}
                 className="absolute inset-0 h-full w-full border-0"
               />
             </div>
