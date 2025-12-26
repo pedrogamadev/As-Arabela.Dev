@@ -64,7 +64,7 @@ const IntegrationsPage = () => (
             <p className="mt-2 text-sm leading-relaxed text-slate-600">
               Embeds responsivos ajudam o visitante a encontrar sua empresa rapidamente. Substitua o link abaixo pelo
               mapa do seu endereço.
-            </p>
+            </p>V
             <div className="mt-4 overflow-hidden rounded-xl">
               <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
                 <iframe
