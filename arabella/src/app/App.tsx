@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import WhatsappFloatingButton from '../components/WhatsappFloatingButton';
+import ScrollToTop from '../components/ScrollToTop';
 import HomePage from '../pages/HomePage';
 import OrcamentosPage from '../pages/OrcamentosPage';
 import CheckoutPage from '../pages/CheckoutPage';
@@ -9,6 +10,7 @@ import IntegrationsPage from '../pages/IntegrationsPage';
 
 const App = () => (
   <BrowserRouter>
+    <ScrollToTop />
     <div className="app-shell">
       <Nav />
       <main>
