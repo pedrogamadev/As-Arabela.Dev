@@ -5,6 +5,7 @@ import WhatsappFloatingButton from '../components/WhatsappFloatingButton';
 import HomePage from '../pages/HomePage';
 import OrcamentosPage from '../pages/OrcamentosPage';
 import CheckoutPage from '../pages/CheckoutPage';
+import IntegrationsPage from '../pages/IntegrationsPage';
 
 const App = () => (
   <BrowserRouter>
@@ -13,6 +14,7 @@ const App = () => (
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/integracoes" element={<IntegrationsPage />} />
           <Route path="/orcamentos" element={<OrcamentosPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/chekout" element={<CheckoutPage />} />
