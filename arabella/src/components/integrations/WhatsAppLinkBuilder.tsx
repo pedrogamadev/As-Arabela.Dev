@@ -100,7 +100,7 @@ const WhatsAppLinkBuilder = () => {
               type="button"
               onClick={handleOpenLink}
               disabled={!sanitizedPhone}
-              className="inline-flex flex-1 items-center justify-center rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition enabled:hover:-translate-y-0.5 enabled:hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-400/70"
+              className="flex w-full flex-1 items-center justify-center rounded-xl bg-slate-900 px-4 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-white transition enabled:hover:-translate-y-0.5 enabled:hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-400/70 sm:text-sm sm:tracking-[0.18em]"
             >
               Abrir no WhatsApp
             </button>
@@ -108,7 +108,7 @@ const WhatsAppLinkBuilder = () => {
               type="button"
               onClick={handleCopyLink}
               disabled={!sanitizedPhone}
-              className="inline-flex flex-1 items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-700 transition hover:border-indigo-200 hover:text-indigo-700 disabled:cursor-not-allowed disabled:opacity-60"
+              className="flex w-full flex-1 items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-slate-700 transition hover:border-indigo-200 hover:text-indigo-700 disabled:cursor-not-allowed disabled:opacity-60 sm:text-sm sm:tracking-[0.18em]"
             >
               {copied ? 'Link copiado!' : 'Copiar link'}
             </button>
