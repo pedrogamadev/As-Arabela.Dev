@@ -127,9 +127,9 @@ const IntegrationsPage = () => (
             <Link to="/orcamentos" className="button button--primary px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em]">
               pedir orçamento
             </Link>
-            <a href="#planos" className="button button--secondary px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em]">
+            <Link to="/#planos" className="button button--secondary px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em]">
               ver planos
-            </a>
+            </Link>
           </div>
         </div>
       </div>
