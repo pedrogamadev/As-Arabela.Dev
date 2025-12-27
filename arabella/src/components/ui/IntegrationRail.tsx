@@ -7,6 +7,10 @@ const integrations = [
   { name: 'Hotmart', src: '/imagens/icons/hotmart.png', href: '#' },
   { name: 'Email', src: '/imagens/icons/gmail.png', href: '#' },
   { name: 'Instagram', src: '/imagens/icons/instagram.png', href: '#' },
+  { name: 'Phone', src: '/imagens/icons/phone.png', href: '#' },
+  { name: 'kiwify', src: '/imagens/icons/kiwify.png', href: '#' },
+  { name: 'google', src: '/imagens/icons/google.png', href: '#' },
+  { name: 'forms', src: '/imagens/icons/forms.png', href: '#' },
 ] as const;
 
 const IntegrationRail = () => {
