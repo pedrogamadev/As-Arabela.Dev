@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '../lib/utils';
+import IntegrationRail from './ui/IntegrationRail';
 
 const HERO_ITEMS = [
   {
@@ -116,6 +117,9 @@ const Hero = () => {
             </a>
             <span ref={ctaSentinelRef} className="hero__cta-sentinel" aria-hidden />
           </div>
+        </div>
+        <div className="hero__rail">
+          <IntegrationRail />
         </div>
         <div className="hero__visual" aria-hidden>
           <div className="hero__window">
