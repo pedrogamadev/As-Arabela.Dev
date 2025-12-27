@@ -478,7 +478,13 @@ main {
   position: relative;
   width: 100%;
   max-width: 120px;
-  height: 100%;
+  --integration-gap: 0.85rem;
+  --integration-pill: 54px;
+  --integration-visible: 7;
+  height: calc(
+    (var(--integration-visible) * var(--integration-pill)) +
+      ((var(--integration-visible) - 1) * var(--integration-gap))
+  );
   display: grid;
   align-items: center;
   justify-items: center;
@@ -515,7 +521,6 @@ main {
 }
 
 .integration-rail__track {
-  --integration-gap: 0.85rem;
   --integration-speed: 22s;
   display: flex;
   flex-direction: column;
