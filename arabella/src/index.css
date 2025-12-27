@@ -521,10 +521,10 @@ main {
 }
 
 .integration-rail__track {
-  --integration-speed: 22s;
+  --integration-speed: 70s;
   display: flex;
   flex-direction: column;
-  gap: var(--integration-gap);
+  gap: 0;
   animation: integrationMarquee var(--integration-speed) linear infinite;
   will-change: transform;
 }
