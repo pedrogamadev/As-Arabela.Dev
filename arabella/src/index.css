@@ -1626,6 +1626,10 @@ main {
     animation: none;
   }
 
+  .integration-rail--force-motion .integration-rail__track {
+    animation: integrationMarquee var(--integration-speed) linear infinite;
+  }
+
   .integration-rail__group[aria-hidden='true'] {
     display: none;
   }

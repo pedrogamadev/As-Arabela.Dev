@@ -30,7 +30,7 @@ const IntegrationRail = () => {
   };
 
   return (
-    <div className="integration-rail" aria-label="Integrações">
+    <div className="integration-rail integration-rail--force-motion" aria-label="Integrações">
       <span className="integration-rail__line" aria-hidden="true" />
       <div className="integration-rail__window">
         <div className="integration-rail__track">
