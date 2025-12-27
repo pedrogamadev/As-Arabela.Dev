@@ -5,7 +5,7 @@ const integrations = [
   { name: 'Google Maps', src: '/imagens/icons/maps.png', href: '#' },
   { name: 'YouTube', src: '/imagens/icons/youtube.png', href: '#' },
   { name: 'Hotmart', src: '/imagens/icons/hotmart.png', href: '#' },
-  { name: 'Email', src: '/imagens/icons/email.png', href: '#' },
+  { name: 'Email', src: '/imagens/icons/gmail.png', href: '#' },
   { name: 'Instagram', src: '/imagens/icons/instagram.png', href: '#' },
 ] as const;
 
