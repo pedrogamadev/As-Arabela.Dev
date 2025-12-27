@@ -31,8 +31,12 @@ const journey = [
   },
   {
     title: 'Venda',
-    description: 'Pedido via WhatsApp',
-    icons: [{ Icon: ShoppingCart, label: 'Pedido via WhatsApp' }],
+    description: 'Pedido feito em diferentes plataformas',
+    icons: [
+      { Icon: ShoppingCart, label: 'Carrinho' },
+      { src: '/imagens/icons/hotmart.png', label: 'Hotmart' },
+      { src: '/imagens/icons/kiwify.png', label: 'Kiwify' },
+    ],
   },
 ] as const;
 
