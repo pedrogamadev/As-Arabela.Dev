@@ -20,8 +20,8 @@ export const DESIGN_PRICES = {
 
 export const CONTEUDO_PRICES = {
   clienteTemTudo: 0,
-  clienteParcial: 150,
-  voceCria: 250,
+  clienteParcial: 100,
+  voceCria: 150,
 } as const;
 
 export const PRAZO_PRICES = {
