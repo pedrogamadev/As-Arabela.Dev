@@ -1,44 +1,58 @@
 import { Link } from 'react-router-dom';
-import {
-  Megaphone,
-  MessageSquareText,
-  PhoneCall,
-  ShoppingCart,
-} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+import { Megaphone, MessageSquareText, PhoneCall, ShoppingCart } from 'lucide-react';
 
-const journey = [
+type JourneyIcon =
+  | {
+      kind: 'icon';
+      label: string;
+      Icon: LucideIcon;
+    }
+  | {
+      kind: 'image';
+      label: string;
+      src: string;
+    };
+
+type JourneyStep = {
+  title: string;
+  description: string;
+  icons: JourneyIcon[];
+};
+
+const journey: JourneyStep[] = [
   {
     title: 'Descoberta',
     description: 'Conteúdo',
-    icons: [{ Icon: Megaphone, label: 'Conteúdo' }],
+    icons: [{ kind: 'icon', Icon: Megaphone, label: 'Conteúdo' }],
   },
   {
     title: 'Contato',
     description: 'WhatsApp • Mensagem pronta • Ligação',
     icons: [
-      { src: '/imagens/icons/whatsapp.png', label: 'WhatsApp' },
-      { Icon: MessageSquareText, label: 'Mensagem pronta' },
-      { Icon: PhoneCall, label: 'Ligação' },
+      { kind: 'image', src: '/imagens/icons/whatsapp.png', label: 'WhatsApp' },
+      { kind: 'icon', Icon: MessageSquareText, label: 'Mensagem pronta' },
+      { kind: 'icon', Icon: PhoneCall, label: 'Ligação' },
     ],
   },
   {
     title: 'Confiança',
     description: 'Google Maps • YouTube',
     icons: [
-      { src: '/imagens/icons/maps.png', label: 'Google Maps' },
-      { src: '/imagens/icons/youtube.png', label: 'YouTube' },
+      { kind: 'image', src: '/imagens/icons/maps.png', label: 'Google Maps' },
+      { kind: 'image', src: '/imagens/icons/youtube.png', label: 'YouTube' },
     ],
   },
   {
     title: 'Venda',
     description: 'Pedido feito em diferentes plataformas',
     icons: [
-      { Icon: ShoppingCart, label: 'Carrinho' },
-      { src: '/imagens/icons/hotmart.png', label: 'Hotmart' },
-      { src: '/imagens/icons/kiwify.png', label: 'Kiwify' },
+      { kind: 'icon', Icon: ShoppingCart, label: 'Carrinho' },
+      { kind: 'image', src: '/imagens/icons/hotmart.png', label: 'Hotmart' },
+      { kind: 'image', src: '/imagens/icons/kiwify.png', label: 'Kiwify' },
     ],
   },
-] as const;
+];
 
 const IntegrationsSection = () => (
   <section
@@ -73,15 +87,15 @@ const IntegrationsSection = () => (
                   •
                 </span>
                 <div className="flex flex-wrap items-center justify-center gap-3 text-indigo-600">
-                  {icons.map(({ Icon, label, src }) => (
+                  {icons.map(icon => (
                     <span
-                      key={label}
+                      key={icon.label}
                       className="flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-700 ring-1 ring-indigo-100"
                     >
-                      {Icon ? (
-                        <Icon className="h-5 w-5" aria-hidden />
+                      {icon.kind === 'icon' ? (
+                        <icon.Icon className="h-5 w-5" aria-hidden />
                       ) : (
-                        <img className="h-5 w-5 object-contain" src={src} alt={label} />
+                        <img className="h-5 w-5 object-contain" src={icon.src} alt={icon.label} />
                       )}
                     </span>
                   ))}
@@ -111,15 +125,15 @@ const IntegrationsSection = () => (
                 <div className="space-y-3">
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">{title}</p>
                   <div className="flex flex-wrap items-center gap-3 text-indigo-600">
-                    {icons.map(({ Icon, label, src }) => (
+                    {icons.map(icon => (
                       <span
-                        key={label}
+                        key={icon.label}
                         className="flex h-9 w-9 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-700 ring-1 ring-indigo-100"
                       >
-                        {Icon ? (
-                          <Icon className="h-4 w-4" aria-hidden />
+                        {icon.kind === 'icon' ? (
+                          <icon.Icon className="h-4 w-4" aria-hidden />
                         ) : (
-                          <img className="h-4 w-4 object-contain" src={src} alt={label} />
+                          <img className="h-4 w-4 object-contain" src={icon.src} alt={icon.label} />
                         )}
                       </span>
                     ))}

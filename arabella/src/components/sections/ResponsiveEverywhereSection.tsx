@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import type { MouseEvent } from 'react';
 import { Check } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -15,11 +14,6 @@ const ResponsiveEverywhereSection = () => {
     target: containerRef,
     offset: ['start end', 'end start'],
   });
-
-  const handleScroll = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    document.getElementById('planos')?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   // Parallax transforms
   const devicesY = useTransform(scrollYProgress, [0, 1], [50, -50]);
