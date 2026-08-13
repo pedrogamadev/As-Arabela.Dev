@@ -16,7 +16,7 @@ export type AnalyticsEvent =
   /** Marco de profundidade de rolagem. */
   | { name: 'scroll_depth'; percent: 25 | 50 | 75 | 100 };
 
-export type CtaSection = 'header' | 'hero' | 'plans' | 'final' | 'mobile_bar';
+export type CtaSection = 'header' | 'hero' | 'plans' | 'final' | 'mobile_bar' | 'not_found';
 
 type EventPayload = Record<string, unknown>;
 

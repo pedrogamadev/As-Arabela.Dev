@@ -157,6 +157,32 @@ export interface FinalCtaContent {
   subtitle: string;
 }
 
+export interface NotFoundContent {
+  documentTitle: string;
+  eyebrow: string;
+  /** Trecho anterior ao destaque em marca-texto. */
+  titleLead: string;
+  /** Trecho destacado em marca-texto âmbar. */
+  titleHighlight: string;
+  /** Trecho posterior ao destaque. */
+  titleTrail: string;
+  paragraph: string;
+  frame: {
+    /** Endereço riscado na barra do navegador do mockup. */
+    address: string;
+    /** Dígito antes do zero — o zero é desenhado como anel âmbar. */
+    codeBefore: string;
+    /** Dígito depois do zero. */
+    codeAfter: string;
+    status: string;
+  };
+  /** Card sobreposto no canto do mockup. Mesmo padrão do hero. */
+  frameCard: { label: string; value: string };
+  homeLink: { label: string; href: string };
+  suggestionsHeading: string;
+  suggestions: Array<{ label: string; description: string; href: string }>;
+}
+
 export interface FooterContent {
   brandName: string;
   description: string;

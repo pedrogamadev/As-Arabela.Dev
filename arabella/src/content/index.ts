@@ -19,4 +19,5 @@ export { guarantee } from './guarantee';
 export { faq } from './faq';
 export { finalCta } from './finalCta';
 export { footer } from './footer';
+export { notFound } from './notFound';
 export type * from './types';
