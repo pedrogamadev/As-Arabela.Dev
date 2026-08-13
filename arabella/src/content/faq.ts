@@ -1,48 +1,52 @@
-export interface FaqItem {
-  question: string;
-  answer: string;
-}
+import type { FaqContent } from './types';
 
-export const faqItems: FaqItem[] = [
-  {
-    question: 'Qual é o prazo típico para entregar uma landing page?',
-    answer:
-      'Nosso ciclo padrão leva de 10 a 30 dias, dependendo da complexidade. Trabalhamos com etapas claras: briefing estratégico, wireframe, UI/UX, desenvolvimento, teste A/B e publicação.',
-  },
-  {
-    question: 'Vocês criam sites do zero ou usam plataformas prontas?',
-    answer:
-      'Fazemos do zero para poder te entregar seu site 100% personalizado, sob medida para sua marca, performance e conversão.',
-  },
-  {
-    question: 'Existe suporte após a entrega?',
-    answer:
-      'Sim. Oferecemos planos de manutenção, otimizações contínuas, métricas de conversão e melhorias mensais com base em dados.',
-  },
-  {
-    question: 'Posso contratar só o design ou só o desenvolvimento?',
-    answer:
-      'Pode. Atendemos etapas isoladas quando necessário — UI/UX, copywriting, dev front-end ou integrações. Mas recomendamos o pacote completo para máxima consistência e conversão.',
-  },
-  {
-    question: 'As páginas são responsivas e rápidas?',
-    answer:
-      'Sempre. Trabalhamos com performance, SEO técnico, foco em mobile e carregamento otimizado para conversão.',
-  },
-  {
-    question: 'Posso pedir alterações durante o projeto?',
-    answer:
-      'Claro. Temos ciclos de revisão cada semana para alinhar expectativas sem atrasar o cronograma.',
-  },
-  {
-    question: 'Como funciona o pagamento?',
-    answer:
-      'Oferecemos opções flexíveis: Cartões de crédito, débito, boleto e pix. O pagamento é feito com 50% de entrada e o restante após o site ficar pronto.',
-  },
-  {
-    question: 'Vocês entregam domínio e hospedagem também?',
-    answer:
-      'Sim. Nosso orçamento pode incluir hospedagem e a compra do dominio',
-  },
-];
-
+export const faq: FaqContent = {
+  heading: 'Perguntas frequentes',
+  entries: [
+    {
+      question: 'Em quanto tempo minha página fica pronta?',
+      answer:
+        'A partir de 7 dias no plano Essencial. O prazo começa a contar quando você aprova o layout, e a data de publicação fica escrita em contrato.',
+    },
+    {
+      question: 'Vocês usam template pronto?',
+      answer:
+        'Não. Cada página é desenhada e codificada do zero, em React e TypeScript, a partir do que o seu negócio vende e de quem você quer alcançar.',
+    },
+    {
+      question: 'Como funciona o pagamento?',
+      answer:
+        'Metade na aprovação do layout e metade na publicação. Aceitamos Pix, boleto e cartão em até 12x. Você nunca paga o valor inteiro adiantado.',
+    },
+    {
+      question: 'O que é o checkout integrado?',
+      answer:
+        'Nos planos Profissional e Completo, o pagamento acontece dentro do fluxo da própria página, com Hotmart ou Kiwify ligados por trás, sem jogar o visitante para fora do site.',
+    },
+    {
+      question: 'Posso pedir alterações durante o projeto?',
+      answer:
+        'Pode. Há uma rodada de revisão em cada etapa, e cada plano inclui revisões após a publicação — uma no Essencial, duas no Profissional e três no Completo.',
+    },
+    {
+      question: 'Domínio e hospedagem estão inclusos?',
+      answer:
+        'O domínio está incluso no primeiro ano em todos os planos, e cuidamos do apontamento, do certificado e da subida para o ar. A hospedagem entra na manutenção mensal opcional.',
+    },
+    {
+      question: 'A página funciona bem no celular?',
+      answer:
+        'Ela é construída primeiro para o celular e só depois adaptada para telas maiores, porque é de lá que vem a maior parte do tráfego. Testamos em celular, tablet e desktop antes de publicar.',
+    },
+    {
+      question: 'O código fica comigo?',
+      answer:
+        'Fica. Ao final do projeto o repositório é transferido para o seu nome. Você não fica preso a nenhuma plataforma nem a nós.',
+    },
+    {
+      question: 'Vocês só fazem landing page?',
+      answer:
+        'Não. Landing page é a porta de entrada. Também desenvolvemos sistemas sob medida — ERP, agendamento, área de membros, painéis de gestão e SaaS. Veja o que já construímos em /sistemas.',
+    },
+  ],
+};

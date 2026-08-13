@@ -1,30 +1,23 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Nav from '../components/Nav';
-import Footer from '../components/Footer';
-import WhatsappFloatingButton from '../components/WhatsappFloatingButton';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import ScrollToTop from '../components/ScrollToTop';
 import HomePage from '../pages/HomePage';
-import OrcamentosPage from '../pages/OrcamentosPage';
-import CheckoutPage from '../pages/CheckoutPage';
-import IntegrationsPage from '../pages/IntegrationsPage';
+import StubPage from '../pages/StubPage';
+import { partnersStub, systemsStub } from '../content/stubs';
 
 const App = () => (
   <BrowserRouter>
     <ScrollToTop />
-    <div className="app-shell">
-      <Nav />
-      <main>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/integracoes" element={<IntegrationsPage />} />
-          <Route path="/orcamentos" element={<OrcamentosPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/chekout" element={<CheckoutPage />} />
-        </Routes>
-      </main>
-      <Footer />
-      <WhatsappFloatingButton />
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/sistemas" element={<StubPage content={systemsStub} />} />
+      <Route path="/parceiros" element={<StubPage content={partnersStub} />} />
+      {/* Rotas do site anterior: preservam links externos já publicados. */}
+      <Route path="/orcamentos" element={<Navigate to="/" replace />} />
+      <Route path="/checkout" element={<Navigate to="/" replace />} />
+      <Route path="/chekout" element={<Navigate to="/" replace />} />
+      <Route path="/integracoes" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   </BrowserRouter>
 );
 

@@ -5,6 +5,8 @@ import react from '@vitejs/plugin-react-swc';
 export default defineConfig({
   plugins: [react()],
   test: {
+    // Necessário para o cleanup automático do Testing Library entre os testes.
+    globals: true,
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
     css: true,
