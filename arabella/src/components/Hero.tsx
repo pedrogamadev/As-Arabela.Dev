@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowRight, Code2 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import IntegrationRail from './ui/IntegrationRail';
+import Reveal from './motion/Reveal';
+import WordsReveal from './motion/WordsReveal';
 
 const HERO_ITEMS = [
   {
@@ -101,10 +104,14 @@ const Hero = () => {
       </div>
       <div className="container hero__container">
         <div className="hero__content">
-          <h1 id="hero-title">Landing pages que vendem enquanto você dorme.</h1>
-          <p>
-            Criamos páginas rápidas e bem pensadas para atrair, convencer e gerar clientes automaticamente. <br /> Prazer, somos a <strong>Arabella.dev</strong>.
-          </p>
+          <h1 id="hero-title">
+            <WordsReveal text="Landing pages que vendem enquanto você dorme." stagger={0.07} />
+          </h1>
+          <Reveal delay={0.35}>
+            <p>
+              Criamos páginas rápidas e bem pensadas para atrair, convencer e gerar clientes automaticamente. <br /> Prazer, somos a <strong>Arabella.dev</strong>.
+            </p>
+          </Reveal>
           <div className="hero__actions">
             <Link
               to="/orcamentos"
@@ -117,6 +124,15 @@ const Hero = () => {
             </a>
             <span ref={ctaSentinelRef} className="hero__cta-sentinel" aria-hidden />
           </div>
+          <Reveal delay={0.55} distance={14}>
+            <a className="hero__systems-hint" href="#sistemas">
+              <Code2 className="hero__systems-hint-icon" aria-hidden />
+              <span>
+                Também desenvolvemos <strong>sistemas sob medida</strong>
+              </span>
+              <ArrowRight className="hero__systems-hint-arrow" aria-hidden />
+            </a>
+          </Reveal>
         </div>
         <div className="hero__rail">
           <IntegrationRail />
