@@ -1,12 +1,14 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { RefreshCw } from 'lucide-react';
+import { RefreshCw, Star, ShoppingCart, ShieldCheck, CheckCircle2, Search, ArrowUpRight } from 'lucide-react';
 
 interface CardItem {
   id: string;
   headerTitle: string;
-  isDark?: boolean;
+  urlPath: string;
   cardWidth?: string;
+  badge?: string;
+  badgeColor?: string;
   renderContent: () => React.ReactNode;
 }
 
@@ -14,96 +16,77 @@ const CARDS: CardItem[] = [
   {
     id: 'loja-virtual',
     headerTitle: 'Loja Virtual',
+    urlPath: 'loja.arabella.dev/fones-pro',
+    cardWidth: '275px',
+    badge: 'E-COMMERCE',
+    badgeColor: 'bg-amber-500/10 text-amber-700 border-amber-500/20',
     renderContent: () => (
       <div className="p-3 text-ink">
-        <h4 className="text-xs font-bold text-sky-600 mb-2">Loja Virtual</h4>
-        <div className="grid grid-cols-3 gap-1.5 mb-2.5">
-          {[
-            'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=150&q=80',
-            'https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=150&q=80',
-            'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=150&q=80',
-          ].map((img, i) => (
-            <div key={i} className="bg-stone-100 p-1 rounded border border-stone-200 text-center flex flex-col items-center">
-              <img src={img} alt="Product" className="w-10 h-10 object-cover rounded mb-1" />
-              <span className="text-[8px] font-bold text-stone-700">R$ 189,90</span>
-            </div>
-          ))}
+        <div className="flex items-center justify-between bg-stone-100/80 px-2 py-1 rounded-md mb-2.5 text-[9px] text-stone-500 border border-stone-200/60">
+          <div className="flex items-center gap-1">
+            <Search className="w-3 h-3 text-stone-400" />
+            <span>Fones Wireless Pro...</span>
+          </div>
+          <div className="flex items-center gap-1 font-bold text-amber-600 bg-amber-100/80 px-1.5 py-0.5 rounded">
+            <ShoppingCart className="w-2.5 h-2.5" /> 3
+          </div>
         </div>
-        <button type="button" className="text-[9px] font-medium bg-amber-500 hover:bg-amber-600 text-white px-2.5 py-1 rounded shadow-xs">
-          Saiba mais
+
+        <div className="flex gap-2.5 items-center">
+          <img
+            src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=200&q=80"
+            alt="Fone de Ouvido"
+            className="w-16 h-16 object-cover rounded-lg border border-stone-200 shadow-xs shrink-0"
+          />
+          <div className="flex-1">
+            <div className="flex items-center gap-1 text-amber-500 text-[9px] mb-0.5">
+              <Star className="w-2.5 h-2.5 fill-amber-400" />
+              <span className="font-bold">4.9</span>
+              <span className="text-stone-400">(128 avaliações)</span>
+            </div>
+            <h4 className="text-xs font-bold text-stone-900 leading-tight">Headphone Noise Cancel</h4>
+            <div className="flex items-baseline gap-1.5 mt-1">
+              <span className="text-xs font-extrabold text-emerald-600">R$ 289,90</span>
+              <span className="text-[9px] text-stone-400 line-through">R$ 349,00</span>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" className="w-full mt-2.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-lg text-[10px] shadow-xs transition-colors flex items-center justify-center gap-1">
+          <span>Comprar com 1-Click</span>
+          <ArrowUpRight className="w-3 h-3" />
         </button>
       </div>
     ),
   },
   {
-    id: 'empresa',
-    headerTitle: 'Empresa',
+    id: 'landing-page',
+    headerTitle: 'Landing Page High-Scale',
+    urlPath: 'landing.arabella.dev/oferta-vip',
+    cardWidth: '275px',
+    badge: '+340% LEADS',
+    badgeColor: 'bg-emerald-500/10 text-emerald-700 border-emerald-500/20',
     renderContent: () => (
-      <div className="p-3 flex items-center justify-between gap-3 text-ink">
-        <div className="flex-1">
-          <h4 className="text-xs font-bold text-stone-800 mb-1">Empresa</h4>
-          <p className="text-[10px] text-stone-600 leading-snug mb-2 font-medium">
-            Soluções que impulsionam seu negócio.
-          </p>
-          <button type="button" className="text-[9px] font-medium bg-sky-500 hover:bg-sky-600 text-white px-2.5 py-1 rounded shadow-xs">
-            Saiba mais
-          </button>
+      <div className="p-3 text-ink">
+        <div className="bg-gradient-to-r from-emerald-500/10 via-teal-500/5 to-transparent p-2 rounded-lg border border-emerald-500/20 mb-2">
+          <span className="text-[8px] font-bold uppercase tracking-wider text-emerald-700 block">Alta Conversão</span>
+          <h4 className="text-xs font-extrabold text-stone-900 leading-snug">
+            Transformamos Ideias em Sites que Vendem.
+          </h4>
         </div>
-        <img
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=200&q=80"
-          alt="Building"
-          className="w-16 h-16 object-cover rounded-md shadow-xs border border-stone-200"
-        />
-      </div>
-    ),
-  },
-  {
-    id: 'curriculo-web',
-    headerTitle: 'Currículo Web',
-    renderContent: () => (
-      <div className="p-3 flex items-center gap-3 text-ink">
-        <div className="flex-1">
-          <h4 className="text-[10px] font-bold text-sky-600 mb-0.5">Currículo Web</h4>
-          <h5 className="text-xs font-bold text-stone-900">Lucas Almeida</h5>
-          <p className="text-[9px] text-stone-500 mb-2">Desenvolvedor Full Stack</p>
-          <button type="button" className="text-[9px] font-medium border border-sky-500 text-sky-600 hover:bg-sky-50 px-2 py-0.5 rounded">
-            Ver projetos
+
+        <p className="text-[9px] text-stone-600 leading-relaxed mb-2.5">
+          Design estratégico com WhatsApp e checkout de alta velocidade integrados.
+        </p>
+
+        <div className="flex items-center gap-2">
+          <button type="button" className="flex-1 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-md text-[10px] shadow-xs text-center">
+            Garantir Minha Vaga
           </button>
-        </div>
-        <img
-          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
-          alt="Developer"
-          className="w-14 h-16 object-cover rounded-md border border-stone-200"
-        />
-      </div>
-    ),
-  },
-  {
-    id: 'sistema-medida',
-    headerTitle: 'Sistema Sob Medida',
-    isDark: true,
-    cardWidth: '280px',
-    renderContent: () => (
-      <div className="p-3 text-white flex gap-3">
-        <div className="flex-1">
-          <h4 className="text-xs font-bold mb-1 text-slate-100">Sistema Sob Medida</h4>
-          <p className="text-[10px] text-slate-300 leading-snug mb-3">
-            Gestão completa para o seu negócio.
-          </p>
-          <button type="button" className="text-[9px] font-medium bg-slate-800 border border-slate-700 text-slate-200 hover:bg-slate-700 px-2.5 py-1 rounded">
-            Acessar painel
-          </button>
-        </div>
-        <div className="w-32 bg-slate-950 p-2 rounded border border-slate-800 text-[8px] text-slate-300">
-          <span className="text-[7px] text-slate-500 uppercase tracking-wider block">Dashboard</span>
-          <div className="flex justify-between items-center my-1">
-            <span>Vendas</span>
-            <span className="text-emerald-400 font-bold text-[9px]">R$ 24.780,00</span>
+          <div className="flex items-center gap-1 text-[8px] font-semibold text-stone-500 bg-stone-100 px-2 py-1 rounded border border-stone-200">
+            <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+            <span>0.4s Carga</span>
           </div>
-          {/* Mini SVG Line Chart */}
-          <svg className="w-full h-7 text-cyan-400 my-1" viewBox="0 0 100 40">
-            <path d="M0,35 Q20,10 40,25 T80,5 T100,20" fill="none" stroke="currentColor" strokeWidth="2.5" />
-          </svg>
         </div>
       </div>
     ),
@@ -111,76 +94,135 @@ const CARDS: CardItem[] = [
   {
     id: 'agencia-digital',
     headerTitle: 'Agência Digital',
+    urlPath: 'agencia.arabella.dev',
+    cardWidth: '260px',
+    badge: 'ESTRATÉGIA B2B',
+    badgeColor: 'bg-purple-500/10 text-purple-700 border-purple-500/20',
     renderContent: () => (
-      <div className="p-3 bg-gradient-to-br from-purple-50 via-pink-50 to-purple-100/50 rounded-b-xl text-ink">
-        <h4 className="text-xs font-bold text-purple-900 mb-1">Agência Digital</h4>
-        <p className="text-[10px] text-purple-800 font-medium leading-snug mb-2.5 max-w-[130px]">
-          Estratégia, design e performance.
+      <div className="p-3 bg-gradient-to-br from-purple-50 via-purple-100/40 to-indigo-50 rounded-b-xl text-ink">
+        <div className="flex items-center justify-between mb-1.5">
+          <span className="text-[9px] font-bold text-purple-700 uppercase tracking-wider">Design & Dev</span>
+          <span className="text-[8px] bg-purple-200/80 text-purple-900 px-1.5 py-0.5 rounded font-mono font-semibold">Branding 3D</span>
+        </div>
+        <h4 className="text-xs font-bold text-purple-950 leading-tight mb-1">
+          Estratégia, Design & Alta Performance.
+        </h4>
+        <p className="text-[9px] text-purple-800/80 mb-2.5 leading-snug">
+          Criamos marcas memoráveis que dominam o mercado digital.
         </p>
-        <button type="button" className="text-[9px] font-medium bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded shadow-xs">
-          Conheça
+        <button type="button" className="w-full py-1.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-md text-[10px] shadow-xs transition-colors">
+          Solicitar Orçamento
         </button>
       </div>
     ),
   },
   {
     id: 'restaurante',
-    headerTitle: 'Restaurante',
+    headerTitle: 'Restaurante & Gastronomia',
+    urlPath: 'menu.arabella.dev/bistro',
+    cardWidth: '265px',
+    badge: 'CARDÁPIO DIGITAL',
+    badgeColor: 'bg-orange-500/10 text-orange-700 border-orange-500/20',
     renderContent: () => (
-      <div className="p-3 flex items-center justify-between gap-3 text-ink">
-        <div className="flex-1">
-          <h4 className="text-xs font-bold text-stone-800 mb-1">Restaurante</h4>
-          <p className="text-[10px] text-stone-600 font-medium leading-snug mb-2">
-            Sabor que conecta.
-          </p>
-          <button type="button" className="text-[9px] font-medium bg-amber-500 hover:bg-amber-600 text-white px-2.5 py-1 rounded shadow-xs">
-            Fazer pedido
-          </button>
+      <div className="p-3 text-ink">
+        <div className="flex items-center gap-2.5">
+          <img
+            src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=200&q=80"
+            alt="Prato Gourmet"
+            className="w-16 h-16 object-cover rounded-lg border border-stone-200 shadow-xs shrink-0"
+          />
+          <div className="flex-1">
+            <div className="flex items-center gap-1 text-orange-500 text-[9px] font-bold">
+              <Star className="w-2.5 h-2.5 fill-orange-400" />
+              <span>5.0 (482 pedidos)</span>
+            </div>
+            <h4 className="text-xs font-bold text-stone-900 leading-tight">Bistrô Sabor & Arte</h4>
+            <p className="text-[9px] text-stone-500 mt-0.5">Risotto de Cogumelos + Drink</p>
+            <span className="text-xs font-extrabold text-orange-600 mt-1 block">R$ 54,90</span>
+          </div>
         </div>
-        <img
-          src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=200&q=80"
-          alt="Restaurante"
-          className="w-14 h-14 object-cover rounded-lg border border-stone-200 shadow-xs"
-        />
+        <button type="button" className="w-full mt-2.5 py-1.5 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg text-[10px] shadow-xs transition-colors">
+          Fazer Pedido no WhatsApp
+        </button>
       </div>
     ),
   },
   {
-    id: 'landing-page',
-    headerTitle: 'Landing Page',
+    id: 'curriculo-web',
+    headerTitle: 'Currículo & Portfólio Pro',
+    urlPath: 'lucas.arabella.dev',
+    cardWidth: '260px',
+    badge: 'PORTFÓLIO WEB',
+    badgeColor: 'bg-sky-500/10 text-sky-700 border-sky-500/20',
     renderContent: () => (
       <div className="p-3 text-ink">
-        <h4 className="text-xs font-bold text-emerald-700 mb-1">Landing Page</h4>
-        <p className="text-[10px] text-stone-700 font-medium leading-snug mb-2 max-w-[140px]">
-          Transformamos ideias em sites que vendem.
-        </p>
-        <div className="flex items-center gap-2">
-          <button type="button" className="text-[9px] font-medium bg-emerald-500 hover:bg-emerald-600 text-white px-2.5 py-1 rounded shadow-xs">
-            Quero meu site
-          </button>
-          <div className="flex gap-1">
-            <div className="w-3 h-3 bg-emerald-100 rounded-sm" />
-            <div className="w-3 h-3 bg-emerald-100 rounded-sm" />
+        <div className="flex items-center gap-2.5 mb-2">
+          <img
+            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+            alt="Lucas Almeida"
+            className="w-12 h-12 object-cover rounded-full border-2 border-sky-400 shadow-xs shrink-0"
+          />
+          <div>
+            <div className="flex items-center gap-1">
+              <h4 className="text-xs font-bold text-stone-900">Lucas Almeida</h4>
+              <ShieldCheck className="w-3 h-3 text-sky-500" />
+            </div>
+            <p className="text-[9px] font-medium text-stone-500">Desenvolvedor Full-Stack</p>
+            <div className="flex gap-1 mt-1">
+              <span className="text-[8px] bg-sky-100 text-sky-700 px-1 py-0.5 rounded font-mono">React</span>
+              <span className="text-[8px] bg-stone-100 text-stone-600 px-1 py-0.5 rounded font-mono">Node.js</span>
+            </div>
           </div>
+        </div>
+        <button type="button" className="w-full py-1.5 border border-sky-500 text-sky-600 hover:bg-sky-50 font-bold rounded-md text-[10px] transition-colors">
+          Ver Portfólio Completo
+        </button>
+      </div>
+    ),
+  },
+  {
+    id: 'empresa',
+    headerTitle: 'Empresa & Corporativo',
+    urlPath: 'empresa.arabella.dev',
+    cardWidth: '265px',
+    badge: 'B2B INSTANTÂNEO',
+    badgeColor: 'bg-stone-500/10 text-stone-700 border-stone-500/20',
+    renderContent: () => (
+      <div className="p-3 text-ink">
+        <div className="flex items-center justify-between gap-2 mb-2">
+          <div>
+            <h4 className="text-xs font-bold text-stone-900">Soluções Corporativas</h4>
+            <p className="text-[9px] text-stone-500 leading-tight">Impulsione seu negócio com tecnologia sob medida.</p>
+          </div>
+          <img
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=200&q=80"
+            alt="Empresa"
+            className="w-12 h-12 object-cover rounded-md border border-stone-200 shrink-0"
+          />
+        </div>
+        <div className="flex items-center justify-between pt-1 border-t border-stone-100">
+          <span className="text-[9px] font-bold text-stone-600">+500 Clientes Atendidos</span>
+          <button type="button" className="py-1 px-2.5 bg-stone-900 hover:bg-stone-800 text-white rounded text-[9px] font-bold">
+            Conhecer Soluções
+          </button>
         </div>
       </div>
     ),
   },
 ];
 
-// Posições no grid do Hero com variação 3D e inclinação agradável
+// 6 Posições bem distribuídas no grid do Hero
 const SLOTS = [
-  { x: -30, y: -130, rotate: -4, scale: 0.98, zIndex: 25 },
-  { x: 160, y: -100, rotate: 3, scale: 0.95, zIndex: 20 },
-  { x: 190, y: 10, rotate: -3, scale: 0.92, zIndex: 18 },
-  { x: 10, y: -10, rotate: 2, scale: 1.05, zIndex: 35 }, // Slot central em destaque (Sistema Sob Medida Dark)
-  { x: -140, y: 80, rotate: 5, scale: 0.96, zIndex: 22 },
-  { x: 90, y: 130, rotate: -4, scale: 0.94, zIndex: 24 },
-  { x: -160, y: -40, rotate: -2, scale: 0.90, zIndex: 15 },
+  { x: 30, y: -70, rotate: -2, scale: 1.04, zIndex: 30 },
+  { x: -190, y: -130, rotate: -4, scale: 0.96, zIndex: 25 },
+  { x: 210, y: -110, rotate: 3, scale: 0.94, zIndex: 22 },
+  { x: 220, y: 55, rotate: -3, scale: 0.95, zIndex: 28 },
+  { x: 100, y: 160, rotate: 4, scale: 0.93, zIndex: 20 },
+  { x: -140, y: 120, rotate: -3, scale: 0.95, zIndex: 24 },
 ];
 
 const FloatingCards = () => {
-  const [positions, setPositions] = useState<number[]>([0, 1, 2, 3, 4, 5, 6]);
+  const [positions, setPositions] = useState<number[]>([0, 1, 2, 3, 4, 5]);
   const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
 
   const shufflePositions = useCallback(() => {
@@ -203,9 +245,9 @@ const FloatingCards = () => {
   }, [hoveredCardId, shufflePositions]);
 
   return (
-    <div className="relative w-full h-[520px] flex items-center justify-center select-none overflow-visible">
+    <div className="relative w-full h-[540px] flex items-center justify-center select-none overflow-visible">
       {/* Botão de controle de Animação */}
-      <div className="absolute -top-7 right-0 z-40 flex items-center gap-2">
+      <div className="absolute -top-8 right-0 z-40 flex items-center gap-2">
         <button
           onClick={shufflePositions}
           type="button"
@@ -246,7 +288,7 @@ const FloatingCards = () => {
               onHoverEnd={() => setHoveredCardId(null)}
               className="absolute cursor-pointer"
               style={{
-                width: card.cardWidth || '240px',
+                width: card.cardWidth || '260px',
               }}
             >
               {/* Animação contínua de flutuação suave */}
@@ -260,35 +302,31 @@ const FloatingCards = () => {
                   ease: 'easeInOut',
                   delay: cardIndex * 0.3,
                 }}
-                className={`group relative rounded-xl border ${
-                  card.isDark
-                    ? 'border-slate-800 bg-slate-900 shadow-2xl'
-                    : 'border-stone-200/90 bg-white/95 backdrop-blur-md shadow-lg hover:border-amber-400/60'
-                } transition-all duration-300 hover:shadow-2xl`}
+                className="group relative rounded-xl border border-stone-200/90 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300 hover:shadow-2xl hover:border-amber-400/60"
                 style={{
                   boxShadow: isHovered
-                    ? '0 22px 45px -12px rgba(0, 0, 0, 0.22), 0 8px 16px -6px rgba(0, 0, 0, 0.08)'
-                    : card.isDark
-                    ? '0 16px 36px -10px rgba(15, 23, 42, 0.5)'
-                    : '0 12px 30px -10px rgba(0, 0, 0, 0.09)',
+                    ? '0 24px 48px -12px rgba(0, 0, 0, 0.22), 0 8px 16px -6px rgba(0, 0, 0, 0.08)'
+                    : '0 12px 32px -10px rgba(0, 0, 0, 0.09)',
                 }}
               >
-                {/* Cabeçalho Estilo Janela de Navegador */}
-                <div
-                  className={`flex items-center justify-between px-3 py-1.5 rounded-t-xl border-b ${
-                    card.isDark
-                      ? 'bg-slate-950/90 border-slate-800 text-slate-400'
-                      : 'bg-stone-50/90 border-stone-100 text-stone-400'
-                  }`}
-                >
+                {/* Cabeçalho Estilo Janela de Navegador com URL */}
+                <div className="flex items-center justify-between px-3 py-1.5 rounded-t-xl border-b bg-stone-50/90 border-stone-100 text-stone-400">
                   <div className="flex items-center gap-1.5">
                     <div className="w-2 h-2 rounded-full bg-red-400/90" />
                     <div className="w-2 h-2 rounded-full bg-amber-400/90" />
                     <div className="w-2 h-2 rounded-full bg-emerald-400/90" />
                   </div>
-                  <span className="text-[9px] font-semibold text-stone-500 uppercase tracking-wider">
-                    {card.headerTitle}
+                  
+                  {/* Endereço de URL simulado */}
+                  <span className="text-[8px] font-mono font-medium px-2 py-0.5 rounded truncate max-w-[140px] bg-white text-stone-400 border border-stone-200/60">
+                    {card.urlPath}
                   </span>
+
+                  {card.badge && (
+                    <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded border ${card.badgeColor}`}>
+                      {card.badge}
+                    </span>
+                  )}
                 </div>
 
                 {/* Conteúdo Customizado do Card */}
