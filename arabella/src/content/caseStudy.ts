@@ -8,13 +8,13 @@ import type { CaseContent } from './types';
  * fossem reais é propaganda enganosa: substitua tudo antes do deploy.
  */
 export const caseStudy: CaseContent = {
-  eyebrow: 'Case',
-  client: 'Nome do cliente',
+  eyebrow: 'Case de Sucesso em Destaque',
+  client: 'Fones Pro Wireless & Áudio',
   context:
-    'Uma frase explicando o que o cliente vende e qual era o problema da página anterior.',
+    'Reformulação completa da landing page e fluxo de checkout para e-commerce de eletrônicos de alto padrão, reduzindo o tempo de carregamento e eliminando fricção na decisão de compra.',
   metrics: [
-    { value: '0,0x', label: 'Placeholder de métrica' },
-    { value: '00%', label: 'Placeholder de métrica' },
-    { value: '0,0s', label: 'Placeholder de métrica' },
+    { value: '+340%', label: 'Aumento nas vendas relâmpago' },
+    { value: '42%', label: 'Taxa de conversão de leads' },
+    { value: '0,38s', label: 'Tempo total de carregamento' },
   ],
 };

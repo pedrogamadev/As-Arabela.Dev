@@ -224,6 +224,7 @@ const SLOTS = [
 const FloatingCards = () => {
   const [positions, setPositions] = useState<number[]>([0, 1, 2, 3, 4, 5]);
   const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
+  const [activeCard, setActiveCard] = useState<CardItem | null>(null);
 
   const shufflePositions = useCallback(() => {
     setPositions(prev => {
@@ -235,14 +236,14 @@ const FloatingCards = () => {
   }, []);
 
   useEffect(() => {
-    if (hoveredCardId) return;
+    if (hoveredCardId || activeCard) return;
 
     const timer = setInterval(() => {
       shufflePositions();
     }, 2400);
 
     return () => clearInterval(timer);
-  }, [hoveredCardId, shufflePositions]);
+  }, [hoveredCardId, activeCard, shufflePositions]);
 
   return (
     <div className="relative w-full h-[540px] flex items-center justify-center select-none overflow-visible">
@@ -286,6 +287,7 @@ const FloatingCards = () => {
               }}
               onHoverStart={() => setHoveredCardId(card.id)}
               onHoverEnd={() => setHoveredCardId(null)}
+              onClick={() => setActiveCard(card)}
               className="absolute cursor-pointer"
               style={{
                 width: card.cardWidth || '260px',
@@ -336,6 +338,61 @@ const FloatingCards = () => {
           );
         })}
       </div>
+
+      {/* Modal de Detalhes ao Clicar no Card */}
+      {activeCard && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200"
+          onClick={() => setActiveCard(null)}
+        >
+          <div
+            className="relative w-full max-w-md bg-white rounded-2xl p-6 shadow-2xl border border-stone-200/80 text-stone-900"
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b pb-3 mb-4">
+              <div className="flex items-center gap-2">
+                <span className={`text-[10px] font-bold px-2 py-0.5 rounded border ${activeCard.badgeColor}`}>
+                  {activeCard.badge || 'PROJETO'}
+                </span>
+                <h3 className="text-lg font-bold text-stone-900">{activeCard.headerTitle}</h3>
+              </div>
+              <button
+                onClick={() => setActiveCard(null)}
+                className="text-stone-400 hover:text-stone-700 text-sm font-bold w-7 h-7 flex items-center justify-center rounded-full bg-stone-100"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div className="bg-stone-50 p-4 rounded-xl border border-stone-200/60">
+                {activeCard.renderContent()}
+              </div>
+
+              <p className="text-xs text-stone-600 leading-relaxed">
+                Modelo otimizado para entregas rápidas com máxima performance, design responsivo sob medida e integração pronta com WhatsApp e checkout.
+              </p>
+
+              <div className="pt-2 flex items-center justify-end gap-3">
+                <button
+                  onClick={() => setActiveCard(null)}
+                  className="px-4 py-2 text-xs font-semibold text-stone-600 hover:text-stone-900"
+                >
+                  Fechar
+                </button>
+                <a
+                  href="#planos"
+                  onClick={() => setActiveCard(null)}
+                  className="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-lg text-xs shadow-md transition-all flex items-center gap-1.5"
+                >
+                  Quero um Projeto Assim
+                  <ArrowUpRight className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

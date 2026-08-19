@@ -68,8 +68,11 @@ const HeroSection = ({ content, cta }: HeroSectionProps) => (
         </div>
       </div>
 
-      {/* Composição flutuante de cards — visível apenas em lg+ */}
+      {/* Composição flutuante de cards com ambiente luminoso 3D — visível apenas em lg+ */}
       <div className="relative hidden lg:block">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-400/15 rounded-full blur-3xl pointer-events-none animate-pulse" />
+        <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
         <FloatingCards />
       </div>
 

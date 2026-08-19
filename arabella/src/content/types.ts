@@ -98,6 +98,12 @@ export interface ProjectEntry {
   description: string;
   /** Status ou número alinhado à direita da linha. */
   status: string;
+  category?: 'e-commerce' | 'landing-page' | 'sistema' | 'branding';
+  technologies?: string[];
+  image?: string;
+  fullDescription?: string;
+  liveUrl?: string;
+  results?: string;
 }
 
 export interface ProjectsContent {
