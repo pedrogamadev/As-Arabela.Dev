@@ -1,11 +1,8 @@
 import type { SocialProofMetric } from './types';
 
-/**
- * TODO(conteúdo): substituir por números reais antes de publicar.
- * Valores abaixo são placeholders — não são resultados auditados.
- */
 export const socialProof: SocialProofMetric[] = [
-  { value: '7', label: 'dias para a primeira entrega' },
-  { value: '100%', label: 'do código escrito sob medida' },
-  { value: '1', label: 'revisão por etapa, sem fila' },
+  { value: '7 dias', label: 'para a primeira entrega', icon: 'calendar' },
+  { value: '100%', label: 'do código escrito sob medida', icon: 'code' },
+  { value: '1 revisão', label: 'por etapa, sem filas', icon: 'refresh' },
+  { value: 'Páginas rápidas', label: 'e otimizadas para SEO', icon: 'speed' },
 ];

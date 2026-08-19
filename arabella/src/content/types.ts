@@ -41,6 +41,8 @@ export interface HeroContent {
 export interface SocialProofMetric {
   value: string;
   label: string;
+  /** Identificador do ícone SVG inline (renderizado no componente). */
+  icon?: 'calendar' | 'code' | 'refresh' | 'speed';
 }
 
 export interface ContrastContent {
