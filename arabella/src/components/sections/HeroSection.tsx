@@ -1,7 +1,7 @@
 import type { CallToAction, HeroContent } from '../../content/types';
 import CtaButton from '../ui/CtaButton';
 import Eyebrow from '../ui/Eyebrow';
-import FloatingCards from '../ui/FloatingCards';
+import HeroComposition from '../ui/HeroComposition';
 import SectionShell from '../ui/SectionShell';
 
 interface HeroSectionProps {
@@ -10,11 +10,11 @@ interface HeroSectionProps {
 }
 
 /**
- * Seção 2. Hero com composição flutuante de cards 3D à direita.
+ * Seção 2. Hero em duas colunas.
  *
- * O lado esquerdo contém a proposta de valor e os CTAs.
- * O lado direito exibe os cards representando tipos de projeto
- * (loja, currículo, sistema, etc.) orbitando em perspectiva.
+ * O lado esquerdo contém a proposta de valor e os CTAs. O lado direito é
+ * uma composição única: o mockup de notebook e celular como elemento
+ * principal, com os benefícios em órbita como apoio.
  */
 const HeroSection = ({ content, cta }: HeroSectionProps) => (
   <SectionShell id="topo" surface="base" className="pt-28 md:pt-32 overflow-hidden" labelledBy="hero-title">
@@ -68,32 +68,7 @@ const HeroSection = ({ content, cta }: HeroSectionProps) => (
         </div>
       </div>
 
-      {/* Composição flutuante de cards com ambiente luminoso 3D — visível apenas em lg+ */}
-      <div className="relative hidden lg:block">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-400/15 rounded-full blur-3xl pointer-events-none animate-pulse" />
-        <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-10 right-10 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
-        <FloatingCards />
-      </div>
-
-      {/* Mobile: versão simplificada em grid */}
-      <div className="grid grid-cols-2 gap-3 lg:hidden">
-        {[
-          { label: 'Loja Virtual', icon: '🛒' },
-          { label: 'Currículo Web', icon: '👤' },
-          { label: 'Sistema Sob Medida', icon: '🖥️' },
-          { label: 'Landing Page', icon: '📄' },
-        ].map(item => (
-          <div
-            key={item.label}
-            className="flex items-center gap-2 border border-hairline bg-surface-raised px-3 py-2.5"
-            style={{ borderRadius: '6px' }}
-          >
-            <span className="text-base">{item.icon}</span>
-            <span className="text-xs font-medium text-ink-muted">{item.label}</span>
-          </div>
-        ))}
-      </div>
+      <HeroComposition showcase={content.showcase} highlights={content.highlights} />
     </div>
   </SectionShell>
 );

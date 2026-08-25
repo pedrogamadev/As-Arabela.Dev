@@ -24,6 +24,31 @@ export interface HeaderContent {
   availability: string;
 }
 
+/** Identificador do ícone de um benefício do hero. Desenhado como SVG inline. */
+export type HeroHighlightIcon = 'target' | 'rocket' | 'whatsapp' | 'shield' | 'seo';
+
+/** Benefício que orbita o mockup na composição do hero. */
+export interface HeroHighlight {
+  icon: HeroHighlightIcon;
+  title: string;
+  description: string;
+}
+
+/**
+ * Texto exibido dentro do mockup de notebook e celular.
+ *
+ * É a página de um cliente, não a desta landing: serve de amostra do
+ * trabalho entregue. Decorativo — não é lido por leitor de tela.
+ */
+export interface HeroShowcase {
+  /** Monograma da marca fictícia exibida no mockup. */
+  brandInitial: string;
+  nav: string[];
+  headline: string;
+  paragraph: string;
+  buttonLabel: string;
+}
+
 export interface HeroContent {
   eyebrow: string;
   /** Trecho anterior ao destaque em marca-texto. */
@@ -36,6 +61,10 @@ export interface HeroContent {
   secondaryLink: { label: string; targetId: string };
   /** Card sobreposto no canto inferior direito do mockup. */
   mockupCard: { label: string; value: string };
+  /** Conteúdo da página exibida no mockup. */
+  showcase: HeroShowcase;
+  /** Exatamente cinco: são as cinco posições fixas da composição. */
+  highlights: HeroHighlight[];
 }
 
 export interface SocialProofMetric {
